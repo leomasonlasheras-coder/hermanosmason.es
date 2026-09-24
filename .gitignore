@@ -1,0 +1,21 @@
+# En el repositorio publico (github.com/leomasonlasheras-coder/hermanosmason.es)
+# SOLO entra docs/, la copia publicada que escribe herramientas/publicar.py y
+# que sirve GitHub Pages. La fuente, el README y las herramientas se quedan
+# en esta maquina (decision del 24-09-2026: el repositorio es publico y el
+# README cuenta cosas del negocio). Para versionar la fuente, un segundo
+# repositorio privado.
+/*
+!/docs/
+!/.gitignore
+!/.gitattributes
+
+# Aunque docs/ no lleva masteres, por si alguno se cuela: los PNG y demas
+# originales viven en diseno-web/assets/, fuera de lo que se publica.
+*.png
+*.psd
+*.ai
+*.tif
+*.tiff
+Thumbs.db
+desktop.ini
+.DS_Store

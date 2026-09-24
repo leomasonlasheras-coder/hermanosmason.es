@@ -1,0 +1,11 @@
+# Hermanos Mason Diseño
+# Toda la web es pública y no hay panel ni zona privada que esconder, así que
+# no hay nada que bloquear. El archivo existe por lo de abajo: sin él, el
+# buscador tiene que adivinar dónde está el mapa del sitio.
+#
+# La línea Sitemap tiene que llevar la URL entera; una ruta relativa no vale.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://hermanosmason.es/sitemap.xml

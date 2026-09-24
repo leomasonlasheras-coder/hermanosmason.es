@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Mapa del sitio. Una sola entrada: la portada. La página del formulario
+  (demo-gratis.html) se borró el 22-09-2026 al pasar el formulario al cierre
+  de la portada, y las páginas por sector (peluquerias/, clinicas/…) no
+  van aquí a propósito: llevan noindex, son enlaces privados que se mandan
+  por WhatsApp. Si algún día hay fichas de proyecto, se añade su URL.
+  lastmod es la fecha de la última revisión de la portada.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hermanosmason.es/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

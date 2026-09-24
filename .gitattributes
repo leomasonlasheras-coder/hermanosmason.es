@@ -1,0 +1,6 @@
+# Todo el texto se guarda con LF, tambien al descargarlo en Windows: los
+# scripts escriben LF y asi git no avisa en cada archivo.
+* text=auto eol=lf
+*.webp binary
+*.jpg binary
+*.woff2 binary
