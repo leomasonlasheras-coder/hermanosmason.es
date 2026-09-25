@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Mapa del sitio. Una sola entrada: la portada. La página del formulario
+  Mapa del sitio. La portada y los tres textos legales (25-09-2026). La página del formulario
   (demo-gratis.html) se borró el 22-09-2026 al pasar el formulario al cierre
   de la portada, y las páginas por sector (peluquerias/, clinicas/…) no
   van aquí a propósito: llevan noindex, son enlaces privados que se mandan
@@ -14,4 +14,7 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url><loc>https://hermanosmason.es/aviso-legal.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://hermanosmason.es/privacidad.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://hermanosmason.es/condiciones.html</loc><lastmod>2026-09-25</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>
