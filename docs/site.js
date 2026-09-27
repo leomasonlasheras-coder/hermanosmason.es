@@ -136,7 +136,9 @@
   const destino = demoForm ? demoForm.getAttribute("action") || "" : "";
 
   if (demoForm && destino.startsWith("https://wa.me/")) {
-    const campos = Array.from(demoForm.elements).filter((el) => el.name);
+    const campos = Array.from(demoForm.elements).filter(
+      (el) => el.name && el.type !== "hidden"
+    );
     const estado = demoForm.querySelector(".form__estado");
 
     demoForm.noValidate = true;
@@ -169,12 +171,27 @@
       return false;
     };
 
-    const SALUDO = "Hola, quiero pedir mi mes gratis.";
+    const SALUDO =
+      (demoForm.elements.text && demoForm.elements.text.value) ||
+      "Hola, quiero pedir mi mes gratis.";
     const rotuloDe = (el) => el.dataset.mensaje || el.name;
     const valorDe = (el) =>
       el.tagName === "SELECT"
         ? (el.value ? el.selectedOptions[0].text : "")
         : el.value.trim().replace(/\s*\n\s*/g, "\n");
+
+    const frase = () => {
+      const dato = (n) => (demoForm.elements[n] ? valorDe(demoForm.elements[n]) : "");
+      const nombre = dato("nombre");
+      const negocio = dato("negocio");
+      const tipo = dato("tipo");
+      if (!demoForm.hasAttribute("data-frase") || !nombre || !negocio) return "";
+      const peticion = SALUDO.replace(/^Hola,\s*/i, "");
+      return (
+        "Hola, soy " + nombre + ", de " + negocio + (tipo ? " (" + tipo + ")" : "") + ". " +
+        peticion.charAt(0).toUpperCase() + peticion.slice(1)
+      );
+    };
 
     const mensajeCaja = demoForm.querySelector(".mensaje");
     const globo = mensajeCaja ? mensajeCaja.querySelector(".mensaje__globo") : null;
@@ -257,7 +274,10 @@
 
       if (muestraElegida) renglones.push("*Muestra que me gusta:* " + muestraElegida);
 
-      const mensaje = SALUDO + "\n\n" + renglones.join("\n");
+      const enFrase = frase();
+      const mensaje = enFrase
+        ? enFrase + (muestraElegida ? " Me ha gustado la muestra " + muestraElegida + "." : "")
+        : SALUDO + "\n\n" + renglones.join("\n");
 
       open(destino + "?text=" + encodeURIComponent(mensaje), "_blank", "noopener");
 

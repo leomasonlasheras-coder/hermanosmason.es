@@ -728,27 +728,28 @@
         </div>
 
         <form class="contact__form cierre__form reveal" action="https://wa.me/34699072079"
-              method="get" target="_blank" rel="noopener">
+              method="get" target="_blank" rel="noopener" data-frase>
+          <input type="hidden" name="text" value="Hola, quiero pedir mi mes gratis." />
           <div class="field">
             <label class="field__label" for="nombre">Tu nombre</label>
             <input id="nombre" name="nombre" data-mensaje="Nombre" type="text" autocomplete="name"
                    placeholder="Cómo te llamas" required />
           </div>
           <div class="field">
-            <label class="field__label" for="whatsapp">Tu WhatsApp</label>
-            <input id="whatsapp" name="whatsapp" data-mensaje="WhatsApp" type="tel" autocomplete="tel"
-                   placeholder="Para escribirte nosotros" required />
+            <label class="field__label" for="negocio">Nombre de tu negocio</label>
+            <input id="negocio" name="negocio" data-mensaje="Negocio" type="text" autocomplete="organization"
+                   placeholder="Como sale en el rótulo" required />
           </div>
           <div class="field">
-            <label class="field__label" for="negocio">Tipo de negocio</label>
-            <input id="negocio" name="negocio" data-mensaje="Tipo de negocio" type="text"
+            <label class="field__label" for="tipo">Tipo de negocio</label>
+            <input id="tipo" name="tipo" data-mensaje="Tipo de negocio" type="text"
                    placeholder="Peluquería, centro de estética, salón de uñas…" required />
           </div>
 
           <div class="form__foot">
             <button class="btn btn--solid btn--lg" type="submit">Pedir mi mes gratis</button>
             <p class="form__note">
-              Al pulsar se abre WhatsApp con tus datos ya escritos: solo queda enviarlo.
+              Al pulsar se abre WhatsApp con el mensaje ya escrito: solo queda enviarlo.
               Tus datos se usan solo para contestarte: <a href="privacidad.html">política de privacidad</a>.
             </p>
           </div>

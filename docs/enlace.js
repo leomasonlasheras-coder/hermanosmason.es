@@ -135,16 +135,32 @@
     return !!(el && el.checked);
   }
 
+  var tocados = {};
+  form.addEventListener("change", function (e) {
+    if (e.target.name) tocados[e.target.name] = true;
+  });
+
+  function comoVenia(nombre) {
+    var el = form.querySelector('input[name="' + nombre + '"]:checked');
+    return !!(el && el.defaultChecked && !tocados[nombre]);
+  }
+
+  function enumerar(cosas) {
+    if (cosas.length < 2) return cosas.join("");
+    return cosas.slice(0, -1).join(", ") + " y " + cosas[cosas.length - 1];
+  }
+
   function componer() {
     var saludo = valor("text") || "Hola, quiero que me preparéis la web.";
     var renglones = [];
 
-    if (negocio) renglones.push("*Negocio:* " + negocio);
+    var escrito = marcado("datos-yo") ? valor("negocio") : "";
+    if (escrito || negocio) renglones.push("*Negocio:* " + (escrito || negocio));
 
     var datos = valor("datos");
     if (datos) renglones.push("*Datos:* " + datos);
     if (marcado("datos-yo")) {
-      renglones = renglones.concat(campos(["negocio", "direccion", "telefono", "horario"]));
+      renglones = renglones.concat(campos(["direccion", "telefono", "horario"]));
     }
 
     var fotos = valor("fotos");
@@ -157,8 +173,16 @@
     var dia = valor("dia");
     if (dia === "otro") dia = valor("dia-texto");
     if (turno || dia) {
-      renglones.push("*Visita:* " + [turno, dia].filter(Boolean).join(", "));
+      renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
+
+    var sinTocar = [
+      ["datos", "los datos"],
+      ["fotos", "las fotos"],
+      ["estructura", "cómo se organiza"]
+    ].filter(function (g) { return comoVenia(g[0]); })
+      .map(function (g) { return g[1]; });
+    if (sinTocar.length) renglones.push("*Dejo como venía:* " + enumerar(sinTocar));
 
     return renglones.length ? saludo + "\n\n" + renglones.join("\n") : saludo;
   }
