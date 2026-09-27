@@ -1593,22 +1593,30 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .site-footer__links { display: flex; gap: var(--sp-lg); }
 
 .portada {
-  --portada-alto: clamp(34rem, 88svh, 52rem);
-  --figura-alto: min(calc(var(--portada-alto) * 0.82), 34vw);
+  --portada-alto: clamp(34rem, 100svh, 60rem);
+  --cinta-alto: 6.25rem;
+  --figura-alto: min(calc((var(--portada-alto) - var(--cinta-alto)) * 0.8), 34vw);
   --figura-ancho: calc(var(--figura-alto) * 900 / 1468);
+  --figura-apilada: min(28rem, 75vw);
 
   position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(6rem, 1fr) auto;
   justify-items: center;
-  align-content: center;
+  min-height: 100svh;
   padding-block-end: 0;
   text-align: center;
 }
 
 .portada__voz {
+  align-self: center;
 
   max-width: 50rem;
   padding-block-end: var(--sp-lg);
+
+  width: 100%;
+  container-type: inline-size;
 }
 
 .portada__titulo {
@@ -1617,6 +1625,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
   font-family: var(--font-rotulo);
 
   font-size: clamp(2.5rem, 5.2vw + 1rem, 5.625rem);
+  font-size: min(clamp(2.5rem, 5.2vw + 1rem, 5.625rem), 11.5cqi);
   font-weight: var(--peso-800);
   letter-spacing: var(--track-tight);
   line-height: var(--lh-tight);
@@ -1636,26 +1645,62 @@ html:not(.no-js) body:has(.cortina) .site-header {
   max-width: none;
 }
 
-.portada__micro {
+.portada__cifras {
+  list-style: none;
+  justify-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--sp-md);
+  margin: 0;
+  padding: var(--sp-sm) 0;
+  background: var(--paper);
+  box-shadow: 0 0 0 100vmax var(--paper);
+  clip-path: inset(0 -100vmax);
+  text-align: start;
+}
+
+.portada__cifras li {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--sp-2xs) 0;
-  margin: var(--sp-md) 0 0;
-  max-width: none;
+  flex-direction: column;
+  gap: var(--sp-2xs);
+  margin: 0;
+  padding-inline-start: var(--sp-md);
+  border-inline-start: 2px solid var(--ink);
+}
+
+.portada__cifra {
+  font-family: var(--font-display);
+  font-weight: var(--peso-700);
+  font-size: var(--size-2xl);
+  letter-spacing: var(--track-mid);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.portada__cifra-pie {
   font-size: var(--size-sm);
+  line-height: 1.3;
   color: var(--ink-2);
 }
 
-.portada__micro span + span::before {
-  content: "·";
-  margin-inline: var(--sp-sm);
-  color: var(--line-2);
+@media (max-width: 480px) {
+  .portada__cifras { column-gap: var(--sp-2xs); }
+  .portada__cifras li { padding-inline-start: var(--sp-xs); }
+  .portada__cifra-pie { font-size: var(--size-xs); }
 }
 
-@media (max-width: 480px) {
-  .portada__micro { flex-direction: column; align-items: center; gap: var(--sp-3xs, 0.25rem) 0; }
-  .portada__micro span + span::before { content: none; }
+@media (max-width: 380px) {
+  .portada__cifra { font-size: 1.5rem; }
+  .portada__cifra-pie { font-size: 0.8125rem; }
+}
+
+@media (min-width: 768px) {
+  .portada__cifras {
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    column-gap: clamp(2.5rem, 7vw, 7rem);
+  }
 }
 
 .portada__accion--movil { display: none; }
@@ -1667,12 +1712,18 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .portada__figuras {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  align-self: end;
   width: 100%;
+  height: 100%;
+  max-height: var(--figura-apilada);
+  overflow: hidden;
+  contain: size;
 }
 
 .portada__figura {
-  height: clamp(11rem, 46vw, 22rem);
+  flex: none;
+  height: clamp(11rem, 100%, var(--figura-apilada));
   width: auto;
   background: none;
   border-radius: 0;
@@ -1686,18 +1737,32 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
 @media (min-width: 1024px) {
   .portada {
+    grid-template-rows: minmax(auto, 1fr) auto;
     min-height: var(--portada-alto);
     padding-inline: var(--figura-ancho);
-    padding-block-end: var(--sp-2xl);
   }
 
-  .portada__voz { padding-block-end: 0; }
+  .portada.section--primera {
+    padding-block-start: calc(var(--header-h) + clamp(var(--sp-md), 4svh, var(--sp-2xl)));
+  }
+
+  .portada__voz {
+    grid-area: 1 / 1;
+    padding-block-end: clamp(var(--sp-md), 4svh, var(--sp-2xl));
+  }
 
   .portada__figuras {
-    position: absolute;
-    inset: 0;
+    grid-area: 1 / 1;
+    position: relative;
     display: block;
+    align-self: stretch;
+    justify-self: stretch;
     width: auto;
+    height: auto;
+    max-height: none;
+    margin-inline: calc(var(--figura-ancho) * -1);
+    overflow: visible;
+    contain: none;
     pointer-events: none;
   }
 
@@ -1710,6 +1775,12 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
   .portada__figura--leo { left: calc(50% - 50vw); }
   .portada__figura--pablo { right: calc(50% - 50vw); }
+
+  .portada__cifras {
+    grid-area: 2 / 1;
+    margin-inline: calc(var(--figura-ancho) * -1);
+    padding-block: var(--sp-md);
+  }
 }
 
 .confianza.section { padding-block: var(--sp-xl); }
