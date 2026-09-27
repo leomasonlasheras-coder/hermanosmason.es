@@ -736,7 +736,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 }
 .btn:active { transform: scale(0.96); }
 
-.btn svg { width: 1.05em; height: 1.05em; }
+.btn svg { flex: none; width: 1.05em; height: 1.05em; }
 
 .btn--solid {
   border-color: transparent;
@@ -755,6 +755,11 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .btn--lg,
 .btn--xl { min-height: var(--control-lg); padding: var(--sp-sm) 3.125rem; font-size: var(--size-lg); }
 .btn--block { display: flex; width: 100%; }
+
+@media (max-width: 480px) {
+  .btn--lg,
+  .btn--xl { max-width: 100%; padding-inline: clamp(1rem, 5vw, 3.125rem); }
+}
 
 .btn--flow {
   position: relative;
@@ -1707,6 +1712,10 @@ html:not(.no-js) body:has(.cortina) .site-header {
 @media (max-width: 768px) {
   .portada__accion--escritorio { display: none; }
   .portada__accion--movil { display: block; }
+}
+
+@media (max-width: 480px) {
+  .portada__accion--movil .btn { display: flex; width: 100%; }
 }
 
 .portada__figuras {
