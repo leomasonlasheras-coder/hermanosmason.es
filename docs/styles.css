@@ -676,12 +676,10 @@ html:not(.no-js) body:has(.cortina) .site-header {
     border-block-end: var(--rule-hair) solid var(--line);
   }
 
-  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    .site-nav__links {
-      background: color-mix(in srgb, var(--paper) 70%, transparent);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-    }
+  .site-header:has(.site-nav[data-menu="open"]) {
+    background: var(--paper);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .site-nav:not([data-menu="open"]) .site-nav__links { display: none; }
