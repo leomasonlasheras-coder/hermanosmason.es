@@ -32,11 +32,15 @@
     });
   }
 
+  let muestraElegida = "";
   const dialogo = document.querySelector(".muestra-dialogo");
   if (dialogo && typeof dialogo.showModal === "function") {
     const imagen = dialogo.querySelector(".muestra-dialogo__imagen");
     const nombre = dialogo.querySelector(".muestra-dialogo__nombre");
     const sector = dialogo.querySelector(".muestra-dialogo__sector");
+    const chat = dialogo.querySelector('a[href^="https://wa.me/"]');
+    const chatBase = chat ? new URL(chat.href) : null;
+    const saludoBase = chatBase ? chatBase.searchParams.get("text") || "" : "";
     let origen = null;
 
     document.querySelectorAll("[data-muestra]").forEach((enlace) => {
@@ -48,6 +52,13 @@
         imagen.alt = img ? img.alt : "";
         nombre.textContent = enlace.dataset.nombre || "";
         sector.textContent = enlace.dataset.sector || "";
+        if (chat && enlace.dataset.nombre) {
+          chat.href =
+            chatBase.origin + chatBase.pathname + "?text=" +
+            encodeURIComponent(
+              saludoBase + " Me ha gustado la muestra " + enlace.dataset.nombre + "."
+            );
+        }
         dialogo.showModal();
       });
     });
@@ -56,7 +67,12 @@
       if (dialogo.open) dialogo.close();
     };
     dialogo.querySelector(".muestra-dialogo__cerrar").addEventListener("click", cerrar);
-    dialogo.querySelectorAll("[data-cierra]").forEach((a) => a.addEventListener("click", cerrar));
+    dialogo.querySelectorAll("[data-cierra]").forEach((a) =>
+      a.addEventListener("click", () => {
+        muestraElegida = nombre.textContent;
+        cerrar();
+      })
+    );
     dialogo.addEventListener("click", (e) => {
       if (e.target === dialogo) cerrar();
     });
@@ -153,7 +169,7 @@
       return false;
     };
 
-    const SALUDO = "Hola, quiero empezar mi mes gratis.";
+    const SALUDO = "Hola, quiero pedir mi mes gratis.";
     const rotuloDe = (el) => el.dataset.mensaje || el.name;
     const valorDe = (el) =>
       el.tagName === "SELECT"
@@ -238,6 +254,8 @@
       const renglones = campos
         .filter((el) => valorDe(el))
         .map((el) => "*" + rotuloDe(el) + ":* " + valorDe(el));
+
+      if (muestraElegida) renglones.push("*Muestra que me gusta:* " + muestraElegida);
 
       const mensaje = SALUDO + "\n\n" + renglones.join("\n");
 
