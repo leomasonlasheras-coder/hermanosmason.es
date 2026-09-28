@@ -154,7 +154,7 @@
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
     "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   var SIN_DOMINGO = true;
-  var DESDE_DIA = 7;   // el primer día de la tira: "web en una semana"
+  var DESDE_DIA = 3;   // el primer día de la tira: "web en tres días"
 
   function escribirDias() {
     var tira = form.querySelector("[data-dias]");
