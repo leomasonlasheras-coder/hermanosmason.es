@@ -2270,7 +2270,13 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .enlace {
   max-width: 40rem;
   margin-inline: auto;
+
+  background-image: none;
+  padding-bottom: 0;
+  transition: none;
 }
+
+.enlace:hover { opacity: 1; }
 
 .enlace .section {
   padding-block: var(--sp-2xl);
