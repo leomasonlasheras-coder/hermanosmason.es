@@ -2409,36 +2409,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
 .enlace .truco { border-block-start: var(--rule) solid var(--line); }
 
-.muestras.muestras--flujo {
-  display: flex;
-  gap: var(--sp-sm);
-  padding: 3px;
-  margin-inline: -3px;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-}
-
-.muestras.muestras--flujo.is-flujo { scroll-snap-type: none; }
-
-.muestras--flujo::-webkit-scrollbar { display: none; }
-
-.muestras--flujo .muestra {
-  flex: 0 0 min(60vw, 18rem);
-  scroll-snap-align: start;
-}
-
-@media (max-width: 42rem) {
-  .muestras.muestras--flujo {
-    margin-inline: calc(50% - 50vw);
-    padding-inline: calc(50vw - 50% + 3px);
-    scroll-padding-inline: calc(50vw - 50% + 3px);
-  }
-}
-
-.truco .muestras__grupo .enlace__nota { margin-block-start: var(--sp-md); }
+.truco .muestras__grupo .enlace__nota { margin-block-start: var(--sp-sm); }
 
 .progreso {
   list-style: none;
@@ -2801,6 +2772,16 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .turno:has(input:checked) small { color: inherit; }
 
+.turno--cerrado,
+.turno--cerrado:hover {
+  background: var(--gris-100);
+  border-color: transparent;
+  color: var(--gris-400);
+  cursor: not-allowed;
+}
+
+.turno--cerrado small { color: inherit; }
+
 .tramo__nav {
   position: sticky;
   bottom: 0;
@@ -3013,8 +2994,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .muestra__etiqueta {
   position: absolute;
-  top: var(--sp-sm);
-  left: var(--sp-sm);
+  bottom: var(--sp-sm);
+  right: var(--sp-sm);
   background: var(--paper);
   color: var(--ink);
   border-color: var(--line-2);
@@ -3034,7 +3015,120 @@ html:not(.no-js) .enlace .preparar-seccion {
   color: var(--ink);
 }
 
-.muestra__sector::before { content: "· "; }
+.muestras__sectores {
+  display: grid;
+  gap: var(--sp-xl) var(--sp-lg);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+}
+
+.muestras__sectores .muestras__grupo + .muestras__grupo { margin-block-start: 0; }
+
+.giro.is-giro {
+  --giro-fundido: 0.9s;
+  position: relative;
+}
+
+.giro.is-giro > .muestras {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+.giro.is-giro .muestra {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.giro.is-giro .muestra.is-saliente {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.giro.is-giro .muestra.is-saliente .muestra__pie {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.giro.is-giro .muestra.is-actual {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--giro-fundido) ease-in-out;
+}
+
+.giro.is-giro .muestra.is-actual .muestra__enlace img {
+  animation: giro-enfoque var(--giro-fundido) ease-in-out both;
+}
+
+.giro.is-giro .muestra.is-actual .muestra__pie {
+  animation: giro-nombre var(--giro-fundido) ease-in-out both;
+}
+
+@keyframes giro-enfoque {
+  from { filter: blur(10px); }
+  to { filter: blur(0); }
+}
+
+@keyframes giro-nombre {
+  0%, 30% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.giro.is-giro .muestra__pie {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline-end: 6.5rem;
+}
+
+.giro__puntos {
+  position: absolute;
+  z-index: 3;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  display: flex;
+}
+
+.giro__punto {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.giro__punto::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--gris-500);
+  transition:
+    width var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out);
+}
+
+.giro__punto[aria-current="true"]::before {
+  width: 1.25rem;
+  background: var(--ink);
+}
+
+.giro__punto:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -4px;
+  border-radius: var(--radius-pill);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .giro.is-giro .muestra.is-actual,
+  .giro__punto::before { transition: none; }
+  .giro.is-giro .muestra.is-actual .muestra__enlace img,
+  .giro.is-giro .muestra.is-actual .muestra__pie { animation: none; }
+}
 
 .muestra-dialogo {
   inset: 0;
@@ -3189,6 +3283,14 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 @media print {
+
+  .giro.is-giro .muestra {
+    grid-area: auto;
+    opacity: 1;
+    visibility: visible;
+  }
+  .giro__puntos { display: none; }
+
   :root {
     --paper: #fff;
     --paper-2: #fff;

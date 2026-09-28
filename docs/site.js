@@ -56,7 +56,7 @@
           chat.href =
             chatBase.origin + chatBase.pathname + "?text=" +
             encodeURIComponent(
-              saludoBase + " Me ha gustado la muestra " + enlace.dataset.nombre + "."
+              saludoBase + " Me ha gustado el diseño " + enlace.dataset.nombre + "."
             );
         }
         dialogo.showModal();
@@ -81,6 +81,131 @@
       if (origen) origen.focus({ preventScroll: true });
     });
   }
+
+  const PAUSA = 5000;
+  const FUNDIDO = 900;
+  const LATIDO = 250;
+
+  const cargada = (img) => {
+    if (!img || (img.complete && img.naturalWidth)) return Promise.resolve();
+    img.loading = "eager";
+    return new Promise((listo) => {
+      img.addEventListener("load", listo, { once: true });
+      img.addEventListener("error", listo, { once: true });
+      setTimeout(listo, 4000);
+    });
+  };
+
+  const giros = [...document.querySelectorAll("[data-giro]")];
+  giros.forEach((giro, orden) => {
+    const cartas = [...giro.querySelectorAll(".muestra")];
+    if (cartas.length < 2) return;
+
+    let actual = 0;
+    let pedida = -1;
+    let cuenta = -Math.round((orden * PAUSA) / Math.max(giros.length, 1));
+    let encima = false;
+    let visible = true;
+    let retirada = 0;
+
+    const puntos = document.createElement("div");
+    puntos.className = "giro__puntos";
+    puntos.setAttribute("role", "group");
+    puntos.setAttribute("aria-label", "Elegir diseño");
+    const botones = cartas.map((carta, i) => {
+      const enlace = carta.querySelector("[data-muestra]");
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "giro__punto";
+      boton.setAttribute(
+        "aria-label",
+        "Ver " + ((enlace && enlace.dataset.nombre) || "el diseño " + (i + 1))
+      );
+      boton.addEventListener("click", () => ir(i, true));
+      puntos.appendChild(boton);
+      return boton;
+    });
+
+    const marcar = () => {
+      cartas.forEach((carta, i) => carta.classList.toggle("is-actual", i === actual));
+      botones.forEach((boton, i) =>
+        boton.setAttribute("aria-current", i === actual ? "true" : "false")
+      );
+    };
+
+    const ir = (destino, aMano) => {
+      const i = (destino + cartas.length) % cartas.length;
+      if (aMano) cuenta = -PAUSA;
+      if (i === actual || i === pedida) return;
+      pedida = i;
+      cargada(cartas[i].querySelector("img")).then(() => {
+        if (pedida !== i) return;
+        pedida = -1;
+        const saliente = cartas[actual];
+        clearTimeout(retirada);
+        cartas.forEach((carta) => carta.classList.remove("is-saliente"));
+        saliente.classList.add("is-saliente");
+        actual = i;
+        marcar();
+        retirada = setTimeout(() => saliente.classList.remove("is-saliente"), FUNDIDO);
+        if (!aMano) cuenta = 0;
+      });
+    };
+
+    giro.appendChild(puntos);
+    giro.classList.add("is-giro");
+    marcar();
+
+    giro.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "mouse") encima = true;
+    });
+    giro.addEventListener("pointerleave", () => {
+      encima = false;
+    });
+
+    let x0 = 0;
+    let y0 = 0;
+    giro.addEventListener(
+      "touchstart",
+      (e) => {
+        x0 = e.touches[0].clientX;
+        y0 = e.touches[0].clientY;
+      },
+      { passive: true }
+    );
+    giro.addEventListener(
+      "touchend",
+      (e) => {
+        const dx = e.changedTouches[0].clientX - x0;
+        const dy = e.changedTouches[0].clientY - y0;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        ir(actual + (dx < 0 ? 1 : -1), true);
+      },
+      { passive: true }
+    );
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entradas) => {
+        visible = entradas[0].isIntersecting;
+      }).observe(giro);
+    }
+
+    let calentada = -1;
+    setInterval(() => {
+      if (
+        reduced.matches || encima || !visible || document.hidden ||
+        giro.querySelector(":focus-visible") ||
+        document.querySelector("dialog[open]")
+      ) return;
+      cuenta += LATIDO;
+      const siguiente = (actual + 1) % cartas.length;
+      if (cuenta >= PAUSA / 2 && calentada !== siguiente) {
+        calentada = siguiente;
+        cargada(cartas[siguiente].querySelector("img"));
+      }
+      if (cuenta >= PAUSA) ir(siguiente, false);
+    }, LATIDO);
+  });
 
   const nav = document.querySelector(".site-nav");
   const navToggle = document.getElementById("navToggle");
@@ -272,11 +397,11 @@
         .filter((el) => valorDe(el))
         .map((el) => "*" + rotuloDe(el) + ":* " + valorDe(el));
 
-      if (muestraElegida) renglones.push("*Muestra que me gusta:* " + muestraElegida);
+      if (muestraElegida) renglones.push("*Diseño que me gusta:* " + muestraElegida);
 
       const enFrase = frase();
       const mensaje = enFrase
-        ? enFrase + (muestraElegida ? " Me ha gustado la muestra " + muestraElegida + "." : "")
+        ? enFrase + (muestraElegida ? " Me ha gustado el diseño " + muestraElegida + "." : "")
         : SALUDO + "\n\n" + renglones.join("\n");
 
       open(destino + "?text=" + encodeURIComponent(mensaje), "_blank", "noopener");

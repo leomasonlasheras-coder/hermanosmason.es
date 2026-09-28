@@ -1,88 +1,6 @@
 (function () {
   "use strict";
 
-  var VELOCIDAD = 18;       // píxeles por segundo: una vuelta, unos 40 s
-  var ESPERA_TRAS_TOCAR = 2500;  // ms quieta después de soltarla
-
-  function flujo(fila) {
-    if (!fila || !window.requestAnimationFrame) return;
-    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    var originales = Array.prototype.slice.call(fila.children);
-    if (!originales.length) return;
-    originales.forEach(function (li) {
-      var copia = li.cloneNode(true);
-      copia.setAttribute("aria-hidden", "true");
-      copia.querySelectorAll("a").forEach(function (a) {
-        a.tabIndex = -1;
-        a.addEventListener("click", function (e) {
-          e.preventDefault();
-          var original = li.querySelector("[data-muestra]");
-          if (original) original.click();
-        });
-      });
-      fila.appendChild(copia);
-    });
-    fila.classList.add("is-flujo");
-
-    var dialogo = document.querySelector(".muestra-dialogo");
-    var pos = fila.scrollLeft;
-    var antes = 0;
-    var tocando = false;
-    var encima = false;
-    var visible = true;
-    var quietaHasta = 0;
-
-    function tanda() {
-      return fila.children[originales.length].offsetLeft - fila.children[0].offsetLeft;
-    }
-
-    function parada(ahora) {
-      return tocando || encima || !visible || document.hidden ||
-        (dialogo && dialogo.open) || ahora < quietaHasta;
-    }
-
-    function paso(ahora) {
-      var dt = antes ? Math.min(ahora - antes, 100) : 0;
-      antes = ahora;
-      if (parada(ahora)) {
-        pos = fila.scrollLeft;   // si la ha movido el dedo, desde ahí
-      } else {
-        pos += (VELOCIDAD * dt) / 1000;
-        var t = tanda();
-        if (t > 0 && pos >= t) pos -= t;
-        fila.scrollLeft = pos;
-      }
-      requestAnimationFrame(paso);
-    }
-
-    function soltar() {
-      tocando = false;
-      quietaHasta = performance.now() + ESPERA_TRAS_TOCAR;
-    }
-
-    fila.addEventListener("pointerdown", function () { tocando = true; });
-    fila.addEventListener("pointerup", soltar);
-    fila.addEventListener("pointercancel", soltar);
-    fila.addEventListener("touchstart", function () { tocando = true; }, { passive: true });
-    fila.addEventListener("touchend", soltar, { passive: true });
-    fila.addEventListener("wheel", function () {
-      quietaHasta = performance.now() + ESPERA_TRAS_TOCAR;
-    }, { passive: true });
-    fila.addEventListener("mouseenter", function () { encima = true; });
-    fila.addEventListener("mouseleave", function () { encima = false; });
-
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (entradas) {
-        visible = entradas[0].isIntersecting;
-      }).observe(fila);
-    }
-
-    requestAnimationFrame(paso);
-  }
-
-  flujo(document.querySelector("[data-flujo]"));
-
   var form = document.querySelector("form.preparar");
   if (!form) return;
 
@@ -162,15 +80,17 @@
     if (!tira || !otro) return;
     var hoy = new Date();
     var puestos = 0;
-    for (var i = DESDE_DIA; puestos < 7 && i < DESDE_DIA + 9; i++) {
+    for (var i = 0; puestos < 7 && i < DESDE_DIA + 9; i++) {
       var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i);
-      if (SIN_DOMINGO && d.getDay() === 0) continue;
-      puestos++;
+      var cerrado = i < DESDE_DIA;
+      if (!cerrado && SIN_DOMINGO && d.getDay() === 0) continue;
+      if (!cerrado) puestos++;
       var label = document.createElement("label");
-      label.className = "turno turno--dia";
+      label.className = "turno turno--dia" + (cerrado ? " turno--cerrado" : "");
       var radio = document.createElement("input");
       radio.type = "radio";
       radio.name = "dia";
+      radio.disabled = cerrado;
       radio.value = "el " + DIAS[d.getDay()] + " " + d.getDate() + " de " + MESES[d.getMonth()];
       var texto = document.createElement("span");
       texto.innerHTML = "<small></small><b></b>";
@@ -268,7 +188,7 @@
     var estructura = valor("estructura");
     if (estructura) renglones.push("*Cómo se organiza:* " + estructura);
 
-    if (muestra) renglones.push("*Muestra que me gusta:* " + muestra);
+    if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 
     var sinTocar = [
       ["datos", "los datos"],
