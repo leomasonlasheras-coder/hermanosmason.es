@@ -1,6 +1,88 @@
 (function () {
   "use strict";
 
+  var VELOCIDAD = 18;       // píxeles por segundo: una vuelta, unos 40 s
+  var ESPERA_TRAS_TOCAR = 2500;  // ms quieta después de soltarla
+
+  function flujo(fila) {
+    if (!fila || !window.requestAnimationFrame) return;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var originales = Array.prototype.slice.call(fila.children);
+    if (!originales.length) return;
+    originales.forEach(function (li) {
+      var copia = li.cloneNode(true);
+      copia.setAttribute("aria-hidden", "true");
+      copia.querySelectorAll("a").forEach(function (a) {
+        a.tabIndex = -1;
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          var original = li.querySelector("[data-muestra]");
+          if (original) original.click();
+        });
+      });
+      fila.appendChild(copia);
+    });
+    fila.classList.add("is-flujo");
+
+    var dialogo = document.querySelector(".muestra-dialogo");
+    var pos = fila.scrollLeft;
+    var antes = 0;
+    var tocando = false;
+    var encima = false;
+    var visible = true;
+    var quietaHasta = 0;
+
+    function tanda() {
+      return fila.children[originales.length].offsetLeft - fila.children[0].offsetLeft;
+    }
+
+    function parada(ahora) {
+      return tocando || encima || !visible || document.hidden ||
+        (dialogo && dialogo.open) || ahora < quietaHasta;
+    }
+
+    function paso(ahora) {
+      var dt = antes ? Math.min(ahora - antes, 100) : 0;
+      antes = ahora;
+      if (parada(ahora)) {
+        pos = fila.scrollLeft;   // si la ha movido el dedo, desde ahí
+      } else {
+        pos += (VELOCIDAD * dt) / 1000;
+        var t = tanda();
+        if (t > 0 && pos >= t) pos -= t;
+        fila.scrollLeft = pos;
+      }
+      requestAnimationFrame(paso);
+    }
+
+    function soltar() {
+      tocando = false;
+      quietaHasta = performance.now() + ESPERA_TRAS_TOCAR;
+    }
+
+    fila.addEventListener("pointerdown", function () { tocando = true; });
+    fila.addEventListener("pointerup", soltar);
+    fila.addEventListener("pointercancel", soltar);
+    fila.addEventListener("touchstart", function () { tocando = true; }, { passive: true });
+    fila.addEventListener("touchend", soltar, { passive: true });
+    fila.addEventListener("wheel", function () {
+      quietaHasta = performance.now() + ESPERA_TRAS_TOCAR;
+    }, { passive: true });
+    fila.addEventListener("mouseenter", function () { encima = true; });
+    fila.addEventListener("mouseleave", function () { encima = false; });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entradas) {
+        visible = entradas[0].isIntersecting;
+      }).observe(fila);
+    }
+
+    requestAnimationFrame(paso);
+  }
+
+  flujo(document.querySelector("[data-flujo]"));
+
   var form = document.querySelector("form.preparar");
   if (!form) return;
 
@@ -99,6 +181,8 @@
       tira.insertBefore(label, otro);
     }
     tira.dataset.escrita = "";
+    tira.scrollLeft = 0;
+    requestAnimationFrame(function () { tira.scrollLeft = 0; });
   }
 
   escribirDias();
@@ -114,6 +198,14 @@
   }
 
   rotular(form.querySelector(".mini--ficha"));
+
+  var muestra = "";
+  document.querySelectorAll(".muestra-dialogo [data-cierra]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var nombre = document.querySelector(".muestra-dialogo__nombre");
+      muestra = nombre ? nombre.textContent.trim() : "";
+    });
+  });
 
   function valor(nombre) {
     var el = form.elements[nombre];
@@ -157,6 +249,13 @@
     var escrito = marcado("datos-yo") ? valor("negocio") : "";
     if (escrito || negocio) renglones.push("*Negocio:* " + (escrito || negocio));
 
+    var turno = valor("turno");
+    var dia = valor("dia");
+    if (dia === "otro") dia = valor("dia-texto");
+    if (turno || dia) {
+      renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
+    }
+
     var datos = valor("datos");
     if (datos) renglones.push("*Datos:* " + datos);
     if (marcado("datos-yo")) {
@@ -169,12 +268,7 @@
     var estructura = valor("estructura");
     if (estructura) renglones.push("*Cómo se organiza:* " + estructura);
 
-    var turno = valor("turno");
-    var dia = valor("dia");
-    if (dia === "otro") dia = valor("dia-texto");
-    if (turno || dia) {
-      renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
-    }
+    if (muestra) renglones.push("*Muestra que me gusta:* " + muestra);
 
     var sinTocar = [
       ["datos", "los datos"],
