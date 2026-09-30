@@ -76,6 +76,8 @@
 
   --link: var(--violeta);
 
+  --rotulador: var(--amarillo);
+
   --whatsapp:       var(--verde-whatsapp);
   --whatsapp-ink:   var(--blanco);
   --whatsapp-linea: var(--verde-whatsapp);
@@ -264,6 +266,19 @@
   font-size: var(--size-xs);
   font-weight: 400;
   letter-spacing: var(--track-label);
+}
+
+.clave {
+  margin-inline: -0.06em;
+  padding-inline: 0.06em;
+  background: linear-gradient(var(--rotulador), var(--rotulador)) 0 0.56em / 100% 0.5em no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.invert .clave {
+  background: none;
+  color: var(--rotulador);
 }
 
 :where(p, li, dd, blockquote) { text-wrap: pretty; }
@@ -3308,6 +3323,9 @@ html:not(.no-js) .enlace .preparar-seccion {
   .backdrop,
   .btn,
   .tratos__salida { display: none; }
+
+  .clave,
+  .invert .clave { background: none; color: inherit; }
 
   .faq__mas { display: none; }
   .faq__item::details-content {
