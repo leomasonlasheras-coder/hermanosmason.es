@@ -1190,6 +1190,15 @@ html:not(.no-js) body:has(.cortina) .site-header {
   border-radius: 0;
 }
 
+@media (max-width: 768px) {
+  .faq-foto img {
+    align-self: flex-start;
+    width: auto;
+    max-width: 100%;
+    max-height: 21rem;
+  }
+}
+
 @media (min-width: 769px) {
 
   .faq-reparto {
@@ -1217,7 +1226,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
   .faq-foto img {
     position: sticky;
     bottom: 0;
-    max-height: calc(100svh - var(--header-h) - 2 * var(--sp-lg));
+    max-height: min(calc(100svh - var(--header-h) - 2 * var(--sp-lg)), 46rem);
     object-fit: contain;
     object-position: 0 100%;
   }
@@ -2340,6 +2349,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .saludo__fotos img + img { margin-inline-start: -1.1rem; }
 
 .saludo__fotos img[hidden] { display: none; }
+
+.saludo__fotos img[hidden] + img { margin-inline-start: 0; }
 
 .saludo__texto {
   max-width: none;
