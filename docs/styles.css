@@ -47,8 +47,6 @@
   --negro:    #000000;
 
   --amarillo:      #f5ff63;
-  --violeta:       #7a40ed;
-  --violeta-claro: #cab3f8;
 
   --verde-whatsapp:       #075e54;
   --verde-whatsapp-claro: #25d366;
@@ -74,7 +72,7 @@
   --accent-hover: var(--gris-800);
   --accent-ink:   var(--blanco);
 
-  --link: var(--violeta);
+  --link: var(--ink);
 
   --rotulador: var(--amarillo);
 
@@ -179,7 +177,7 @@
   --accent-hover: color-mix(in srgb, var(--amarillo) 86%, var(--negro));
   --accent-ink:   var(--gris-900);
 
-  --link: var(--violeta-claro);
+  --link: var(--ink);
 
   --whatsapp-linea: var(--verde-whatsapp-claro);
 
