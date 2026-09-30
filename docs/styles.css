@@ -2661,43 +2661,79 @@ html:not(.no-js) .enlace .preparar-seccion {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--sp-xs);
+
+  container-type: inline-size;
 }
 
 .casilla {
   display: flex;
   align-items: center;
-  gap: var(--sp-xs);
-  min-height: var(--control);
+  gap: var(--sp-sm);
+  min-height: var(--control-lg);
   padding: var(--sp-xs) var(--sp-sm);
   border: var(--rule) solid var(--line-2);
   border-radius: var(--radius);
-  font-size: var(--size-sm);
-  line-height: 1.25;
+  font-family: var(--font-display);
+  font-weight: var(--peso-600);
+  font-size: var(--size-md);
+  letter-spacing: var(--track-card);
+  line-height: 1.2;
+  color: var(--ink);
   cursor: pointer;
   transition:
+    background-color var(--dur) var(--ease-out),
     border-color var(--dur) var(--ease-out),
-    box-shadow var(--dur) var(--ease-out);
+    color var(--dur) var(--ease-out);
 }
 
 .casilla--ancha { grid-column: 1 / -1; }
 
 .casilla:hover { border-color: var(--gris-400); }
 
-.casilla:has(input:checked) {
+.casilla:not(.casilla--fija):has(input:checked),
+.casilla:not(.casilla--fija):has(input:checked):hover {
+  background: var(--ink);
   border-color: var(--ink);
-  box-shadow: 0 0 0 1px var(--ink);
+  color: var(--paper);
 }
+
+.casilla:not(.casilla--fija):has(input:checked) input {
+  border-color: var(--paper);
+  background: var(--paper);
+}
+
+.casilla:not(.casilla--fija):has(input:checked) input::after { border-color: var(--ink); }
 
 .casilla:has(input:focus-visible) {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 
+.casilla__icono {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.casilla input {
+  margin-inline-start: auto;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.casilla input:checked::after {
+  width: 0.35rem;
+  height: 0.65rem;
+}
+
 .casilla--fija,
-.casilla--fija:hover,
-.casilla--fija:has(input:checked) {
+.casilla--fija:hover {
   border-color: transparent;
-  box-shadow: none;
   background: var(--gris-100);
   cursor: default;
 }
@@ -2711,7 +2747,10 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .casilla__nota {
   display: block;
+  font-family: var(--font-text);
+  font-weight: 400;
   font-size: var(--size-2xs);
+  letter-spacing: var(--track-label);
   color: var(--ink-2);
 }
 
@@ -2723,13 +2762,22 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .casillas__nota::placeholder { font-size: var(--size-sm); }
 
-@media (max-width: 420px) {
+@container (max-width: 30rem) {
+  .casilla { font-size: var(--size-sm); }
+  .casilla input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .casilla { position: relative; }
   .casillas__nota::placeholder { font-size: var(--size-xs); }
 }
 
 @media (max-width: 420px) {
   .casillas { gap: var(--sp-2xs); }
-  .casilla { font-size: var(--size-xs); }
 }
 
 .fijas {
@@ -2752,9 +2800,6 @@ html:not(.no-js) .enlace .preparar-seccion {
   gap: var(--sp-xs);
   margin: var(--sp-md) 0 0;
   max-width: none;
-  padding: var(--sp-sm) var(--sp-md) var(--sp-sm) var(--sp-sm);
-  border-radius: var(--radius);
-  background: var(--gris-100);
   font-size: var(--size-xs);
   line-height: 1.45;
   color: var(--ink-2);
@@ -2766,8 +2811,9 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 .origen__icono {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-block-start: 0.05em;
   fill: none;
   stroke: var(--ink);
   stroke-width: 1.6;

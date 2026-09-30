@@ -181,27 +181,32 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">Marca todas las que valgan. Si no marcas ninguna, las buscamos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
               <span>Tu ficha de Google</span>
+              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
               <span>Tu Instagram</span>
+              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-facebook" value="las de mi Facebook" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><path d="M15 7.5h-1.5a2.5 2.5 0 0 0-2.5 2.5v11M8.5 13.5h5.5" /></svg>
               <span>Tu Facebook</span>
+              <input type="checkbox" name="fotos" id="fotos-facebook" value="las de mi Facebook" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-reservas" value="las de mi página de reservas" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
               <span>Tu Booksy o Treatwell</span>
+              <input type="checkbox" name="fotos" id="fotos-reservas" value="las de mi página de reservas" />
             </label>
             <label class="casilla casilla--ancha">
-              <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
               <span>Os mando las mías por WhatsApp</span>
+              <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp" />
             </label>
             <input class="casillas__nota" type="text" name="fotos-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las fotos" placeholder="Otra opción o una nota…" />
           </div>
@@ -220,35 +225,42 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras. Si no marcas ninguna, las elegimos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras; si no marcas ninguna, las elegimos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla casilla--fija">
-              <input type="checkbox" name="secciones" value="portada" checked disabled />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7" /><path d="M6.5 9.5V20h11V9.5" /><path d="M10 20v-5h4v5" /></svg>
               <span>Portada<small class="casilla__nota">Incluida</small></span>
+              <input type="checkbox" name="secciones" value="portada" checked disabled />
             </label>
             <label class="casilla casilla--fija">
-              <input type="checkbox" name="secciones" value="tratamientos" checked disabled />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11" /><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" /></svg>
               <span>Tratamientos<small class="casilla__nota">Incluidos</small></span>
+              <input type="checkbox" name="secciones" value="tratamientos" checked disabled />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="precios" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5V4h7.5l9.5 9.5-7.5 7.5z" /><path d="M7.5 8.5h.01" /></svg>
               <span>Precios</span>
+              <input type="checkbox" name="secciones" value="precios" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="galería de fotos" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
               <span>Galería de fotos</span>
+              <input type="checkbox" name="secciones" value="galería de fotos" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="opiniones de Google" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z" /></svg>
               <span>Opiniones de Google</span>
+              <input type="checkbox" name="secciones" value="opiniones de Google" />
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="quiénes somos" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M17.5 13.6a6.5 6.5 0 0 1 4 6.4" /></svg>
               <span>Quiénes somos</span>
+              <input type="checkbox" name="secciones" value="quiénes somos" />
             </label>
             <label class="casilla casilla--ancha">
-              <input type="checkbox" name="secciones" value="preguntas frecuentes" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M9.5 9.6a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.1 1-1.1 1.8" /><path d="M12 17h.01" /></svg>
               <span>Preguntas frecuentes</span>
+              <input type="checkbox" name="secciones" value="preguntas frecuentes" />
             </label>
             <input class="casillas__nota" type="text" name="secciones-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las secciones" placeholder="Otra opción o una nota…" />
           </div>
