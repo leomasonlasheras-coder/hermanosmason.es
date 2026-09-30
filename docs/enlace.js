@@ -38,10 +38,9 @@
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter") return;
     if (!e.target.matches("input:not([type=radio]):not([type=checkbox])")) return;
-    if (actual < tramos.length - 1) {
-      e.preventDefault();
-      ir(actual + 1, true);
-    }
+    e.preventDefault();
+    if (actual < tramos.length - 1) ir(actual + 1, true);
+    else e.target.blur();
   });
 
   ir(0, false);
@@ -137,21 +136,21 @@
       .map(function (el) { return el.value; });
   }
 
-  var tocados = {};
-  form.addEventListener("change", function (e) {
-    if (e.target.name) tocados[e.target.name] = true;
-  });
-
-  function comoVenia(nombre) {
-    var grupo = casillas(nombre).filter(function (el) { return !el.disabled; });
-    return !tocados[nombre] &&
-      grupo.some(function (el) { return el.defaultChecked; }) &&
-      grupo.every(function (el) { return el.checked === el.defaultChecked; });
-  }
-
   function enumerar(cosas) {
     if (cosas.length < 2) return cosas.join("");
     return cosas.slice(0, -1).join(", ") + " y " + cosas[cosas.length - 1];
+  }
+
+  function grupo(rotulo, deQue, nombre, siNada) {
+    var elegidas = casillas(nombre).some(function (el) {
+      return el.checked && !el.disabled;
+    });
+    var nota = valor(nombre + "-nota");
+    var lineas = [];
+    if (elegidas) lineas.push("*" + rotulo + ":* " + enumerar(marcadas(nombre)));
+    else if (!nota) lineas.push("*" + rotulo + ":* " + siNada);
+    if (nota) lineas.push("*Nota sobre " + deQue + ":* " + nota);
+    return lineas;
   }
 
   function componer() {
@@ -169,22 +168,11 @@
 
     renglones.push("*Datos:* los de mi ficha de Google");
 
-    var fotos = marcadas("fotos");
-    renglones.push("*Fotos:* " + (fotos.length ? enumerar(fotos) : "por decidir"));
-
-    var elegidas = casillas("secciones").some(function (el) {
-      return el.checked && !el.disabled;
-    });
-    renglones.push("*Secciones:* " + (elegidas ? enumerar(marcadas("secciones")) : "elegidlas vosotros"));
+    renglones = renglones
+      .concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"))
+      .concat(grupo("Secciones", "las secciones", "secciones", "elegidlas vosotros"));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
-
-    var sinTocar = [
-      ["fotos", "las fotos"],
-      ["secciones", "las secciones"]
-    ].filter(function (g) { return comoVenia(g[0]); })
-      .map(function (g) { return g[1]; });
-    if (sinTocar.length) renglones.push("*Dejo como venía:* " + enumerar(sinTocar));
 
     return renglones.length ? saludo + "\n\n" + renglones.join("\n") : saludo;
   }

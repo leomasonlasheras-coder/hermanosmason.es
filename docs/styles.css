@@ -2715,6 +2715,18 @@ html:not(.no-js) .enlace .preparar-seccion {
   color: var(--ink-2);
 }
 
+.casillas__nota {
+  grid-column: 1 / -1;
+  border-radius: var(--radius);
+  padding-inline: var(--sp-sm);
+}
+
+.casillas__nota::placeholder { font-size: var(--size-sm); }
+
+@media (max-width: 420px) {
+  .casillas__nota::placeholder { font-size: var(--size-xs); }
+}
+
 @media (max-width: 420px) {
   .casillas { gap: var(--sp-2xs); }
   .casilla { font-size: var(--size-xs); }

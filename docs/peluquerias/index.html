@@ -181,14 +181,14 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">¿De dónde las cogemos? Marca todas las que valgan: las buscamos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">Marca todas las que valgan. Si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" checked />
+              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" />
               <span>Tu ficha de Google</span>
             </label>
             <label class="casilla">
-              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" checked />
+              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" />
               <span>Tu Instagram</span>
             </label>
             <label class="casilla">
@@ -203,6 +203,7 @@
               <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp" />
               <span>Os mando las mías por WhatsApp</span>
             </label>
+            <input class="casillas__nota" type="text" name="fotos-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las fotos" placeholder="Otra opción o una nota…" />
           </div>
           <div class="extra" data-extra="fotos-yo">
             <p class="extra__nota">Al enviar se abre el chat: nos las mandas ahí, cuando puedas.</p>
@@ -249,6 +250,7 @@
               <input type="checkbox" name="secciones" value="preguntas frecuentes" />
               <span>Preguntas frecuentes</span>
             </label>
+            <input class="casillas__nota" type="text" name="secciones-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las secciones" placeholder="Otra opción o una nota…" />
           </div>
           <p class="fijas"><strong>También van siempre:</strong> el botón de cita, el horario y cómo llegar. Los servicios y los precios los repasamos juntos en la visita.</p>
           <div class="tramo__nav">
