@@ -58,7 +58,7 @@
         </p>
         <p class="enlace__nota">Empiezas por el día de la visita; lo demás, si quieres. Sin tarjeta y sin permanencia.</p>
         <ul class="vistos">
-          <li>No necesitas fotos nuevas: usamos las que ya tienes.</li>
+          <li>No tienes que preparar nada: usamos las fotos que ya tienes y los datos de tu ficha de Google.</li>
           <li>Pasamos por tu local a enseñártela. La visita es gratis aunque no compres.</li>
           <li>200 € una vez, solo si te la quedas, con dominio y alojamiento incluidos. 35 €/mes opcional si quieres que la llevemos nosotros.</li>
         </ul>
@@ -141,9 +141,8 @@
 
         <ol class="progreso" aria-label="Pasos del formulario">
           <li aria-current="step"><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg><span>Visita</span></li>
-          <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg><span>Datos</span></li>
           <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8.5 7l1.5-2.5h4L15.5 7" /><circle cx="12" cy="13.5" r="3.5" /></svg><span>Fotos</span></li>
-          <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M10 18h4" /></svg><span>Tu web</span></li>
+          <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M10 18h4" /></svg><span>Secciones</span></li>
         </ol>
 
         <fieldset class="tramo">
@@ -182,63 +181,36 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 2</span> Los datos de tu negocio <span class="tramo__ayuda">Nombre, dirección, teléfono y horario: lo que ya tienes en Google. Los servicios y precios los repasamos juntos en la visita.</span></legend>
-          <div class="cartas cartas--2">
-            <label class="carta">
-              <input type="radio" name="datos" id="datos-google" value="de mi ficha de Google" checked />
-              <svg class="mini mini--ancho mini--ficha" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="8" y="8" width="144" height="84" rx="8" class="mini__marco" /><path d="M30 60c-7-8-11-13-11-19a11 11 0 0 1 22 0c0 6-4 11-11 19z" class="mini__tinta" /><circle cx="30" cy="41" r="4" class="mini__papel" /><rect x="52" y="22" width="66" height="7" rx="3.5" class="mini__tinta mini__titulo" /><text x="52" y="29" class="mini__rotulo"></text><g class="mini__tinta"><path transform="translate(56 42)" d="M0-4l1.2 2.4 2.7.4-1.9 1.9.4 2.7L0 2.1l-2.4 1.3.4-2.7L-3.9-1.2l2.7-.4z" /><path transform="translate(65 42)" d="M0-4l1.2 2.4 2.7.4-1.9 1.9.4 2.7L0 2.1l-2.4 1.3.4-2.7L-3.9-1.2l2.7-.4z" /><path transform="translate(74 42)" d="M0-4l1.2 2.4 2.7.4-1.9 1.9.4 2.7L0 2.1l-2.4 1.3.4-2.7L-3.9-1.2l2.7-.4z" /><path transform="translate(83 42)" d="M0-4l1.2 2.4 2.7.4-1.9 1.9.4 2.7L0 2.1l-2.4 1.3.4-2.7L-3.9-1.2l2.7-.4z" /><path transform="translate(92 42)" d="M0-4l1.2 2.4 2.7.4-1.9 1.9.4 2.7L0 2.1l-2.4 1.3.4-2.7L-3.9-1.2l2.7-.4z" /></g><rect x="52" y="54" width="82" height="4" rx="2" class="mini__texto" /><rect x="52" y="63" width="58" height="4" rx="2" class="mini__texto" /><rect x="52" y="76" width="46" height="4" rx="2" class="mini__texto" /></svg>
-              <span class="carta__nombre">Los cogemos de tu ficha de Google</span>
-              <span class="tag carta__etiqueta">Más rápido</span>
+          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">¿De dónde las cogemos? Marca todas las que valgan: las buscamos nosotros.</span></legend>
+          <div class="casillas">
+            <label class="casilla">
+              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" checked />
+              <span>Tu ficha de Google</span>
             </label>
-            <label class="carta">
-              <input type="radio" name="datos" id="datos-yo" value="los escribo yo" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="14" y="14" width="100" height="16" rx="8" class="mini__marco" /><rect x="22" y="20" width="34" height="4" rx="2" class="mini__texto" /><rect x="14" y="42" width="100" height="16" rx="8" class="mini__marco" /><rect x="22" y="48" width="48" height="4" rx="2" class="mini__texto" /><rect x="14" y="70" width="100" height="16" rx="8" class="mini__marco" /><rect x="22" y="76" width="26" height="4" rx="2" class="mini__texto" /><path d="M124 74l22-22 9 9-22 22-12 3z" class="mini__tinta" /><path d="M143 55l9 9" class="mini__trazo mini__trazo--papel" /></svg>
-              <span class="carta__nombre">Los escribo yo</span>
+            <label class="casilla">
+              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" checked />
+              <span>Tu Instagram</span>
             </label>
-          </div>
-          <div class="extra" data-extra="datos">
-            <div class="field">
-              <label class="field__label" for="negocio">Nombre del negocio</label>
-              <input id="negocio" name="negocio" data-mensaje="Negocio" type="text" autocomplete="organization" placeholder="Como sale en el rótulo" />
-            </div>
-            <div class="field">
-              <label class="field__label" for="direccion">Dirección</label>
-              <input id="direccion" name="direccion" data-mensaje="Dirección" type="text" autocomplete="street-address" placeholder="Calle y número" />
-            </div>
-            <div class="field">
-              <label class="field__label" for="telefono">Teléfono del negocio</label>
-              <input id="telefono" name="telefono" data-mensaje="Teléfono" type="tel" autocomplete="tel" placeholder="El que sale en la web" />
-            </div>
-            <div class="field">
-              <label class="field__label" for="horario">Horario</label>
-              <input id="horario" name="horario" data-mensaje="Horario" type="text" placeholder="Lunes a viernes de 9 a 20, por ejemplo" />
-            </div>
-          </div>
-          <div class="tramo__nav">
-            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
-            <button class="tramo__ya" type="submit">Enviar ya</button>
-            <button class="btn btn--flow btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
-          </div>
-        </fieldset>
-
-        <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> Tus fotos <span class="tramo__ayuda">Las buscamos nosotros en tu ficha de Google y en tus redes. Nada es definitivo: luego cambiamos lo que quieras.</span></legend>
-          <div class="cartas cartas--2">
-            <label class="carta">
-              <input type="radio" name="fotos" id="fotos-redes" value="las de Google y mis redes" checked />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="14" y="10" width="40" height="36" rx="5" class="mini__bloque" /><path d="M18 42 L28 30 L34 36 L40 33 L50 42 Z" class="mini__texto" /><rect x="60" y="10" width="40" height="36" rx="5" class="mini__bloque" /><circle cx="80" cy="28" r="8" class="mini__texto" /><rect x="106" y="10" width="40" height="36" rx="5" class="mini__bloque" /><path d="M110 42 L124 26 L130 34 L136 30 L142 42 Z" class="mini__texto" /><circle cx="136" cy="18" r="3" class="mini__texto" /><rect x="14" y="54" width="40" height="36" rx="5" class="mini__bloque" /><circle cx="34" cy="72" r="9" class="mini__texto" /><circle cx="34" cy="72" r="4" class="mini__bloque" /><rect x="60" y="54" width="40" height="36" rx="5" class="mini__bloque" /><path d="M64 86 L76 70 L82 80 L88 76 L96 86 Z" class="mini__texto" /><rect x="106" y="54" width="40" height="36" rx="5" class="mini__bloque" /><rect x="114" y="62" width="24" height="20" rx="3" class="mini__texto" /></svg>
-              <span class="carta__nombre">Las de Google y tus redes</span>
-              <span class="tag carta__etiqueta">Más rápido</span>
+            <label class="casilla">
+              <input type="checkbox" name="fotos" id="fotos-facebook" value="las de mi Facebook" />
+              <span>Tu Facebook</span>
             </label>
-            <label class="carta">
-              <input type="radio" name="fotos" id="fotos-yo" value="os mando las mías por WhatsApp" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="58" y="6" width="44" height="88" rx="7" class="mini__marco" /><rect x="74" y="12" width="12" height="2" rx="1" class="mini__texto" /><rect x="64" y="52" width="32" height="34" rx="4" class="mini__bloque" /><path d="M66 84 L74 70 L80 78 L86 74 L94 84 Z" class="mini__texto" /><path d="M80 44V22M70 32l10-10 10 10" class="mini__trazo" /></svg>
-              <span class="carta__nombre">Os mando las mías por WhatsApp</span>
+            <label class="casilla">
+              <input type="checkbox" name="fotos" id="fotos-reservas" value="las de mi página de reservas" />
+              <span>Tu Booksy o Treatwell</span>
+            </label>
+            <label class="casilla casilla--ancha">
+              <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp" />
+              <span>Os mando las mías por WhatsApp</span>
             </label>
           </div>
           <div class="extra" data-extra="fotos-yo">
             <p class="extra__nota">Al enviar se abre el chat: nos las mandas ahí, cuando puedas.</p>
           </div>
+          <p class="origen">
+            <svg class="origen__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
+            <span><strong>Tus datos, de <span data-ficha>tu ficha de Google</span>.</strong> Nombre, dirección, teléfono y horario: no tienes que escribir nada. Si algo ha cambiado, nos lo dices por el chat.</span>
+          </p>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="tramo__ya" type="submit">Enviar ya</button>
@@ -247,26 +219,42 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 4</span> Cómo se organiza tu web <span class="tramo__ayuda">Elige una. Se cambia cuando quieras.</span></legend>
-          <div class="cartas cartas--3">
-            <label class="carta">
-              <input type="radio" name="estructura" value="Tus diseños en grande y los precios debajo" checked />
-              <svg class="mini" viewBox="0 0 120 160" aria-hidden="true" focusable="false"><rect x="1" y="1" width="118" height="158" rx="12" class="mini__marco" /><rect x="10" y="12" width="100" height="58" rx="6" class="mini__bloque" /><path d="M20 64 L44 34 L58 48 L72 40 L100 64 Z" class="mini__texto" /><circle cx="90" cy="26" r="5" class="mini__texto" /><rect x="10" y="78" width="72" height="6" rx="3" class="mini__tinta mini__titulo" /><text x="10" y="84" class="mini__rotulo"></text><rect x="10" y="88" width="50" height="4" rx="2" class="mini__texto" /><rect x="10" y="100" width="100" height="14" rx="7" class="mini__tinta" /><rect x="10" y="124" width="62" height="4" rx="2" class="mini__texto" /><rect x="92" y="124" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="134" width="54" height="4" rx="2" class="mini__texto" /><rect x="92" y="134" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="144" width="66" height="4" rx="2" class="mini__texto" /><rect x="92" y="144" width="18" height="4" rx="2" class="mini__texto" /></svg>
-              <span class="carta__nombre">Tus diseños en grande y los precios debajo</span>
-              <span class="tag carta__etiqueta">Recomendada</span>
-              <span class="carta__motivo">la foto vende y el botón de cita queda a un toque</span>
+          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras: vienen marcadas las que pondríamos nosotros.</span></legend>
+          <div class="casillas">
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="precios" checked />
+              <span>Precios</span>
             </label>
-            <label class="carta">
-              <input type="radio" name="estructura" value="Servicios y precios primero" />
-              <svg class="mini" viewBox="0 0 120 160" aria-hidden="true" focusable="false"><rect x="1" y="1" width="118" height="158" rx="12" class="mini__marco" /><rect x="10" y="12" width="66" height="6" rx="3" class="mini__tinta mini__titulo" /><text x="10" y="18" class="mini__rotulo"></text><rect x="10" y="28" width="56" height="4" rx="2" class="mini__texto" /><rect x="92" y="28" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="40" width="62" height="4" rx="2" class="mini__texto" /><rect x="92" y="40" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="52" width="48" height="4" rx="2" class="mini__texto" /><rect x="92" y="52" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="64" width="58" height="4" rx="2" class="mini__texto" /><rect x="92" y="64" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="76" width="52" height="4" rx="2" class="mini__texto" /><rect x="92" y="76" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="88" width="64" height="4" rx="2" class="mini__texto" /><rect x="92" y="88" width="18" height="4" rx="2" class="mini__texto" /><rect x="10" y="104" width="100" height="14" rx="7" class="mini__tinta" /><rect x="10" y="128" width="100" height="22" rx="5" class="mini__bloque" /><path d="M20 147 L36 136 L46 142 L58 139 L90 147 Z" class="mini__texto" /></svg>
-              <span class="carta__nombre">Servicios y precios primero</span>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="galería de diseños" checked />
+              <span>Galería de diseños</span>
             </label>
-            <label class="carta">
-              <input type="radio" name="estructura" value="El botón de cita arriba del todo" />
-              <svg class="mini" viewBox="0 0 120 160" aria-hidden="true" focusable="false"><rect x="1" y="1" width="118" height="158" rx="12" class="mini__marco" /><rect x="10" y="12" width="66" height="6" rx="3" class="mini__tinta mini__titulo" /><text x="10" y="18" class="mini__rotulo"></text><rect x="10" y="26" width="100" height="16" rx="8" class="mini__tinta" /><rect x="10" y="52" width="100" height="30" rx="5" class="mini__bloque" /><rect x="18" y="59" width="40" height="4" rx="2" class="mini__texto" /><rect x="78" y="59" width="24" height="4" rx="2" class="mini__texto" /><rect x="18" y="68" width="34" height="4" rx="2" class="mini__texto" /><rect x="78" y="68" width="24" height="4" rx="2" class="mini__texto" /><rect x="10" y="92" width="100" height="56" rx="6" class="mini__bloque" /><path d="M20 142 L44 112 L58 126 L72 118 L100 142 Z" class="mini__texto" /><circle cx="90" cy="106" r="5" class="mini__texto" /></svg>
-              <span class="carta__nombre">El botón de cita arriba del todo</span>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="opiniones de Google" checked />
+              <span>Opiniones de Google</span>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="quiénes somos" />
+              <span>Quiénes somos</span>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="antes y después" />
+              <span>Antes y después</span>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="ofertas y bonos" />
+              <span>Ofertas y bonos</span>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="marcas con las que trabajo" />
+              <span>Marcas con las que trabajas</span>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="secciones" value="preguntas frecuentes" />
+              <span>Preguntas frecuentes</span>
             </label>
           </div>
+          <p class="fijas"><strong>Van siempre:</strong> la portada con el botón de cita, tus servicios, el horario y cómo llegar. Los servicios y los precios los repasamos juntos en la visita.</p>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg tramo__enviar" type="submit">Preparar mi web</button>

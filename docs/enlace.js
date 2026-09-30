@@ -47,9 +47,6 @@
   ir(0, false);
 
   var abre = {
-    "datos-yo": ["datos"],
-    "datos-google": [],
-    "fotos-redes": [],
     "fotos-yo": ["fotos-yo"],
     "dia-otro": ["otro-dia"]
   };
@@ -57,8 +54,8 @@
   function pintarExtras() {
     var abiertos = [];
     Object.keys(abre).forEach(function (id) {
-      var radio = document.getElementById(id);
-      if (radio && radio.checked) abiertos = abiertos.concat(abre[id]);
+      var opcion = document.getElementById(id);
+      if (opcion && opcion.checked) abiertos = abiertos.concat(abre[id]);
     });
     form.querySelectorAll(".extra").forEach(function (caja) {
       caja.classList.toggle("is-abierto", abiertos.indexOf(caja.dataset.extra) !== -1);
@@ -110,14 +107,11 @@
 
   var negocio = form.dataset.negocio || "";
 
-  function rotular(svg) {
-    if (!svg || !negocio) return;
-    var corto = negocio.length > 24 ? negocio.slice(0, 23).trim() + "…" : negocio;
-    svg.querySelectorAll(".mini__rotulo").forEach(function (t) { t.textContent = corto; });
-    svg.classList.add("mini--con-nombre");
+  if (negocio) {
+    form.querySelectorAll("[data-ficha]").forEach(function (hueco) {
+      hueco.textContent = "la ficha de Google de " + negocio;
+    });
   }
-
-  rotular(form.querySelector(".mini--ficha"));
 
   var muestra = "";
   document.querySelectorAll(".muestra-dialogo [data-cierra]").forEach(function (a) {
@@ -132,19 +126,15 @@
     return el ? String(el.value || "").replace(/\s+/g, " ").trim() : "";
   }
 
-  function campos(nombres) {
-    return nombres
-      .map(function (n) {
-        var el = form.elements[n];
-        var v = valor(n);
-        return v && el ? "*" + (el.dataset.mensaje || n) + ":* " + v : "";
-      })
-      .filter(Boolean);
+  function casillas(nombre) {
+    return Array.prototype.slice.call(
+      form.querySelectorAll('input[type="checkbox"][name="' + nombre + '"]'));
   }
 
-  function marcado(id) {
-    var el = document.getElementById(id);
-    return !!(el && el.checked);
+  function marcadas(nombre) {
+    return casillas(nombre)
+      .filter(function (el) { return el.checked; })
+      .map(function (el) { return el.value; });
   }
 
   var tocados = {};
@@ -153,8 +143,9 @@
   });
 
   function comoVenia(nombre) {
-    var el = form.querySelector('input[name="' + nombre + '"]:checked');
-    return !!(el && el.defaultChecked && !tocados[nombre]);
+    return !tocados[nombre] && casillas(nombre).every(function (el) {
+      return el.checked === el.defaultChecked;
+    });
   }
 
   function enumerar(cosas) {
@@ -166,8 +157,7 @@
     var saludo = valor("text") || "Hola, quiero que me preparéis la web.";
     var renglones = [];
 
-    var escrito = marcado("datos-yo") ? valor("negocio") : "";
-    if (escrito || negocio) renglones.push("*Negocio:* " + (escrito || negocio));
+    if (negocio) renglones.push("*Negocio:* " + negocio);
 
     var turno = valor("turno");
     var dia = valor("dia");
@@ -176,24 +166,19 @@
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
 
-    var datos = valor("datos");
-    if (datos) renglones.push("*Datos:* " + datos);
-    if (marcado("datos-yo")) {
-      renglones = renglones.concat(campos(["direccion", "telefono", "horario"]));
-    }
+    renglones.push("*Datos:* los de mi ficha de Google");
 
-    var fotos = valor("fotos");
-    if (fotos) renglones.push("*Fotos:* " + fotos);
+    var fotos = marcadas("fotos");
+    renglones.push("*Fotos:* " + (fotos.length ? enumerar(fotos) : "por decidir"));
 
-    var estructura = valor("estructura");
-    if (estructura) renglones.push("*Cómo se organiza:* " + estructura);
+    var secciones = marcadas("secciones");
+    renglones.push("*Secciones:* " + (secciones.length ? enumerar(secciones) : "solo las que van siempre"));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 
     var sinTocar = [
-      ["datos", "los datos"],
       ["fotos", "las fotos"],
-      ["estructura", "cómo se organiza"]
+      ["secciones", "las secciones"]
     ].filter(function (g) { return comoVenia(g[0]); })
       .map(function (g) { return g[1]; });
     if (sinTocar.length) renglones.push("*Dejo como venía:* " + enumerar(sinTocar));
