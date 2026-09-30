@@ -2693,6 +2693,28 @@ html:not(.no-js) .enlace .preparar-seccion {
   outline-offset: 2px;
 }
 
+.casilla--fija,
+.casilla--fija:hover,
+.casilla--fija:has(input:checked) {
+  border-color: transparent;
+  box-shadow: none;
+  background: var(--gris-100);
+  cursor: default;
+}
+
+.casilla--fija input {
+  opacity: 1;
+  border-color: var(--gris-500);
+  background: var(--gris-500);
+  cursor: default;
+}
+
+.casilla__nota {
+  display: block;
+  font-size: var(--size-2xs);
+  color: var(--ink-2);
+}
+
 @media (max-width: 420px) {
   .casillas { gap: var(--sp-2xs); }
   .casilla { font-size: var(--size-xs); }

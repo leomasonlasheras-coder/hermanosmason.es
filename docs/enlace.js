@@ -143,9 +143,10 @@
   });
 
   function comoVenia(nombre) {
-    return !tocados[nombre] && casillas(nombre).every(function (el) {
-      return el.checked === el.defaultChecked;
-    });
+    var grupo = casillas(nombre).filter(function (el) { return !el.disabled; });
+    return !tocados[nombre] &&
+      grupo.some(function (el) { return el.defaultChecked; }) &&
+      grupo.every(function (el) { return el.checked === el.defaultChecked; });
   }
 
   function enumerar(cosas) {
@@ -171,8 +172,10 @@
     var fotos = marcadas("fotos");
     renglones.push("*Fotos:* " + (fotos.length ? enumerar(fotos) : "por decidir"));
 
-    var secciones = marcadas("secciones");
-    renglones.push("*Secciones:* " + (secciones.length ? enumerar(secciones) : "solo las que van siempre"));
+    var elegidas = casillas("secciones").some(function (el) {
+      return el.checked && !el.disabled;
+    });
+    renglones.push("*Secciones:* " + (elegidas ? enumerar(marcadas("secciones")) : "elegidlas vosotros"));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 

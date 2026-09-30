@@ -219,42 +219,38 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras: vienen marcadas las que pondríamos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras. Si no marcas ninguna, las elegimos nosotros.</span></legend>
           <div class="casillas">
+            <label class="casilla casilla--fija">
+              <input type="checkbox" name="secciones" value="portada" checked disabled />
+              <span>Portada<small class="casilla__nota">Incluida</small></span>
+            </label>
+            <label class="casilla casilla--fija">
+              <input type="checkbox" name="secciones" value="servicios" checked disabled />
+              <span>Servicios<small class="casilla__nota">Incluidos</small></span>
+            </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="precios" checked />
+              <input type="checkbox" name="secciones" value="precios" />
               <span>Precios</span>
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="galería de diseños" checked />
+              <input type="checkbox" name="secciones" value="galería de diseños" />
               <span>Galería de diseños</span>
             </label>
             <label class="casilla">
-              <input type="checkbox" name="secciones" value="opiniones de Google" checked />
+              <input type="checkbox" name="secciones" value="opiniones de Google" />
               <span>Opiniones de Google</span>
             </label>
             <label class="casilla">
               <input type="checkbox" name="secciones" value="quiénes somos" />
               <span>Quiénes somos</span>
             </label>
-            <label class="casilla">
-              <input type="checkbox" name="secciones" value="antes y después" />
-              <span>Antes y después</span>
-            </label>
-            <label class="casilla">
-              <input type="checkbox" name="secciones" value="ofertas y bonos" />
-              <span>Ofertas y bonos</span>
-            </label>
-            <label class="casilla">
-              <input type="checkbox" name="secciones" value="marcas con las que trabajo" />
-              <span>Marcas con las que trabajas</span>
-            </label>
-            <label class="casilla">
+            <label class="casilla casilla--ancha">
               <input type="checkbox" name="secciones" value="preguntas frecuentes" />
               <span>Preguntas frecuentes</span>
             </label>
           </div>
-          <p class="fijas"><strong>Van siempre:</strong> la portada con el botón de cita, tus servicios, el horario y cómo llegar. Los servicios y los precios los repasamos juntos en la visita.</p>
+          <p class="fijas"><strong>También van siempre:</strong> el botón de cita, el horario y cómo llegar. Los servicios y los precios los repasamos juntos en la visita.</p>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg tramo__enviar" type="submit">Preparar mi web</button>
