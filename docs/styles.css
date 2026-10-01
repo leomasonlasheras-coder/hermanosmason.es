@@ -1009,11 +1009,36 @@ html:not(.no-js) body:has(.cortina) .site-header {
   color: var(--ink-2);
 }
 
-.form__estado {
+.form__estado,
+.form__hecho {
   margin-block: var(--sp-md) 0;
   max-width: 60ch;
   font-size: var(--size-sm);
   line-height: 1.5;
+}
+
+.form__hecho {
+  max-width: none;
+  padding: var(--sp-sm) var(--sp-md);
+  background: var(--gris-100);
+  border-radius: var(--radius);
+}
+
+.form__hecho p { margin: 0; max-width: none; }
+.form__hecho p + p { margin-block-start: var(--sp-3xs); }
+
+.form__hecho__salidas { color: var(--ink-2); }
+
+.form__hecho__salidas a,
+.form__hecho__salidas button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
 }
 
 .tag {
@@ -3090,6 +3115,22 @@ html:not(.no-js) .enlace .preparar-seccion {
   padding-inline: var(--sp-md);
   font-size: var(--size-md);
 }
+
+.tramo__nav--final { row-gap: var(--sp-xs); }
+
+.tramo__aviso {
+  flex: 1 1 100%;
+  margin: 0;
+  max-width: none;
+  font-family: var(--font-text);
+  font-size: var(--size-xs);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.tramo__nav--final .tramo__enviar { gap: var(--sp-xs); }
+.tramo__nav--final .tramo__enviar svg { width: 1.25em; height: 1.25em; flex: none; }
+.tramo__nav--final .tramo__enviar.is-abriendo { pointer-events: none; opacity: 0.8; }
 
 @media (max-width: 420px) {
   .tramo__nav { gap: var(--sp-xs); }

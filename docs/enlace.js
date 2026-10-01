@@ -7,7 +7,6 @@
   var destino = form.getAttribute("action") || "";
   var tramos = Array.prototype.slice.call(form.querySelectorAll(".tramo"));
   var pasos = Array.prototype.slice.call(form.querySelectorAll(".progreso li"));
-  var estado = form.querySelector(".form__estado");
   var actual = 0;
 
   function ir(n, enfocar) {
@@ -282,12 +281,64 @@
     return renglones.length ? saludo + "\n\n" + renglones.join("\n") : saludo;
   }
 
-  if (destino.indexOf("https://wa.me/") === 0) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var url = destino + "?text=" + encodeURIComponent(componer());
-      window.open(url, "_blank", "noopener");
-      if (estado) estado.hidden = false;
-    });
+  var enlaces = Array.prototype.slice.call(form.querySelectorAll("[data-enviar]"));
+  var base = destino.indexOf("https://wa.me/") === 0 ? destino : "";
+
+  function escribirEnlaces() {
+    if (!base) return;
+    var url = base + "?text=" + encodeURIComponent(componer());
+    enlaces.forEach(function (a) { a.href = url; });
   }
+
+  form.addEventListener("change", escribirEnlaces);
+  form.addEventListener("input", escribirEnlaces);
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var final = form.querySelector("[data-final]");
+    if (final) final.click();
+  });
+
+  var hecho = form.querySelector(".form__hecho");
+  var final = form.querySelector("[data-final]");
+  var rotulo = final ? final.querySelector("[data-rotulo]") : null;
+  var aviso = form.querySelector("[data-aviso]");
+
+  enlaces.forEach(function (a) {
+    a.addEventListener("click", function () {
+      escribirEnlaces();   // el handler corre antes de navegar: el href va al día
+      if (final && rotulo) {
+        final.classList.add("is-abriendo");
+        rotulo.textContent = "Abriendo WhatsApp…";
+      }
+      setTimeout(function () {
+        ir(tramos.length - 1, false);
+        if (final && rotulo) {
+          final.classList.remove("is-abriendo");
+          rotulo.textContent = "Volver a abrir WhatsApp";
+        }
+        if (aviso) aviso.textContent = "Ya está en WhatsApp: dale a enviar allí.";
+        if (hecho) {
+          hecho.hidden = false;
+          hecho.scrollIntoView({ block: "center", behavior: "smooth" });
+        }
+      }, 1200);
+    });
+  });
+
+  var copiar = form.querySelector("[data-copiar]");
+  if (copiar && navigator.clipboard) {
+    copiar.addEventListener("click", function () {
+      navigator.clipboard.writeText(componer()).then(function () {
+        copiar.textContent = "Copiado";
+        setTimeout(function () { copiar.textContent = "Copiar el mensaje"; }, 2000);
+      }, function () {
+        copiar.textContent = "No se ha podido copiar";
+      });
+    });
+  } else if (copiar) {
+    copiar.hidden = true;
+  }
+
+  escribirEnlaces();
 })();
