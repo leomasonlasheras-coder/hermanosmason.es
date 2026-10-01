@@ -2317,7 +2317,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
   letter-spacing: var(--track-head);
 }
 
-.enlace-marca a { text-decoration: none; white-space: nowrap; }
+.enlace-marca a,
+.enlace-marca > span { text-decoration: none; white-space: nowrap; }
 .enlace-marca small {
   text-align: right;
   font-family: var(--font-text);
@@ -2443,7 +2444,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
   margin: 0 0 var(--sp-lg);
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
 }
 
 .progreso li {
@@ -2784,6 +2786,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .casilla--ancha { grid-column: 1 / -1; }
 
+.casillas--una { grid-template-columns: minmax(0, 1fr); }
+
 .casilla:hover { border-color: var(--gris-400); }
 
 .casilla:not(.casilla--fija):has(input:checked),
@@ -2799,6 +2803,11 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 .casilla:not(.casilla--fija):has(input:checked) input::after { border-color: var(--ink); }
+
+.casilla:not(.casilla--fija):has(input[type="radio"]:checked) input {
+  background: var(--ink);
+  box-shadow: inset 0 0 0 3px var(--paper);
+}
 
 .casilla:has(input:focus-visible) {
   outline: 2px solid var(--ink);
@@ -2874,6 +2883,31 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 @media (max-width: 420px) {
   .casillas { gap: var(--sp-2xs); }
+}
+
+.resumen {
+  margin: var(--sp-md) 0 0;
+  padding: var(--sp-sm) var(--sp-md);
+  background: var(--gris-100);
+  border-radius: var(--radius);
+}
+
+.resumen__rotulo {
+  margin: 0 0 var(--sp-3xs);
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: var(--size-2xs);
+  letter-spacing: var(--track-label);
+  text-transform: none;
+  color: var(--ink-2);
+}
+
+.resumen__texto {
+  margin: 0;
+  max-width: none;
+  font-size: var(--size-sm);
+  line-height: 1.45;
+  color: var(--ink);
 }
 
 .fijas {

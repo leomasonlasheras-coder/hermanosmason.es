@@ -35,7 +35,7 @@
   <main class="enlace" id="contenido">
 
     <header class="enlace-marca">
-      <a href="../">Hermanos Mason</a>
+      <span>Hermanos Mason</span>
       <small>Webs para salones de uñas de Pamplona</small>
     </header>
 
@@ -56,7 +56,8 @@
         <p class="enlace__accion">
           <a class="btn btn--solid btn--lg" href="#preparar">Preparar mi web (2 minutos)</a>
         </p>
-        <p class="enlace__nota">Empiezas por el día de la visita; lo demás, si quieres. Sin tarjeta y sin permanencia.</p>
+
+        <p class="enlace__nota">Cuatro preguntas sobre tu negocio, ninguna obligatoria. Sin tarjeta y sin permanencia.</p>
         <ul class="vistos">
           <li>No tienes que preparar nada: usamos las fotos que ya tienes y los datos de tu ficha de Google.</li>
           <li>Pasamos por tu local a enseñártela. La visita es gratis aunque no compres.</li>
@@ -68,7 +69,8 @@
     <section class="section truco" aria-labelledby="truco-titulo">
       <div class="section__head reveal">
         <h2 id="truco-titulo">¿Dónde está el truco?</h2>
-        <p class="section__sub">No lo hay. Es gratis porque en salones de uñas de Pamplona estamos empezando y preferimos que nos juzgues por el trabajo. Si al acabar el mes no te convence, la retiramos y no nos debes nada. Y si nos dices que no, no insistimos.</p>
+
+        <p class="section__sub">No lo hay. Te la dejamos probar un mes porque estamos seguros de que te la querrás quedar: aquí abajo tienes nuestros diseños y en tres días verás el tuyo. Si al acabar el mes no te convence, la retiramos y no nos debes nada. Y si nos dices que no, no insistimos.</p>
       </div>
       <div class="muestras__grupo reveal">
         <h3 class="muestras__titulo">Nuestros diseños para salones de uñas</h3>
@@ -136,43 +138,44 @@
         <p class="section__sub">Nada es definitivo: luego cambiamos lo que quieras.</p>
       </div>
 
-      <form class="preparar reveal" action="https://wa.me/34699072079" method="get" target="_blank" rel="noopener">
+      <form class="preparar reveal" action="https://wa.me/34699072079" method="get" target="_blank" rel="noopener" data-servicios="servicios" data-galeria="galería de diseños">
         <input type="hidden" name="text" value="Hola, quiero que me preparéis la web de mi salón de uñas." />
 
         <ol class="progreso" aria-label="Pasos del formulario">
-          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Visita</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Secciones</span></button></li>
+          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Cita</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Tu web</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="3" disabled><span class="progreso__circulo"><span class="progreso__num">4</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Visita</span></button></li>
         </ol>
 
         <fieldset class="tramo">
-          <legend><span class="tramo__paso">Paso 1</span> ¿Qué día pasamos a enseñártela? <span class="tramo__ayuda">En tres días la tenemos. Elige el que te venga bien y pasamos por tu salón de uñas.</span></legend>
-          <div class="cartas cartas--3 cartas--turno">
-            <label class="carta">
-              <input type="radio" name="turno" value="por la mañana" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M52 72a28 28 0 0 1 56 0z" class="mini__tinta" /><path d="M80 34V24M56 44l-7-7M104 44l7-7M42 60H32M118 60h10" class="mini__trazo" /><path d="M80 8l-7 9h14z" class="mini__tinta" /></svg>
-              <span class="carta__nombre">Mañana</span>
+          <legend><span class="tramo__paso">Paso 1</span> ¿Cómo te piden cita hoy? <span class="tramo__ayuda">Marca lo más habitual: así sabemos qué botón lleva tu web.</span></legend>
+          <div class="casillas">
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
+              <span>Por WhatsApp</span>
+              <input type="radio" name="cita" id="cita-whatsapp" value="me escriben por WhatsApp" />
             </label>
-            <label class="carta">
-              <input type="radio" name="turno" value="por la tarde" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M58 72a22 22 0 0 1 44 0z" class="mini__tinta" /><path d="M46 60h-8M114 60h8M60 46l-6-6M100 46l6-6" class="mini__trazo" /><path d="M80 40l-7-9h14z" class="mini__tinta" /><path d="M80 26V16" class="mini__trazo" /></svg>
-              <span class="carta__nombre">Tarde</span>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 3.5h3l1.6 4.2-2.1 1.6a11.5 11.5 0 0 0 6.7 6.7l1.6-2.1 4.2 1.6v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 3.5 5.5a2 2 0 0 1 2-2z" /></svg>
+              <span>Me llaman</span>
+              <input type="radio" name="cita" id="cita-llamada" value="me llaman por teléfono" />
             </label>
-            <label class="carta">
-              <input type="radio" name="turno" value="a cualquier hora" checked />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><circle cx="80" cy="50" r="34" class="mini__marco" /><path d="M80 22v5M80 73v5M52 50h5M103 50h5" class="mini__trazo" /><path d="M80 50V30M80 50l14 9" class="mini__trazo" /><circle cx="80" cy="50" r="3" class="mini__tinta" /></svg>
-              <span class="carta__nombre">Me da igual</span>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
+              <span>Por Instagram</span>
+              <input type="radio" name="cita" id="cita-instagram" value="por Instagram" />
             </label>
-          </div>
-          <p class="field__label dias__rotulo">Qué día</p>
-          <div class="dias" role="group" aria-label="Qué día" data-dias>
-            <label class="turno turno--otro"><input type="radio" name="dia" id="dia-otro" value="otro" /><span>Otro día</span></label>
-          </div>
-          <div class="extra" data-extra="otro-dia">
-            <div class="field">
-              <label class="field__label" for="dia-texto">Dinos cuál</label>
-              <input id="dia-texto" name="dia-texto" data-mensaje="Día" type="text" placeholder="La semana que viene, el 3 de octubre…" />
-            </div>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+              <span>Booksy o Treatwell</span>
+              <input type="radio" name="cita" id="cita-reservas" value="por Booksy o Treatwell" />
+            </label>
+            <label class="casilla casilla--ancha">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="3" width="12" height="18" rx="1.5" /><path d="M14.5 12.5h.01" /><path d="M3 21h18" /></svg>
+              <span>Vienen sin cita</span>
+              <input type="radio" name="cita" id="cita-sin" value="vienen sin cita" />
+            </label>
           </div>
           <div class="tramo__nav">
             <button class="tramo__ya" type="submit">Enviar ya</button>
@@ -181,7 +184,44 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 2</span> ¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 2</span> ¿Qué quieres que haga tu web por ti? <span class="tramo__ayuda">Elige hasta dos. Si no eliges nada, lo decidimos nosotros.</span></legend>
+
+          <div class="casillas casillas--una">
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
+              <span>Que me pidan cita sin llamar</span>
+              <input type="checkbox" name="meta" id="meta-cita" value="que me pidan cita sin llamar" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5V4h7.5l9.5 9.5-7.5 7.5z" /><path d="M7.5 8.5h.01" /></svg>
+              <span>Que dejen de preguntarme precios</span>
+              <input type="checkbox" name="meta" id="meta-precios" value="que dejen de preguntarme precios por mensaje" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5L21 21" /></svg>
+              <span>Que me encuentren en Google</span>
+              <input type="checkbox" name="meta" id="meta-google" value="que me encuentren en Google" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
+              <span>Que se vea mi trabajo</span>
+              <input type="checkbox" name="meta" id="meta-trabajo" value="que se vea mi trabajo" />
+            </label>
+            <label class="casilla casilla--ancha">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
+              <span>Que sepan dónde estoy y a qué hora</span>
+              <input type="checkbox" name="meta" id="meta-donde" value="que sepan dónde estoy y a qué hora" />
+            </label>
+          </div>
+          <div class="tramo__nav">
+            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
+            <button class="tramo__ya" type="submit">Enviar ya</button>
+            <button class="btn btn--flow btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="tramo" hidden>
+          <legend><span class="tramo__paso">Paso 3</span> ¿Qué fotos usamos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
@@ -225,46 +265,39 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> ¿Qué secciones quieres en tu web? <span class="tramo__ayuda">Marca las que quieras; si no marcas ninguna, las elegimos nosotros.</span></legend>
-          <div class="casillas">
-            <label class="casilla casilla--fija">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7" /><path d="M6.5 9.5V20h11V9.5" /><path d="M10 20v-5h4v5" /></svg>
-              <span>Portada<small class="casilla__nota">Incluida</small></span>
-              <input type="checkbox" name="secciones" value="portada" checked disabled />
+
+          <legend><span class="tramo__paso">Paso 4</span> ¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día que te venga bien y pasamos por tu salón de uñas.</span></legend>
+          <div class="cartas cartas--3 cartas--turno">
+            <label class="carta">
+              <input type="radio" name="turno" value="por la mañana" />
+              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M52 72a28 28 0 0 1 56 0z" class="mini__tinta" /><path d="M80 34V24M56 44l-7-7M104 44l7-7M42 60H32M118 60h10" class="mini__trazo" /><path d="M80 8l-7 9h14z" class="mini__tinta" /></svg>
+              <span class="carta__nombre">Mañana</span>
             </label>
-            <label class="casilla casilla--fija">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11" /><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" /></svg>
-              <span>Servicios<small class="casilla__nota">Incluidos</small></span>
-              <input type="checkbox" name="secciones" value="servicios" checked disabled />
+            <label class="carta">
+              <input type="radio" name="turno" value="por la tarde" />
+              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M58 72a22 22 0 0 1 44 0z" class="mini__tinta" /><path d="M46 60h-8M114 60h8M60 46l-6-6M100 46l6-6" class="mini__trazo" /><path d="M80 40l-7-9h14z" class="mini__tinta" /><path d="M80 26V16" class="mini__trazo" /></svg>
+              <span class="carta__nombre">Tarde</span>
             </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5V4h7.5l9.5 9.5-7.5 7.5z" /><path d="M7.5 8.5h.01" /></svg>
-              <span>Precios</span>
-              <input type="checkbox" name="secciones" value="precios" />
+            <label class="carta">
+              <input type="radio" name="turno" value="a cualquier hora" checked />
+              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><circle cx="80" cy="50" r="34" class="mini__marco" /><path d="M80 22v5M80 73v5M52 50h5M103 50h5" class="mini__trazo" /><path d="M80 50V30M80 50l14 9" class="mini__trazo" /><circle cx="80" cy="50" r="3" class="mini__tinta" /></svg>
+              <span class="carta__nombre">Me da igual</span>
             </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
-              <span>Galería de diseños</span>
-              <input type="checkbox" name="secciones" value="galería de diseños" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z" /></svg>
-              <span>Opiniones de Google</span>
-              <input type="checkbox" name="secciones" value="opiniones de Google" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M17.5 13.6a6.5 6.5 0 0 1 4 6.4" /></svg>
-              <span>Quiénes somos</span>
-              <input type="checkbox" name="secciones" value="quiénes somos" />
-            </label>
-            <label class="casilla casilla--ancha">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M9.5 9.6a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.1 1-1.1 1.8" /><path d="M12 17h.01" /></svg>
-              <span>Preguntas frecuentes</span>
-              <input type="checkbox" name="secciones" value="preguntas frecuentes" />
-            </label>
-            <input class="casillas__nota" type="text" name="secciones-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las secciones" placeholder="Otra opción o una nota…" />
           </div>
-          <p class="fijas"><strong>También van siempre:</strong> el botón de cita, el horario y cómo llegar. Los servicios y los precios los repasamos juntos en la visita.</p>
+          <p class="field__label dias__rotulo">Qué día</p>
+          <div class="dias" role="group" aria-label="Qué día" data-dias>
+            <label class="turno turno--otro"><input type="radio" name="dia" id="dia-otro" value="otro" /><span>Otro día</span></label>
+          </div>
+          <div class="extra" data-extra="otro-dia">
+            <div class="field">
+              <label class="field__label" for="dia-texto">Dinos cuál</label>
+              <input id="dia-texto" name="dia-texto" data-mensaje="Día" type="text" placeholder="La semana que viene, el 3 de octubre…" />
+            </div>
+          </div>
+          <div class="resumen" aria-live="polite">
+            <p class="resumen__rotulo">Tu web, así</p>
+            <p class="resumen__texto" data-resumen>Portada con tus servicios, botón de WhatsApp para pedir cita y lo que veamos que te hace falta. Te la enseñamos en tres días, el día que nos digas.</p>
+          </div>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg tramo__enviar" type="submit">Preparar mi web</button>
@@ -301,7 +334,8 @@
     </section>
 
     <footer class="enlace-pie">
-      <p>Hermanos Mason Diseño · Pamplona · <a href="tel:+34699072079">+34 699 072 079</a> (teléfono y WhatsApp)</p>
+
+      <p>Hermanos Mason Diseño · Travesía Monasterio de Urdax, 2, Pamplona · <a href="tel:+34699072079">+34 699 072 079</a> (teléfono y WhatsApp)</p>
       <p><a href="../aviso-legal.html">Aviso legal</a> · <a href="../privacidad.html">Privacidad</a> · <a href="../condiciones.html">Condiciones</a></p>
     </footer>
 
@@ -312,19 +346,21 @@
   (function () {
     try {
       var q = new URLSearchParams(location.search);
-      var nombre = (q.get("nombre") || "").replace(/\s+/g, " ").trim().slice(0, 40);
+      function limpio(clave) { return (q.get(clave) || "").replace(/\s+/g, " ").trim().slice(0, 40); }
+      var nombre = limpio("nombre");
+      var negocio = limpio("negocio");
       var de = (q.get("de") || "").toLowerCase();
       var quien = { leo: "Soy Leo", pablo: "Soy Pablo" };
       var hueco = document.querySelector("[data-nombre]");
       var firma = document.querySelector("[data-quien]");
       var contado = document.querySelector("[data-contado]");
       var form = document.querySelector("form.preparar");
-      if (nombre) {
-        if (hueco) hueco.textContent = ", " + nombre;
-        if (form) form.dataset.negocio = nombre;
+      if (nombre && hueco) hueco.textContent = ", " + nombre;
+      if (negocio && form) form.dataset.negocio = negocio;
+      var soy = negocio ? "Hola, soy de " + negocio + ". " : nombre ? "Hola, soy " + nombre + ". " : "";
+      if (soy) {
         document.querySelectorAll("[data-salida]").forEach(function (a) {
-          a.href = a.href.split("?")[0] + "?text=" +
-            encodeURIComponent("Hola, soy de " + nombre + ". " + a.dataset.mensaje);
+          a.href = a.href.split("?")[0] + "?text=" + encodeURIComponent(soy + a.dataset.mensaje);
         });
       }
       if (quien[de]) {

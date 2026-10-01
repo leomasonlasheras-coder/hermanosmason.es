@@ -67,6 +67,15 @@
 
   form.addEventListener("change", pintarExtras);
 
+  var ordenMeta = [];
+
+  form.addEventListener("change", function (e) {
+    if (!e.target.matches('input[name="meta"]')) return;
+    ordenMeta = ordenMeta.filter(function (c) { return c !== e.target; });
+    if (e.target.checked) ordenMeta.push(e.target);
+    while (ordenMeta.length > 2) ordenMeta.shift().checked = false;
+  });
+
   var DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   var DIAS_CORTOS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
@@ -105,7 +114,16 @@
     requestAnimationFrame(function () { tira.scrollLeft = 0; });
   }
 
+  function escribirPlazo() {
+    var hueco = form.querySelector("[data-plazo]");
+    if (!hueco) return;
+    var hoy = new Date();
+    var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + DESDE_DIA);
+    hueco.textContent = "Nos lo mandas hoy y el " + DIAS[d.getDay()] + " " + d.getDate() + " ya está lista.";
+  }
+
   escribirDias();
+  escribirPlazo();
   pintarExtras();
 
   var negocio = form.dataset.negocio || "";
@@ -115,6 +133,67 @@
       hueco.textContent = "la ficha de Google de " + negocio;
     });
   }
+
+  var servicios = form.dataset.servicios || "servicios";
+  var galeria = form.dataset.galeria || "galería de fotos";
+
+  function marcado(id) {
+    var el = document.getElementById(id);
+    return !!(el && el.checked);
+  }
+
+  function piezas(tu) {
+    var mis = tu ? "tus" : "mis";
+    var mi = tu ? "tu" : "mi";
+    var lista = ["portada con " + mis + " " + servicios];
+
+    if (marcado("cita-reservas")) lista.push("botón de cita que lleva a " + mi + " Booksy o Treatwell");
+    else if (marcado("meta-cita")) lista.push("botón de WhatsApp para pedir cita sin " + (tu ? "llamarte" : "llamarme"));
+    else lista.push("botón de WhatsApp para pedir cita");
+
+    if (marcado("meta-precios")) lista.push("precios a la vista");
+    if (marcado("meta-trabajo")) lista.push(galeria.replace(" de fotos", "") + " con " + origenFotos(tu));
+    if (marcado("meta-google")) lista.push("ficha preparada para Google, con horario y cómo llegar");
+    else if (marcado("meta-donde")) lista.push("horario y cómo llegar a un toque");
+
+    var alguna = casillas("meta").some(function (c) { return c.checked; });
+    if (!alguna) lista.push("lo que veamos que " + (tu ? "te" : "me") + " hace falta");
+    return lista;
+  }
+
+  function origenFotos(tu) {
+    var mis = tu ? "tus" : "mis";
+    var mi = tu ? "tu" : "mi";
+    if (marcado("fotos-instagram")) return mis + " fotos de Instagram";
+    if (marcado("fotos-google")) return "las fotos de " + mi + " ficha de Google";
+    if (marcado("fotos-facebook")) return mis + " fotos de Facebook";
+    if (marcado("fotos-reservas")) return "las fotos de " + mi + " página de reservas";
+    if (marcado("fotos-yo")) return "las fotos que " + (tu ? "nos mandes" : "os mando");
+    return "las fotos que " + (tu ? "encontremos" : "encontréis");
+  }
+
+  function fraseVisita() {
+    var turno = valor("turno");
+    var dia = valor("dia");
+    if (dia === "otro") dia = valor("dia-texto");
+    if (turno === "a cualquier hora") turno = "";
+    if (!dia) return "Te la enseñamos en tres días, el día que nos digas" + (turno ? ", " + turno : "") + ".";
+    dia = dia.charAt(0).toLowerCase() + dia.slice(1);
+    return "Te la enseñamos " + dia + (turno ? ", " + turno : "") + ".";
+  }
+
+  function pintarResumen() {
+    var hueco = form.querySelector("[data-resumen]");
+    if (!hueco) return;
+    var web = enumerar(piezas(true));
+    hueco.textContent = web.charAt(0).toUpperCase() + web.slice(1) + ". " + fraseVisita();
+  }
+
+  form.addEventListener("change", pintarResumen);
+  form.addEventListener("input", function (e) {
+    if (e.target.id === "dia-texto") pintarResumen();
+  });
+  pintarResumen();
 
   var muestra = "";
   document.querySelectorAll(".muestra-dialogo [data-cierra]").forEach(function (a) {
@@ -163,6 +242,14 @@
 
     if (negocio) renglones.push("*Negocio:* " + negocio);
 
+    var cita = valor("cita");
+    if (cita) renglones.push("*Cómo me piden cita hoy:* " + cita);
+    renglones = renglones.concat(grupo("Lo que quiero", "lo que quiero", "meta", "decididlo vosotros"));
+
+    renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
+
+    renglones.push("*Datos:* los de mi ficha de Google");
+
     var turno = valor("turno");
     var dia = valor("dia");
     if (dia === "otro") dia = valor("dia-texto");
@@ -170,11 +257,7 @@
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
 
-    renglones.push("*Datos:* los de mi ficha de Google");
-
-    renglones = renglones
-      .concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"))
-      .concat(grupo("Secciones", "las secciones", "secciones", "elegidlas vosotros"));
+    renglones.push("*Mi web:* " + enumerar(piezas(false)));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 
