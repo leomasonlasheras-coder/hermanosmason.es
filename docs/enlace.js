@@ -262,7 +262,7 @@
 
     var cita = valor("cita");
     if (cita) renglones.push("*Cómo me piden cita hoy:* " + cita);
-    renglones = renglones.concat(grupo("Lo primero", "lo primero", "meta", "decididlo vosotros"));
+    renglones = renglones.concat(grupo("Prioridad", "la prioridad", "meta", "decididlo vosotros"));
 
     renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
 
