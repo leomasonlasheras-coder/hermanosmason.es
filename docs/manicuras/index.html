@@ -140,13 +140,13 @@
         <input type="hidden" name="text" value="Hola, quiero que me preparéis la web de mi salón de uñas." />
 
         <ol class="progreso" aria-label="Pasos del formulario">
-          <li aria-current="step"><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg><span>Visita</span></li>
-          <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8.5 7l1.5-2.5h4L15.5 7" /><circle cx="12" cy="13.5" r="3.5" /></svg><span>Fotos</span></li>
-          <li><svg class="progreso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M10 18h4" /></svg><span>Secciones</span></li>
+          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Visita</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Secciones</span></button></li>
         </ol>
 
         <fieldset class="tramo">
-          <legend><span class="tramo__paso">Paso 1</span> La visita <span class="tramo__ayuda">En tres días la tenemos. ¿Qué día te viene bien que pasemos por tu salón de uñas a enseñártela?</span></legend>
+          <legend><span class="tramo__paso">Paso 1</span> ¿Qué día pasamos a enseñártela? <span class="tramo__ayuda">En tres días la tenemos. Elige el que te venga bien y pasamos por tu salón de uñas.</span></legend>
           <div class="cartas cartas--3 cartas--turno">
             <label class="carta">
               <input type="radio" name="turno" value="por la mañana" />
@@ -181,7 +181,7 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 2</span> Tus fotos <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 2</span> ¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
@@ -225,7 +225,7 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> Las secciones de tu web <span class="tramo__ayuda">Marca las que quieras; si no marcas ninguna, las elegimos nosotros.</span></legend>
+          <legend><span class="tramo__paso">Paso 3</span> ¿Qué secciones quieres en tu web? <span class="tramo__ayuda">Marca las que quieras; si no marcas ninguna, las elegimos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla casilla--fija">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7" /><path d="M6.5 9.5V20h11V9.5" /><path d="M10 20v-5h4v5" /></svg>

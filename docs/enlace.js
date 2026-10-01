@@ -17,6 +17,8 @@
       li.classList.toggle("is-hecho", i < actual);
       if (i === actual) li.setAttribute("aria-current", "step");
       else li.removeAttribute("aria-current");
+      var circulo = li.querySelector("[data-paso]");
+      if (circulo) circulo.disabled = i >= actual;
     });
     if (enfocar) {
       var legend = tramos[actual].querySelector("legend");
@@ -29,6 +31,8 @@
   }
 
   form.addEventListener("click", function (e) {
+    var paso = e.target.closest("[data-paso]");
+    if (paso) { e.preventDefault(); ir(Number(paso.dataset.paso), true); return; }
     var boton = e.target.closest("[data-ir]");
     if (!boton) return;
     e.preventDefault();
