@@ -145,20 +145,39 @@
   function piezas(tu) {
     var mis = tu ? "tus" : "mis";
     var mi = tu ? "tu" : "mi";
-    var lista = ["portada con " + mis + " " + servicios];
+    var primero = [];
+    var ademas = [];
 
-    if (marcado("cita-reservas")) lista.push("botón de cita que lleva a " + mi + " Booksy o Treatwell");
-    else if (marcado("meta-cita")) lista.push("botón de WhatsApp para pedir cita sin " + (tu ? "llamarte" : "llamarme"));
-    else lista.push("botón de WhatsApp para pedir cita");
+    var boton = marcado("cita-reservas")
+      ? "botón de cita que lleva a " + mi + " Booksy o Treatwell"
+      : "botón de WhatsApp para pedir cita";
+    if (marcado("meta-cita")) primero.push("el " + boton + (marcado("cita-reservas") ? "" : " sin " + (tu ? "llamarte" : "llamarme")));
 
-    if (marcado("meta-precios")) lista.push("precios a la vista");
-    if (marcado("meta-trabajo")) lista.push(galeria.replace(" de fotos", "") + " con " + origenFotos(tu));
-    if (marcado("meta-google")) lista.push("ficha preparada para Google, con horario y cómo llegar");
-    else if (marcado("meta-donde")) lista.push("horario y cómo llegar a un toque");
+    if (marcado("meta-precios")) primero.push("los precios a la vista");
+    if (marcado("meta-trabajo")) primero.push(mi + " " + galeria.replace(" de fotos", "") + " con " + origenFotos(tu));
+    if (marcado("meta-google")) primero.push("la ficha preparada para Google, con horario y cómo llegar");
+    else if (marcado("meta-donde")) primero.push("el horario y cómo llegar a un toque");
 
-    var alguna = casillas("meta").some(function (c) { return c.checked; });
-    if (!alguna) lista.push("lo que veamos que " + (tu ? "te" : "me") + " hace falta");
-    return lista;
+    ademas.push("portada con " + mis + " " + servicios);
+    if (!marcado("meta-google") && !marcado("meta-donde")) ademas.push("horario", "cómo llegar");
+    if (!marcado("meta-cita")) ademas.push(boton);
+    if (!marcado("meta-precios")) ademas.push("precios");
+
+    return { primero: primero, ademas: ademas };
+  }
+
+  function fraseWeb(tu) {
+    var p = piezas(tu);
+    var falta = "lo que veamos que " + (tu ? "te" : "me") + " hace falta";
+    if (!p.primero.length) {
+      var todo = enumerar(p.ademas) + "; y " + falta;
+      return tu ? todo.charAt(0).toUpperCase() + todo.slice(1) + "." : todo;
+    }
+    var arriba = "arriba del todo, " + enumerar(p.primero);
+    var resto = "además: " + enumerar(p.ademas);
+    return tu
+      ? "Arriba del todo, " + enumerar(p.primero) + ". Y " + resto + "."
+      : arriba + "; y " + resto;
   }
 
   function origenFotos(tu) {
@@ -185,8 +204,7 @@
   function pintarResumen() {
     var hueco = form.querySelector("[data-resumen]");
     if (!hueco) return;
-    var web = enumerar(piezas(true));
-    hueco.textContent = web.charAt(0).toUpperCase() + web.slice(1) + ". " + fraseVisita();
+    hueco.textContent = fraseWeb(true) + " " + fraseVisita();
   }
 
   form.addEventListener("change", pintarResumen);
@@ -244,7 +262,7 @@
 
     var cita = valor("cita");
     if (cita) renglones.push("*Cómo me piden cita hoy:* " + cita);
-    renglones = renglones.concat(grupo("Lo que quiero", "lo que quiero", "meta", "decididlo vosotros"));
+    renglones = renglones.concat(grupo("Lo primero", "lo primero", "meta", "decididlo vosotros"));
 
     renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
 
@@ -257,7 +275,7 @@
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
 
-    renglones.push("*Mi web:* " + enumerar(piezas(false)));
+    renglones.push("*Mi web:* " + fraseWeb(false));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 
