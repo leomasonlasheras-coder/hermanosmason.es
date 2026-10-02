@@ -33,6 +33,7 @@
   }
 
   let muestraElegida = "";
+  let muestraOrigen = null; // la carta que abrió la caja de luz; la caja de pedir lo lee
   const dialogo = document.querySelector(".muestra-dialogo");
   if (dialogo && typeof dialogo.showModal === "function") {
     const imagen = dialogo.querySelector(".muestra-dialogo__imagen");
@@ -41,13 +42,12 @@
     const chat = dialogo.querySelector('a[href^="https://wa.me/"]');
     const chatBase = chat ? new URL(chat.href) : null;
     const saludoBase = chatBase ? chatBase.searchParams.get("text") || "" : "";
-    let origen = null;
 
     document.querySelectorAll("[data-muestra]").forEach((enlace) => {
       enlace.addEventListener("click", (e) => {
         e.preventDefault();
         const img = enlace.querySelector("img");
-        origen = enlace;
+        muestraOrigen = enlace;
         imagen.src = enlace.getAttribute("href");
         imagen.alt = img ? img.alt : "";
         nombre.textContent = enlace.dataset.nombre || "";
@@ -78,7 +78,34 @@
     });
     dialogo.addEventListener("close", () => {
       imagen.removeAttribute("src");
-      if (origen) origen.focus({ preventScroll: true });
+      if (muestraOrigen) muestraOrigen.focus({ preventScroll: true });
+    });
+  }
+
+  const pedir = document.querySelector(".pedir-dialogo");
+  if (pedir && typeof pedir.showModal === "function") {
+    const primero = pedir.querySelector("input:not([type='hidden'])");
+    let pedirOrigen = null;
+
+    document.querySelectorAll("[data-pedir]").forEach((enlace) => {
+      enlace.addEventListener("click", (e) => {
+        e.preventDefault();
+        pedirOrigen = enlace.closest(".muestra-dialogo") ? muestraOrigen : enlace;
+        if (dialogo && dialogo.open) dialogo.close();
+        pedir.showModal();
+        if (primero) primero.focus();
+      });
+    });
+
+    const cerrarPedir = () => {
+      if (pedir.open) pedir.close();
+    };
+    pedir.querySelector(".pedir-dialogo__cerrar").addEventListener("click", cerrarPedir);
+    pedir.addEventListener("click", (e) => {
+      if (e.target === pedir) cerrarPedir();
+    });
+    pedir.addEventListener("close", () => {
+      if (pedirOrigen) pedirOrigen.focus({ preventScroll: true });
     });
   }
 
@@ -257,10 +284,9 @@
     });
   });
 
-  const demoForm = document.querySelector(".contact__form");
-  const destino = demoForm ? demoForm.getAttribute("action") || "" : "";
-
-  if (demoForm && destino.startsWith("https://wa.me/")) {
+  const montarFormulario = (demoForm) => {
+    const destino = demoForm.getAttribute("action") || "";
+    if (!destino.startsWith("https://wa.me/")) return;
     const campos = Array.from(demoForm.elements).filter(
       (el) => el.name && el.type !== "hidden"
     );
@@ -408,7 +434,9 @@
 
       if (estado) estado.hidden = false;
     });
-  }
+  };
+
+  document.querySelectorAll(".contact__form").forEach(montarFormulario);
 
   const header = document.querySelector(".site-header");
 

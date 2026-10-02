@@ -3550,6 +3550,108 @@ html:not(.no-js) .enlace .preparar-seccion {
   .muestra-dialogo__accion .btn { width: 100%; }
 }
 
+.pedir-dialogo {
+  inset: 0;
+  margin: auto;
+  width: min(92vw, 30rem);
+  max-width: none;
+  max-height: min(96svh, 96vh);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.pedir-dialogo[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.pedir-dialogo::backdrop { background: rgb(0 0 0 / 0.7); }
+
+.pedir-dialogo__cuerpo {
+  min-height: 0;
+  padding: var(--sp-md) var(--sp-lg) var(--sp-lg);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-2) transparent;
+}
+
+.pedir-dialogo__cerrar {
+  position: absolute;
+  top: var(--sp-sm);
+  right: var(--sp-sm);
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: var(--rule-hair) solid var(--line-2);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.pedir-dialogo__cerrar svg { width: 1.25rem; height: 1.25rem; }
+
+.pedir-dialogo__cerrar:hover { background: var(--paper-2); }
+
+.pedir-dialogo__cerrar:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.pedir-dialogo__titulo {
+  max-width: none;
+  margin: 0;
+  padding-inline-end: 3rem;
+  font-family: var(--font-display);
+  font-weight: var(--peso-700);
+  font-size: var(--size-2xl);
+  letter-spacing: var(--track-mid);
+  line-height: 1;
+}
+
+.pedir-dialogo__sub {
+  max-width: none;
+  margin-block-start: var(--sp-sm);
+  font-size: var(--size-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.pedir-dialogo__form {
+  max-width: none;
+  margin-block-start: var(--sp-md);
+}
+
+.pedir-dialogo .field { margin-block-end: var(--sp-xs); }
+
+.pedir-dialogo .form__foot {
+  flex-direction: column;
+  align-items: stretch;
+  margin-block-start: var(--sp-sm);
+}
+
+.pedir-dialogo .form__foot .btn { width: 100%; }
+
+.pedir-dialogo__otro {
+  max-width: none;
+  margin-block-start: var(--sp-sm);
+  padding-block-start: var(--sp-sm);
+  border-block-start: var(--rule-hair) solid var(--line);
+  font-size: var(--size-xs);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+@media (max-width: 640px) {
+  .pedir-dialogo__cuerpo { padding: var(--sp-md); }
+}
+
 .reveal {
   opacity: 0;
   transform: translate3d(0, 26px, 0);

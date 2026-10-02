@@ -115,7 +115,7 @@
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-        <a class="site-nav__cta site-nav__cta--escritorio" href="#contacto">Pedir mi mes gratis</a>
+        <a class="site-nav__cta site-nav__cta--escritorio" href="#contacto" data-pedir>Pedir mi mes gratis</a>
         <a class="site-nav__cta site-nav__cta--movil site-nav__cta--whatsapp" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20pedir%20mi%20mes%20gratis." target="_blank" rel="noopener">Escríbenos</a>
       </div>
     </nav>
@@ -132,7 +132,7 @@
         <p class="portada__lema">Peluquería, estética o uñas: servicios, precios y la cita a un toque. Pasamos por tu local.</p>
 
         <p class="portada__accion portada__accion--escritorio">
-          <a class="btn btn--solid btn--lg" href="#contacto">
+          <a class="btn btn--solid btn--lg" href="#contacto" data-pedir>
             Pedir mi mes gratis
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -411,9 +411,56 @@
           <span class="muestra-dialogo__nota">Diseño de muestra: el negocio no existe.</span>
         </p>
         <p class="muestra-dialogo__accion">
-          <a class="btn btn--solid portada__accion--escritorio" href="#contacto" data-cierra>Quiero una así</a>
+          <a class="btn btn--solid portada__accion--escritorio" href="#contacto" data-cierra data-pedir>Quiero una así</a>
           <a class="btn btn--whatsapp portada__accion--movil" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20pedir%20mi%20mes%20gratis." target="_blank" rel="noopener">Quiero una así</a>
         </p>
+      </div>
+    </dialog>
+
+    <dialog class="pedir-dialogo invert" aria-labelledby="pedir-dialogo-titulo">
+      <button class="pedir-dialogo__cerrar" type="button" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <div class="pedir-dialogo__cuerpo">
+        <h2 class="pedir-dialogo__titulo" id="pedir-dialogo-titulo">Pide tu <span class="clave">mes gratis</span></h2>
+        <p class="pedir-dialogo__sub">Tres datos y te escribimos nosotros por WhatsApp.</p>
+
+        <form class="contact__form pedir-dialogo__form" action="https://wa.me/34699072079"
+              method="get" target="_blank" rel="noopener" data-frase>
+          <input type="hidden" name="text" value="Hola, quiero pedir mi mes gratis." />
+          <div class="field">
+            <label class="field__label" for="pedir-nombre">Tu nombre</label>
+            <input id="pedir-nombre" name="nombre" data-mensaje="Nombre" type="text" autocomplete="name"
+                   placeholder="Cómo te llamas" required autofocus />
+          </div>
+          <div class="field">
+            <label class="field__label" for="pedir-negocio">Nombre de tu negocio</label>
+            <input id="pedir-negocio" name="negocio" data-mensaje="Negocio" type="text" autocomplete="organization"
+                   placeholder="Como sale en el rótulo" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="pedir-tipo">Tipo de negocio</label>
+            <input id="pedir-tipo" name="tipo" data-mensaje="Tipo de negocio" type="text"
+                   placeholder="Peluquería, centro de estética, salón de uñas…" required />
+          </div>
+
+          <div class="form__foot">
+            <button class="btn btn--solid btn--lg" type="submit">Pedir mi mes gratis</button>
+            <p class="form__note">
+              Al pulsar se abre WhatsApp con el mensaje ya escrito: solo queda enviarlo.
+              Tus datos se usan solo para contestarte: <a href="privacidad.html">política de privacidad</a>.
+            </p>
+          </div>
+
+          <p class="form__estado" role="status" hidden>
+            Se ha abierto WhatsApp con el mensaje preparado: dale a enviar y listo.
+            Si no se ha abierto nada, escríbenos a
+            <a href="mailto:hermanosmason@gmail.com">hermanosmason@gmail.com</a>
+            o llámanos al <a href="tel:+34699072079">+34&nbsp;699&nbsp;072&nbsp;079</a>.
+          </p>
+        </form>
+
+        <p class="pedir-dialogo__otro">¿Prefieres escribirnos tú? <a href="https://wa.me/34699072079?text=Hola%2C%20quiero%20pedir%20mi%20mes%20gratis." target="_blank" rel="noopener">Abre WhatsApp con el mensaje escrito</a>.</p>
       </div>
     </dialog>
 
