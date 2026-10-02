@@ -161,6 +161,7 @@
     if (!marcado("meta-google") && !marcado("meta-donde")) ademas.push("horario", "cómo llegar");
     if (!marcado("meta-cita")) ademas.push(boton);
     if (!marcado("meta-precios")) ademas.push("precios");
+    if (marcado("sales-si")) ademas.push("una foto " + (tu ? "tuya" : "mía") + " con " + mi + " equipo");
 
     return { primero: primero, ademas: ademas };
   }
@@ -184,8 +185,6 @@
     var mi = tu ? "tu" : "mi";
     if (marcado("fotos-instagram")) return mis + " fotos de Instagram";
     if (marcado("fotos-google")) return "las fotos de " + mi + " ficha de Google";
-    if (marcado("fotos-facebook")) return mis + " fotos de Facebook";
-    if (marcado("fotos-reservas")) return "las fotos de " + mi + " página de reservas";
     if (marcado("fotos-yo")) return "las fotos que " + (tu ? "nos mandes" : "os mando");
     return "las fotos que " + (tu ? "encontremos" : "encontréis");
   }
@@ -264,6 +263,9 @@
     renglones = renglones.concat(grupo("Prioridad", "la prioridad", "meta", "decididlo vosotros"));
 
     renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
+
+    var sales = valor("sales");
+    if (sales) renglones.push("*En la web:* " + sales);
 
     renglones.push("*Datos:* los de mi ficha de Google");
 

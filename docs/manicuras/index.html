@@ -224,27 +224,18 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend><span class="tramo__paso">Paso 3</span> ¿Qué fotos usamos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
+
+          <legend><span class="tramo__paso">Paso 3</span> ¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
-              <span>Tu ficha de Google</span>
-              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" />
-            </label>
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
               <span>Tu Instagram</span>
               <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" />
             </label>
             <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><path d="M15 7.5h-1.5a2.5 2.5 0 0 0-2.5 2.5v11M8.5 13.5h5.5" /></svg>
-              <span>Tu Facebook</span>
-              <input type="checkbox" name="fotos" id="fotos-facebook" value="las de mi Facebook" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
-              <span>Tu Booksy o Treatwell</span>
-              <input type="checkbox" name="fotos" id="fotos-reservas" value="las de mi página de reservas" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
+              <span>Tu ficha de Google</span>
+              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google" />
             </label>
             <label class="casilla casilla--ancha">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
@@ -255,6 +246,21 @@
           </div>
           <div class="extra" data-extra="fotos-yo">
             <p class="extra__nota">Al enviar se abre el chat: nos las mandas ahí, cuando puedas.</p>
+          </div>
+
+          <p class="field__label dias__rotulo" id="sales-rotulo">¿Sales tú en la web?</p>
+
+          <div class="casillas" role="radiogroup" aria-labelledby="sales-rotulo">
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M17.5 13.6a6.5 6.5 0 0 1 4 6.4" /></svg>
+              <span>Sí, yo y mi equipo</span>
+              <input type="radio" name="sales" id="sales-si" value="salgo yo con mi equipo" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7" /><path d="M6.5 9.5V20h11V9.5" /><path d="M10 20v-5h4v5" /></svg>
+              <span>Solo el local y los trabajos</span>
+              <input type="radio" name="sales" id="sales-no" value="solo el local y los trabajos" />
+            </label>
           </div>
           <p class="origen">
             <svg class="origen__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
