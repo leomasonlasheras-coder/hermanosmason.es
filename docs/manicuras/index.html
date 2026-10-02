@@ -275,34 +275,24 @@
 
         <fieldset class="tramo" hidden>
 
-          <legend><span class="tramo__paso">Paso 4</span> ¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día que te venga bien y pasamos por tu salón de uñas.</span></legend>
-          <div class="cartas cartas--3 cartas--turno">
-            <label class="carta">
-              <input type="radio" name="turno" value="por la mañana" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M52 72a28 28 0 0 1 56 0z" class="mini__tinta" /><path d="M80 34V24M56 44l-7-7M104 44l7-7M42 60H32M118 60h10" class="mini__trazo" /><path d="M80 8l-7 9h14z" class="mini__tinta" /></svg>
-              <span class="carta__nombre">Mañana</span>
-            </label>
-            <label class="carta">
-              <input type="radio" name="turno" value="por la tarde" />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><path d="M20 72h120" class="mini__trazo" /><path d="M58 72a22 22 0 0 1 44 0z" class="mini__tinta" /><path d="M46 60h-8M114 60h8M60 46l-6-6M100 46l6-6" class="mini__trazo" /><path d="M80 40l-7-9h14z" class="mini__tinta" /><path d="M80 26V16" class="mini__trazo" /></svg>
-              <span class="carta__nombre">Tarde</span>
-            </label>
-            <label class="carta">
-              <input type="radio" name="turno" value="a cualquier hora" checked />
-              <svg class="mini mini--ancho" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><circle cx="80" cy="50" r="34" class="mini__marco" /><path d="M80 22v5M80 73v5M52 50h5M103 50h5" class="mini__trazo" /><path d="M80 50V30M80 50l14 9" class="mini__trazo" /><circle cx="80" cy="50" r="3" class="mini__tinta" /></svg>
-              <span class="carta__nombre">Me da igual</span>
-            </label>
-          </div>
-          <p class="field__label dias__rotulo">Qué día</p>
-          <div class="dias" role="group" aria-label="Qué día" data-dias>
+          <legend><span class="tramo__paso">Paso 4</span> ¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día y pasamos por tu salón de uñas.</span></legend>
+          <p class="field__label dias__rotulo" id="dia-rotulo">Qué día</p>
+          <div class="dias" role="radiogroup" aria-labelledby="dia-rotulo" data-dias>
             <label class="turno turno--otro"><input type="radio" name="dia" id="dia-otro" value="otro" /><span>Otro día</span></label>
           </div>
           <div class="extra" data-extra="otro-dia">
             <div class="field">
               <label class="field__label" for="dia-texto">Dinos cuál</label>
-              <input id="dia-texto" name="dia-texto" data-mensaje="Día" type="text" placeholder="La semana que viene, el 3 de octubre…" />
+              <input id="dia-texto" name="dia-texto" data-mensaje="Día" type="text" placeholder="La semana que viene, el 13 de octubre…" />
             </div>
           </div>
+          <p class="field__label dias__rotulo" id="turno-rotulo">A qué hora</p>
+          <div class="turnos" role="radiogroup" aria-labelledby="turno-rotulo">
+            <label class="turno"><input type="radio" name="turno" value="por la mañana" /><span>Mañana</span></label>
+            <label class="turno"><input type="radio" name="turno" value="por la tarde" /><span>Tarde</span></label>
+            <label class="turno"><input type="radio" name="turno" value="a cualquier hora" checked /><span>Me da igual</span></label>
+          </div>
+          <p class="visita__nota">Son unos veinte minutos, y si ese día te va mal lo cambiamos por el chat.</p>
           <div class="resumen" aria-live="polite">
             <p class="resumen__rotulo">Tu web, así</p>
             <p class="resumen__texto" data-resumen>Portada con tus servicios, botón de WhatsApp para pedir cita, precios, horario y cómo llegar; y lo que veamos que te hace falta. Te la enseñamos en tres días, el día que nos digas.</p>

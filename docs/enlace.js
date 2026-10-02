@@ -88,17 +88,15 @@
     if (!tira || !otro) return;
     var hoy = new Date();
     var puestos = 0;
-    for (var i = 0; puestos < 7 && i < DESDE_DIA + 9; i++) {
+    for (var i = DESDE_DIA; puestos < 7 && i < DESDE_DIA + 9; i++) {
       var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i);
-      var cerrado = i < DESDE_DIA;
-      if (!cerrado && SIN_DOMINGO && d.getDay() === 0) continue;
-      if (!cerrado) puestos++;
+      if (SIN_DOMINGO && d.getDay() === 0) continue;
+      puestos++;
       var label = document.createElement("label");
-      label.className = "turno turno--dia" + (cerrado ? " turno--cerrado" : "");
+      label.className = "turno turno--dia";
       var radio = document.createElement("input");
       radio.type = "radio";
       radio.name = "dia";
-      radio.disabled = cerrado;
       radio.value = "el " + DIAS[d.getDay()] + " " + d.getDate() + " de " + MESES[d.getMonth()];
       var texto = document.createElement("span");
       texto.innerHTML = "<small></small><b></b>";
@@ -118,6 +116,7 @@
     if (!hueco) return;
     var hoy = new Date();
     var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + DESDE_DIA);
+    if (SIN_DOMINGO && d.getDay() === 0) d.setDate(d.getDate() + 1);
     hueco.textContent = "Nos lo mandas hoy y el " + DIAS[d.getDay()] + " " + d.getDate() + " ya está lista.";
   }
 

@@ -2977,6 +2977,22 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 .dias__rotulo { margin: var(--sp-md) 0 var(--sp-xs); }
+.dias__rotulo:first-of-type { margin-block-start: 0; }
+
+.turnos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+  padding: 3px;
+}
+
+.visita__nota {
+  margin: var(--sp-sm) 0 0;
+  max-width: none;
+  font-size: var(--size-xs);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
 
 .dias {
   display: flex;
