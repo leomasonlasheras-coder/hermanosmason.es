@@ -198,10 +198,34 @@
     return "Te la enseñamos " + dia + (turno ? ", " + turno : "") + ".";
   }
 
+  function mayuscula(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+
   function pintarResumen() {
-    var hueco = form.querySelector("[data-resumen]");
-    if (!hueco) return;
-    hueco.textContent = fraseWeb(true) + " " + fraseVisita();
+    var caja = form.querySelector("[data-resumen]");
+    if (!caja) return;
+    var rotulo = caja.querySelector("[data-resumen-rotulo]");
+    var lista = caja.querySelector("[data-resumen-lista]");
+    var ademasRotulo = caja.querySelector("[data-resumen-ademas-rotulo]");
+    var ademas = caja.querySelector("[data-resumen-ademas]");
+    var visita = caja.querySelector("[data-resumen-visita]");
+    if (!rotulo || !lista || !ademasRotulo || !ademas || !visita) return;
+
+    var p = piezas(true);
+    var hay = p.primero.length > 0;
+    var renglones = hay ? p.primero : p.ademas.concat("lo que veamos que te hace falta");
+
+    rotulo.textContent = hay ? "Arriba del todo" : "Tu web lleva";
+    lista.textContent = "";
+    renglones.forEach(function (pieza) {
+      var li = document.createElement("li");
+      li.textContent = mayuscula(pieza);
+      lista.appendChild(li);
+    });
+    ademasRotulo.hidden = ademas.hidden = !hay;
+    ademas.textContent = hay ? mayuscula(enumerar(p.ademas)) + "." : "";
+    visita.textContent = fraseVisita();
   }
 
   form.addEventListener("change", pintarResumen);

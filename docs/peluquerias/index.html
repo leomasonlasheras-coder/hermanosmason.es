@@ -284,9 +284,25 @@
             <label class="turno"><input type="radio" name="turno" value="por la tarde" /><span>Tarde</span></label>
             <label class="turno"><input type="radio" name="turno" value="a cualquier hora" checked /><span>Me da igual</span></label>
           </div>
-          <div class="resumen" aria-live="polite">
-            <p class="resumen__rotulo">Tu web, así</p>
-            <p class="resumen__texto" data-resumen>Portada con tus servicios, botón de WhatsApp para pedir cita, precios, horario y cómo llegar; y lo que veamos que te hace falta. Te la enseñamos en tres días, el día que nos digas.</p>
+          <div class="tramo__nav">
+            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
+            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Ver mi web</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="tramo tramo--cierre" hidden>
+          <legend>Tu web, así <span class="tramo__ayuda">Nada es definitivo: luego cambiamos lo que quieras.</span></legend>
+          <div class="resumen" aria-live="polite" data-resumen>
+            <p class="resumen__rotulo" data-resumen-rotulo>Tu web lleva</p>
+            <ul class="resumen__lista" data-resumen-lista>
+              <li>Portada con tus servicios</li>
+              <li>Botón de WhatsApp para pedir cita</li>
+              <li>Precios, horario y cómo llegar</li>
+              <li>Lo que veamos que te hace falta</li>
+            </ul>
+            <p class="resumen__rotulo" data-resumen-ademas-rotulo hidden>También lleva</p>
+            <p class="resumen__texto" data-resumen-ademas hidden></p>
+            <p class="resumen__visita" data-resumen-visita>Te la enseñamos en tres días, el día que nos digas.</p>
           </div>
 
           <div class="tramo__nav tramo__nav--final">
