@@ -149,118 +149,79 @@
     }
   }
 
-  function lineaDatos() {
-    if (!pasoDatos) return "*Datos:* los de mi ficha de Google";
-    var cambios = camposDatos.filter(function (campo) {
+  function cambiosDatos() {
+    return camposDatos.filter(function (campo) {
       return campo.value.trim() !== campo.dataset.original;
     }).map(function (campo) {
       return campo.dataset.dice + " " + (campo.value.trim() || "(lo he dejado vacío)");
     });
+  }
+
+  function lineaDatos() {
+    if (!pasoDatos) return "*Datos:* los de mi ficha de Google";
+    var cambios = cambiosDatos();
     return cambios.length
       ? "*Mis datos, corregidos:* " + cambios.join("; ")
       : "*Mis datos:* están bien como los tenéis";
-  }
-
-  var servicios = form.dataset.servicios || "servicios";
-  var galeria = form.dataset.galeria || "galería de fotos";
-
-  function marcado(id) {
-    var el = document.getElementById(id);
-    return !!(el && el.checked);
-  }
-
-  function piezas(tu) {
-    var mis = tu ? "tus" : "mis";
-    var mi = tu ? "tu" : "mi";
-    var primero = [];
-    var ademas = [];
-
-    var boton = marcado("cita-reservas")
-      ? "botón de cita que lleva a " + mi + " Booksy o Treatwell"
-      : "botón de WhatsApp para pedir cita";
-    if (marcado("meta-cita")) primero.push("el " + boton + (marcado("cita-reservas") ? "" : " sin " + (tu ? "llamarte" : "llamarme")));
-
-    if (marcado("meta-precios")) primero.push("los precios a la vista");
-    if (marcado("meta-trabajo")) primero.push(mi + " " + galeria.replace(" de fotos", "") + " con " + origenFotos(tu));
-    if (marcado("meta-google")) primero.push("la ficha preparada para Google, con horario y cómo llegar");
-    else if (marcado("meta-donde")) primero.push("el horario y cómo llegar a un toque");
-
-    ademas.push("portada con " + mis + " " + servicios);
-    if (!marcado("meta-google") && !marcado("meta-donde")) ademas.push("horario", "cómo llegar");
-    if (!marcado("meta-cita")) ademas.push(boton);
-    if (!marcado("meta-precios")) ademas.push("precios");
-    if (marcado("sales-si")) ademas.push("una foto " + (tu ? "tuya" : "mía") + " con " + mi + " equipo");
-
-    return { primero: primero, ademas: ademas };
-  }
-
-  function fraseWeb(tu) {
-    var p = piezas(tu);
-    var falta = "lo que veamos que " + (tu ? "te" : "me") + " hace falta";
-    if (!p.primero.length) {
-      var todo = enumerar(p.ademas) + "; y " + falta;
-      return tu ? todo.charAt(0).toUpperCase() + todo.slice(1) + "." : todo;
-    }
-    var arriba = "arriba del todo, " + enumerar(p.primero);
-    var resto = "además: " + enumerar(p.ademas);
-    return tu
-      ? "Arriba del todo, " + enumerar(p.primero) + ". Y " + resto + "."
-      : arriba + "; y " + resto;
-  }
-
-  function origenFotos(tu) {
-    var mis = tu ? "tus" : "mis";
-    var mi = tu ? "tu" : "mi";
-    if (marcado("fotos-instagram")) return mis + " fotos de Instagram";
-    if (marcado("fotos-google")) return "las fotos de " + mi + " ficha de Google";
-    if (marcado("fotos-yo")) return "las fotos que " + (tu ? "nos mandes" : "os mando");
-    return "las fotos que " + (tu ? "encontremos" : "encontréis");
-  }
-
-  function fraseVisita() {
-    var turno = valor("turno");
-    var dia = valor("dia");
-    if (dia === "otro") dia = valor("dia-texto");
-    if (turno === "a cualquier hora") turno = "";
-    if (!dia) return "Te la enseñamos en tres días, el día que nos digas" + (turno ? ", " + turno : "") + ".";
-    dia = dia.charAt(0).toLowerCase() + dia.slice(1);
-    return "Te la enseñamos " + dia + (turno ? ", " + turno : "") + ".";
   }
 
   function mayuscula(texto) {
     return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
 
+  function rotulos(nombre) {
+    return Array.prototype.slice.call(
+      form.querySelectorAll('input[name="' + nombre + '"]:checked')
+    ).map(function (el) {
+      var label = el.closest("label");
+      var span = label ? label.querySelector("span") : null;
+      return span ? span.textContent.replace(/\s+/g, " ").trim() : el.value;
+    });
+  }
+
   function pintarResumen() {
     var caja = form.querySelector("[data-resumen]");
     if (!caja) return;
-    var rotulo = caja.querySelector("[data-resumen-rotulo]");
-    var lista = caja.querySelector("[data-resumen-lista]");
-    var ademasRotulo = caja.querySelector("[data-resumen-ademas-rotulo]");
-    var ademas = caja.querySelector("[data-resumen-ademas]");
-    var visita = caja.querySelector("[data-resumen-visita]");
-    if (!rotulo || !lista || !ademasRotulo || !ademas || !visita) return;
+    var filas = [];
 
-    var p = piezas(true);
-    var hay = p.primero.length > 0;
-    var renglones = hay ? p.primero : p.ademas.concat("lo que veamos que te hace falta");
+    if (pasoDatos) {
+      var cambios = cambiosDatos();
+      filas.push(["Tus datos", cambios.length ? cambios.map(mayuscula) : ["Están bien"], ""]);
+    }
+    filas.push(["Cita hoy", rotulos("cita"), "Sin contestar"]);
+    filas.push(["Prioridad", rotulos("meta"), "Lo decidimos nosotros"]);
+    filas.push(["Fotos", rotulos("fotos"), "Las buscamos nosotros"]);
+    filas.push(["¿Sales tú?", rotulos("sales"), "Sin contestar"]);
 
-    rotulo.textContent = hay ? "Arriba del todo" : "Tu web lleva";
-    lista.textContent = "";
-    renglones.forEach(function (pieza) {
-      var li = document.createElement("li");
-      li.textContent = mayuscula(pieza);
-      lista.appendChild(li);
+    var turno = valor("turno");
+    var dia = valor("dia");
+    if (dia === "otro") dia = valor("dia-texto");
+    if (turno === "a cualquier hora") turno = "";
+    filas.push(["Visita", dia ? [mayuscula(dia) + (turno ? ", " + turno : "")] : [],
+      "Día por concretar" + (turno ? ", " + turno : "")]);
+
+    caja.textContent = "";
+    filas.forEach(function (fila) {
+      var div = document.createElement("div");
+      div.className = "datos__fila";
+      var dt = document.createElement("dt");
+      dt.textContent = fila[0];
+      var dd = document.createElement("dd");
+      var respuestas = fila[1].length ? fila[1] : [fila[2]];
+      if (!fila[1].length) dd.className = "datos__vacio";
+      respuestas.forEach(function (texto) {
+        var renglon = document.createElement("span");
+        renglon.textContent = texto;
+        dd.appendChild(renglon);
+      });
+      div.appendChild(dt);
+      div.appendChild(dd);
+      caja.appendChild(div);
     });
-    ademasRotulo.hidden = ademas.hidden = !hay;
-    ademas.textContent = hay ? mayuscula(enumerar(p.ademas)) + "." : "";
-    visita.textContent = fraseVisita();
   }
 
   form.addEventListener("change", pintarResumen);
-  form.addEventListener("input", function (e) {
-    if (e.target.id === "dia-texto") pintarResumen();
-  });
+  form.addEventListener("input", pintarResumen);
   pintarResumen();
 
   var muestra = "";
@@ -327,8 +288,6 @@
     if (turno || dia) {
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
-
-    renglones.push("*Mi web:* " + fraseWeb(false));
 
     if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 

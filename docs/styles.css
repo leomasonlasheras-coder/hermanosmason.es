@@ -2717,6 +2717,20 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .datos__campo { display: none; width: 100%; }
 
+.datos:empty { display: none; }
+.datos--respuestas dd span { display: block; }
+.datos--respuestas dd span + span { margin-block-start: var(--sp-3xs); }
+.datos--respuestas .datos__fila { align-items: start; }
+.datos--respuestas dt { padding-block-start: 0.2em; }
+
+.datos__vacio {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: var(--size-sm);
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+
 .datos__fila--horario { align-items: start; }
 .datos__fila--horario dt { padding-block-start: 0.15em; }
 
