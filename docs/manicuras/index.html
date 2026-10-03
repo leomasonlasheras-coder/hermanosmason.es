@@ -359,9 +359,12 @@
     try {
       var q = new URLSearchParams(location.search);
       function limpio(clave) { return (q.get(clave) || "").replace(/\s+/g, " ").trim().slice(0, 40); }
-      var nombre = limpio("nombre");
-      var negocio = limpio("negocio");
-      var de = (q.get("de") || "").toLowerCase();
+      // En las páginas por comercio (para/<slug>/) los tres vienen
+      // escritos por el generador; la URL, si trae algo, manda.
+      var pre = {};
+      var nombre = limpio("nombre") || pre.nombre || "";
+      var negocio = limpio("negocio") || pre.negocio || "";
+      var de = (q.get("de") || pre.de || "").toLowerCase();
       var quien = { leo: "Soy Leo", pablo: "Soy Pablo" };
       var hueco = document.querySelector("[data-nombre]");
       var firma = document.querySelector("[data-quien]");

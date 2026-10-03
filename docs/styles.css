@@ -2678,6 +2678,58 @@ html:not(.no-js) .enlace .preparar-seccion {
   color: var(--ink-2);
 }
 
+.datos {
+  display: grid;
+  margin: 0;
+  border: var(--rule) solid var(--line-2);
+  border-radius: var(--radius);
+}
+
+.datos__fila {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+}
+
+.datos__fila + .datos__fila { border-block-start: var(--rule) solid var(--line); }
+
+.datos dt {
+  margin: 0;
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: var(--size-xs);
+  letter-spacing: var(--track-label);
+  color: var(--ink-2);
+}
+
+.datos dd {
+  margin: 0;
+  min-inline-size: 0;
+  font-family: var(--font-display);
+  font-weight: var(--peso-600);
+  font-size: var(--size-md);
+  line-height: 1.3;
+  letter-spacing: var(--track-head);
+  overflow-wrap: anywhere;
+}
+
+.datos__campo { display: none; width: 100%; }
+
+.is-corrigiendo .datos__valor,
+.is-corrigiendo [data-corregir] { display: none; }
+.is-corrigiendo .datos__campo { display: block; }
+.is-corrigiendo .datos__fila { padding-block: var(--sp-xs); }
+
+.no-js [data-corregir] { display: none; }
+
+@media (max-width: 420px) {
+  .datos__fila { grid-template-columns: 4.5rem minmax(0, 1fr); padding-inline: var(--sp-sm); }
+
+  .tramo--datos .tramo__nav .btn { padding-inline: var(--sp-sm); font-size: var(--size-md); }
+}
+
 .extra {
   display: none;
   margin-block-start: var(--sp-md);

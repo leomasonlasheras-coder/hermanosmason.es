@@ -132,6 +132,35 @@
     });
   }
 
+  var pasoDatos = form.querySelector(".tramo--datos");
+  var camposDatos = pasoDatos
+    ? Array.prototype.slice.call(pasoDatos.querySelectorAll("[data-original]"))
+    : [];
+
+  if (pasoDatos) {
+    var corregir = pasoDatos.querySelector("[data-corregir]");
+    var seguir = pasoDatos.querySelector('[data-ir="siguiente"] span');
+    if (corregir) {
+      corregir.addEventListener("click", function () {
+        pasoDatos.classList.add("is-corrigiendo");
+        if (seguir) seguir.textContent = "Guardar y seguir";
+        if (camposDatos[0]) camposDatos[0].focus();
+      });
+    }
+  }
+
+  function lineaDatos() {
+    if (!pasoDatos) return "*Datos:* los de mi ficha de Google";
+    var cambios = camposDatos.filter(function (campo) {
+      return campo.value.trim() !== campo.dataset.original;
+    }).map(function (campo) {
+      return campo.dataset.dice + " " + (campo.value.trim() || "(lo he dejado vacío)");
+    });
+    return cambios.length
+      ? "*Mis datos, corregidos:* " + cambios.join("; ")
+      : "*Mis datos:* están bien como los tenéis";
+  }
+
   var servicios = form.dataset.servicios || "servicios";
   var galeria = form.dataset.galeria || "galería de fotos";
 
@@ -290,7 +319,7 @@
     var sales = valor("sales");
     if (sales) renglones.push("*En la web:* " + sales);
 
-    renglones.push("*Datos:* los de mi ficha de Google");
+    renglones.push(lineaDatos());
 
     var turno = valor("turno");
     var dia = valor("dia");
