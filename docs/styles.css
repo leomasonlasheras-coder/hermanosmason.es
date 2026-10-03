@@ -764,10 +764,12 @@ html:not(.no-js) body:has(.cortina) .site-header {
     transform var(--dur) var(--ease-spring);
 }
 
-.btn:hover {
-  border-color: var(--ink);
-  box-shadow: var(--shadow);
-  transform: scale(1.05);
+@media (hover: hover) {
+  .btn:hover {
+    border-color: var(--ink);
+    box-shadow: var(--shadow);
+    transform: scale(1.05);
+  }
 }
 .btn:active { transform: scale(0.96); }
 
@@ -779,11 +781,13 @@ html:not(.no-js) body:has(.cortina) .site-header {
   color: var(--accent-ink);
   box-shadow: none;
 }
-.btn--solid:hover {
-  border-color: transparent;
-  background: var(--accent-hover);
-  color: var(--accent-ink);
-  box-shadow: var(--shadow-lg);
+@media (hover: hover) {
+  .btn--solid:hover {
+    border-color: transparent;
+    background: var(--accent-hover);
+    color: var(--accent-ink);
+    box-shadow: var(--shadow-lg);
+  }
 }
 
 .btn--sm { padding: var(--sp-2xs) var(--sp-md); font-size: var(--size-sm); }
@@ -816,16 +820,21 @@ html:not(.no-js) body:has(.cortina) .site-header {
   border-radius: 100%;
   background: var(--accent);
   transform: translate(150%, 150%) scale(2.5);
-  transition: transform 700ms var(--ease-out);
+  transition: transform 400ms var(--ease-out);
 }
 
-.btn--flow:hover {
-  background: var(--paper);
-  border-color: var(--line-2);
-  color: var(--accent-ink);
-}
+@media (hover: hover) {
+  .btn--flow:hover {
+    background: var(--paper);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    box-shadow: none;
+    transform: none;
+  }
 
-.btn--flow:hover::before { transform: translate(0%, 0%) scale(2.5); }
+  .btn--flow:hover::before { transform: translate(0%, 0%) scale(2.5); }
+}
+.btn--flow:active { transform: scale(0.96); }
 
 .btn--whatsapp {
   border-color: transparent;
@@ -833,11 +842,13 @@ html:not(.no-js) body:has(.cortina) .site-header {
   color: var(--whatsapp-ink);
 }
 
-.btn--whatsapp:hover {
-  border-color: transparent;
-  background: color-mix(in srgb, var(--whatsapp) 86%, var(--negro));
-  color: var(--whatsapp-ink);
-  box-shadow: var(--shadow-lg);
+@media (hover: hover) {
+  .btn--whatsapp:hover {
+    border-color: transparent;
+    background: color-mix(in srgb, var(--whatsapp) 86%, var(--negro));
+    color: var(--whatsapp-ink);
+    box-shadow: var(--shadow-lg);
+  }
 }
 
 .btn--flow.btn--whatsapp {
@@ -848,10 +859,13 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
 .btn--flow.btn--whatsapp::before { background: var(--whatsapp); }
 
-.btn--flow.btn--whatsapp:hover {
-  background: var(--paper);
-  border-color: var(--whatsapp);
-  color: var(--whatsapp-ink);
+@media (hover: hover) {
+  .btn--flow.btn--whatsapp:hover {
+    background: var(--paper);
+    border-color: var(--whatsapp);
+    color: var(--whatsapp-ink);
+    box-shadow: none;
+  }
 }
 
 .btn[disabled],
@@ -3102,6 +3116,20 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .tramo__nav .btn { padding-inline: var(--sp-lg); }
 .tramo__nav [data-ir="atras"] { padding-inline: var(--sp-md); }
+
+.tramo__nav [data-ir="atras"] {
+  border-color: transparent;
+  color: var(--ink-2);
+}
+@media (hover: hover) {
+  .tramo__nav [data-ir="atras"]:hover:not(:active) {
+    border-color: var(--line-2);
+    color: var(--ink);
+    box-shadow: none;
+    transform: none;
+  }
+  .tramo__nav .tramo__enviar:hover:not(:active) { transform: scale(1.02); }
+}
 
 .tramo__ya {
   margin-inline-start: auto;
