@@ -2717,6 +2717,43 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .datos__campo { display: none; width: 100%; }
 
+.datos__fila--horario { align-items: start; }
+.datos__fila--horario dt { padding-block-start: 0.15em; }
+
+.horario {
+  list-style: none;
+  display: grid;
+  gap: var(--sp-3xs);
+  margin: 0;
+  padding: 0;
+}
+
+.horario li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp-xs);
+  margin: 0;
+  font-size: var(--size-sm);
+  line-height: 1.35;
+}
+
+.horario__dia {
+  font-family: var(--font-text);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-2);
+}
+
+.horario .datos__campo {
+  min-height: 2.25rem;
+  padding-block: 0;
+  padding-inline: var(--sp-sm);
+  font-size: var(--size-sm);
+}
+
+.is-corrigiendo .horario { gap: var(--sp-2xs); }
+
 .is-corrigiendo .datos__valor,
 .is-corrigiendo [data-corregir] { display: none; }
 .is-corrigiendo .datos__campo { display: block; }
