@@ -3117,6 +3117,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 .tramo__nav .btn { padding-inline: var(--sp-lg); }
 .tramo__nav [data-ir="atras"] { padding-inline: var(--sp-md); }
 
+.tramo__nav [data-ir="siguiente"] { margin-inline-start: auto; }
+
 .tramo__nav [data-ir="atras"] {
   border-color: transparent;
   color: var(--ink-2);

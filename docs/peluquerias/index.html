@@ -151,7 +151,7 @@
 
         <fieldset class="tramo">
 
-          <legend><span class="tramo__paso">Paso 1</span> ¿Cómo te piden cita hoy? <span class="tramo__ayuda">Marca lo más habitual, aunque quieras cambiarlo. Es el punto de partida; en el paso siguiente nos dices qué quieres que cambie.</span></legend>
+          <legend>¿Cómo te piden cita hoy? <span class="tramo__ayuda">Marca lo más habitual, aunque quieras cambiarlo.</span></legend>
           <div class="casillas">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
@@ -180,14 +180,13 @@
             </label>
           </div>
           <div class="tramo__nav">
-            <a class="tramo__ya" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20peluquer%C3%ADa." data-enviar target="_blank" rel="noopener">Enviar ya</a>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
 
-          <legend><span class="tramo__paso">Paso 2</span> ¿Qué priorizamos en tu web? <span class="tramo__ayuda">Marca las dos que más te importen: van arriba del todo. Lo demás también se incluye.</span></legend>
+          <legend>¿Qué priorizamos en tu web? <span class="tramo__ayuda">Marca las dos que más te importen: van arriba del todo. Lo demás también se incluye.</span></legend>
 
           <div class="casillas casillas--una">
             <label class="casilla">
@@ -218,14 +217,13 @@
           </div>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
-            <a class="tramo__ya" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20peluquer%C3%ADa." data-enviar target="_blank" rel="noopener">Enviar ya</a>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
 
-          <legend><span class="tramo__paso">Paso 3</span> ¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
+          <legend>¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
           <div class="casillas">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
@@ -242,7 +240,6 @@
               <span>Os mando las mías por WhatsApp</span>
               <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp" />
             </label>
-            <input class="casillas__nota" type="text" name="fotos-nota" maxlength="200" autocomplete="off" aria-label="Otra opción o una nota sobre las fotos" placeholder="Otra opción o una nota…" />
           </div>
           <div class="extra" data-extra="fotos-yo">
             <p class="extra__nota">Al enviar se abre el chat: nos las mandas ahí, cuando puedas.</p>
@@ -262,20 +259,15 @@
               <input type="radio" name="sales" id="sales-no" value="solo el local y los trabajos" />
             </label>
           </div>
-          <p class="origen">
-            <svg class="origen__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
-            <span><strong>Tus datos, de <span data-ficha>tu ficha de Google</span>.</strong> Nombre, dirección, teléfono y horario: no tienes que escribir nada. Si algo ha cambiado, nos lo dices por el chat.</span>
-          </p>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
-            <a class="tramo__ya" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20peluquer%C3%ADa." data-enviar target="_blank" rel="noopener">Enviar ya</a>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
 
-          <legend><span class="tramo__paso">Paso 4</span> ¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día y pasamos por tu peluquería.</span></legend>
+          <legend>¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día y pasamos por tu peluquería; si luego te va mal, lo cambiamos por el chat.</span></legend>
           <p class="field__label dias__rotulo" id="dia-rotulo">Qué día</p>
           <div class="dias" role="radiogroup" aria-labelledby="dia-rotulo" data-dias>
             <label class="turno turno--otro"><input type="radio" name="dia" id="dia-otro" value="otro" /><span>Otro día</span></label>
@@ -292,7 +284,6 @@
             <label class="turno"><input type="radio" name="turno" value="por la tarde" /><span>Tarde</span></label>
             <label class="turno"><input type="radio" name="turno" value="a cualquier hora" checked /><span>Me da igual</span></label>
           </div>
-          <p class="visita__nota">Son unos veinte minutos, y si ese día te va mal lo cambiamos por el chat.</p>
           <div class="resumen" aria-live="polite">
             <p class="resumen__rotulo">Tu web, así</p>
             <p class="resumen__texto" data-resumen>Portada con tus servicios, botón de WhatsApp para pedir cita, precios, horario y cómo llegar; y lo que veamos que te hace falta. Te la enseñamos en tres días, el día que nos digas.</p>
@@ -306,12 +297,11 @@
               <span data-rotulo>Enviar por WhatsApp</span>
             </a>
           </div>
-        </fieldset>
 
-        <p class="form__note">
-          Lo que no elijas, lo decidimos nosotros. En tres días te avisamos y quedamos para enseñártela. Tu mes gratis empieza ese día, no hoy.
-          Tus respuestas se usan solo para preparar tu web: <a href="../privacidad.html">política de privacidad</a>.
-        </p>
+          <p class="form__note">
+            Tus respuestas se usan solo para preparar tu web: <a href="../privacidad.html">política de privacidad</a>.
+          </p>
+        </fieldset>
 
         <div class="form__hecho" role="status" hidden>
           <p><strong>Ya está en WhatsApp.</strong> Dale a enviar allí y listo.</p>
