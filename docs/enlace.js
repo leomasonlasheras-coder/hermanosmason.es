@@ -75,6 +75,15 @@
     while (ordenMeta.length > 2) ordenMeta.shift().checked = false;
   });
 
+  form.addEventListener("change", function (e) {
+    if (!e.target.matches('input[name="fotos"]') || !e.target.checked) return;
+    var esNo = e.target.id === "fotos-no";
+    casillas("fotos").forEach(function (el) {
+      if (el !== e.target && (esNo || el.id === "fotos-no")) el.checked = false;
+    });
+    pintarExtras();
+  });
+
   var DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   var DIAS_CORTOS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
@@ -158,7 +167,7 @@
   }
 
   function lineaDatos() {
-    if (!pasoDatos) return "*Datos:* los de mi ficha de Google";
+    if (!pasoDatos) return "*Datos:* los de mi ficha de Google Maps";
     var cambios = cambiosDatos();
     return cambios.length
       ? "*Mis datos, corregidos:* " + cambios.join("; ")
@@ -190,6 +199,7 @@
     }
     filas.push(["Cita hoy", rotulos("cita"), "Sin contestar"]);
     filas.push(["Prioridad", rotulos("meta"), "Lo decidimos nosotros"]);
+    filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
     filas.push(["Fotos", rotulos("fotos"), "Las buscamos nosotros"]);
     filas.push(["¿Sales tú?", rotulos("sales"), "Sin contestar"]);
 
@@ -223,14 +233,6 @@
   form.addEventListener("change", pintarResumen);
   form.addEventListener("input", pintarResumen);
   pintarResumen();
-
-  var muestra = "";
-  document.querySelectorAll(".muestra-dialogo [data-cierra]").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var nombre = document.querySelector(".muestra-dialogo__nombre");
-      muestra = nombre ? nombre.textContent.trim() : "";
-    });
-  });
 
   function valor(nombre) {
     var el = form.elements[nombre];
@@ -275,6 +277,9 @@
     if (cita) renglones.push("*Cómo me piden cita hoy:* " + cita);
     renglones = renglones.concat(grupo("Prioridad", "la prioridad", "meta", "decididlo vosotros"));
 
+    var estilo = valor("estilo");
+    if (estilo) renglones.push("*Estilo:* " + estilo);
+
     renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
 
     var sales = valor("sales");
@@ -288,8 +293,6 @@
     if (turno || dia) {
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
-
-    if (muestra) renglones.push("*Diseño que me gusta:* " + muestra);
 
     return renglones.length ? saludo + "\n\n" + renglones.join("\n") : saludo;
   }
