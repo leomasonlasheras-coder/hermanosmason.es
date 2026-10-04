@@ -2475,6 +2475,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
 .truco .muestras__grupo .enlace__nota { margin-block-start: var(--sp-sm); }
 
+.enlace .truco__respuesta { color: var(--ink); }
+
 .progreso {
   --progreso-circulo: 2.5rem;
   --progreso-linea: 6px;
@@ -3145,6 +3147,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 .dias__rotulo { margin: var(--sp-md) 0 var(--sp-xs); }
 .dias__rotulo:first-of-type { margin-block-start: 0; }
 
+#sales-rotulo { margin-block-start: var(--sp-lg); }
+
 .turnos {
   display: flex;
   flex-wrap: wrap;
@@ -3367,6 +3371,17 @@ html:not(.no-js) .enlace .preparar-seccion {
 .salida__duda a { color: var(--ink); }
 
 .enlace .salida { border-block-start: var(--rule) solid var(--line); }
+
+.enlace .salida .section__head { margin-block-end: 0; }
+
+.enlace .salida .section__head h2 {
+  max-width: none;
+  font-size: var(--size-lg);
+  letter-spacing: 0;
+}
+
+.enlace .salida .section__sub { font-size: var(--size-sm); }
+.enlace .salida .enlace__accion { margin-block-start: var(--sp-md); }
 
 .enlace-pie {
   padding-block: var(--sp-lg) var(--sp-2xl);
