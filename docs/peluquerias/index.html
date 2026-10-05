@@ -87,6 +87,13 @@
       <form class="preparar reveal" action="https://wa.me/34699072079" method="get" target="_blank" rel="noopener" data-servicios="servicios" data-galeria="galería de fotos">
         <input type="hidden" name="text" value="Hola, quiero que me preparéis la web de mi peluquería." />
 
+        <div class="quiz-barra">
+          <button class="quiz-barra__cerrar" type="button" data-quiz-cerrar aria-label="Cerrar el cuestionario y volver a la página">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+          <a class="quiz-barra__duda" href="https://wa.me/34699072079?text=Hola.%20Tengo%20una%20duda%20sobre%20la%20web%20para%20mi%20peluquer%C3%ADa%3A%20" data-salida data-mensaje="Tengo una duda sobre la web para mi peluquería: " target="_blank" rel="noopener">¿Una duda? WhatsApp</a>
+        </div>
+
         <ol class="progreso" aria-label="Pasos del formulario">
           <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Cita</span></button></li>
           <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Prioridad</span></button></li>

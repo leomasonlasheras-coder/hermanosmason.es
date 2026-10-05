@@ -25,24 +25,122 @@
         legend.setAttribute("tabindex", "-1");
         legend.focus({ preventScroll: true });
       }
-      form.scrollIntoView({ block: "start", behavior: "smooth" });
+      if (modo) tramos[actual].scrollTop = 0;
+      else form.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   }
 
+  var raiz = document.documentElement;
+  var ancho = window.matchMedia ? window.matchMedia("(max-width: 43.75rem)") : null;
+  var modo = false;
+  var fondo = 0;        // entradas apuntadas en el historial desde que se abrió
+  var cerrando = false;
+
+  function aislar(si) {
+    var seccion = form.closest("section");
+    if (!seccion || !seccion.parentNode) return;
+    Array.prototype.forEach.call(seccion.parentNode.children, function (el) {
+      if (el !== seccion) el.inert = si;
+    });
+  }
+
+  function apuntar(paso) {
+    fondo++;
+    try { history.pushState({ quiz: 1, paso: paso, n: fondo }, ""); } catch (e) {}
+  }
+
+  function abrir() {
+    if (modo || !ancho || !ancho.matches) return;
+    modo = true;
+    cerrando = false;
+    fondo = 0;
+    form.classList.add("is-modo");
+    raiz.classList.add("quiz-abierto");
+    aislar(true);
+    apuntar(actual);
+    tramos[actual].scrollTop = 0;
+  }
+
+  function soltar() {
+    if (!modo) return;
+    modo = false;
+    cerrando = false;
+    fondo = 0;
+    form.classList.remove("is-modo");
+    raiz.classList.remove("quiz-abierto");
+    aislar(false);
+    form.scrollIntoView({ block: "start" });
+  }
+
+  function cerrar() {
+    if (!modo) return;
+    if (fondo > 0) {
+      cerrando = true;
+      history.go(-fondo);   // llega un popstate y ahí se suelta
+    } else {
+      soltar();
+    }
+  }
+
+  window.addEventListener("popstate", function (e) {
+    if (!modo) return;
+    var estado = e.state;
+    if (!cerrando && estado && estado.quiz) {
+      fondo = estado.n || 1;
+      ir(estado.paso, true);
+    } else {
+      soltar();
+    }
+  });
+
+  function mover(n) {
+    n = Math.max(0, Math.min(tramos.length - 1, n));
+    if (!modo || n === actual) { ir(n, true); return; }
+    if (n > actual) {
+      ir(n, true);
+      apuntar(n);
+    } else if (actual - n < fondo) {
+      history.go(n - actual);
+    } else {
+      ir(n, true);
+      try { history.replaceState({ quiz: 1, paso: n, n: fondo }, ""); } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('a[href="#preparar"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!ancho || !ancho.matches) return;
+      e.preventDefault();
+      abrir();
+    });
+  });
+
+  var equis = form.querySelector("[data-quiz-cerrar]");
+  if (equis) equis.addEventListener("click", cerrar);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modo) cerrar();
+  });
+
+  if (ancho && ancho.addEventListener) {
+    ancho.addEventListener("change", function () { if (!ancho.matches) cerrar(); });
+  }
+
   form.addEventListener("click", function (e) {
+    if (!modo && e.target.closest(".tramo")) abrir();
     var paso = e.target.closest("[data-paso]");
-    if (paso) { e.preventDefault(); ir(Number(paso.dataset.paso), true); return; }
+    if (paso) { e.preventDefault(); mover(Number(paso.dataset.paso)); return; }
     var boton = e.target.closest("[data-ir]");
     if (!boton) return;
     e.preventDefault();
-    ir(actual + (boton.dataset.ir === "atras" ? -1 : 1), true);
+    mover(actual + (boton.dataset.ir === "atras" ? -1 : 1));
   });
 
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter") return;
     if (!e.target.matches("input:not([type=radio]):not([type=checkbox])")) return;
     e.preventDefault();
-    if (actual < tramos.length - 1) ir(actual + 1, true);
+    if (actual < tramos.length - 1) mover(actual + 1);
     else e.target.blur();
   });
 
@@ -136,6 +234,9 @@
   var negocio = form.dataset.negocio || "";
 
   if (negocio) {
+    form.querySelectorAll("[data-negocio-muestra]").forEach(function (hueco) {
+      hueco.textContent = negocio;
+    });
     form.querySelectorAll("[data-ficha]").forEach(function (hueco) {
       hueco.textContent = "la ficha de Google de " + negocio;
     });
