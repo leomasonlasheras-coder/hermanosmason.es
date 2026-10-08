@@ -164,24 +164,6 @@
 
   form.addEventListener("change", pintarExtras);
 
-  var ordenMeta = [];
-
-  form.addEventListener("change", function (e) {
-    if (!e.target.matches('input[name="meta"]')) return;
-    ordenMeta = ordenMeta.filter(function (c) { return c !== e.target; });
-    if (e.target.checked) ordenMeta.push(e.target);
-    while (ordenMeta.length > 2) ordenMeta.shift().checked = false;
-  });
-
-  form.addEventListener("change", function (e) {
-    if (!e.target.matches('input[name="fotos"]') || !e.target.checked) return;
-    var esNo = e.target.id === "fotos-no";
-    casillas("fotos").forEach(function (el) {
-      if (el !== e.target && (esNo || el.id === "fotos-no")) el.checked = false;
-    });
-    pintarExtras();
-  });
-
   var DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   var DIAS_CORTOS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
@@ -298,11 +280,10 @@
       var cambios = cambiosDatos();
       filas.push(["Tus datos", cambios.length ? cambios.map(mayuscula) : ["Están bien"], ""]);
     }
-    filas.push(["Cita hoy", rotulos("cita"), "Sin contestar"]);
-    filas.push(["Prioridad", rotulos("meta"), "Lo decidimos nosotros"]);
+    filas.push(["Para qué", rotulos("para"), "Sin contestar"]);
     filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
-    filas.push(["Fotos", rotulos("fotos"), "Las buscamos nosotros"]);
-    filas.push(["¿Sales tú?", rotulos("sales"), "Sin contestar"]);
+    filas.push(["Contenido", rotulos("mostrar"), "Lo decidimos nosotros"]);
+    filas.push(["Fotos y logo", rotulos("fotos"), "Sin contestar"]);
 
     var turno = valor("turno");
     var dia = valor("dia");
@@ -356,35 +337,23 @@
     return cosas.slice(0, -1).join(", ") + " y " + cosas[cosas.length - 1];
   }
 
-  function grupo(rotulo, deQue, nombre, siNada) {
-    var elegidas = casillas(nombre).some(function (el) {
-      return el.checked && !el.disabled;
-    });
-    var nota = valor(nombre + "-nota");
-    var lineas = [];
-    if (elegidas) lineas.push("*" + rotulo + ":* " + enumerar(marcadas(nombre)));
-    else if (!nota) lineas.push("*" + rotulo + ":* " + siNada);
-    if (nota) lineas.push("*Nota sobre " + deQue + ":* " + nota);
-    return lineas;
-  }
-
   function componer() {
     var saludo = valor("text") || "Hola, quiero que me preparéis la web.";
     var renglones = [];
 
     if (negocio) renglones.push("*Negocio:* " + negocio);
 
-    var cita = valor("cita");
-    if (cita) renglones.push("*Cómo me piden cita hoy:* " + cita);
-    renglones = renglones.concat(grupo("Prioridad", "la prioridad", "meta", "decididlo vosotros"));
+    var para = marcadas("para");
+    if (para.length) renglones.push("*Para qué quiero la web:* " + enumerar(para));
 
     var estilo = valor("estilo");
     if (estilo) renglones.push("*Estilo:* " + estilo);
 
-    renglones = renglones.concat(grupo("Fotos", "las fotos", "fotos", "buscadlas vosotros"));
+    var mostrar = marcadas("mostrar");
+    if (mostrar.length) renglones.push("*Quiero mostrar:* " + enumerar(mostrar));
 
-    var sales = valor("sales");
-    if (sales) renglones.push("*En la web:* " + sales);
+    var fotos = valor("fotos");
+    if (fotos) renglones.push("*Fotos y logo:* " + fotos);
 
     renglones.push(lineaDatos());
 

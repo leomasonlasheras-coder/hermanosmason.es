@@ -95,87 +95,49 @@
         </div>
 
         <ol class="progreso" aria-label="Pasos del formulario">
-          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Cita</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Prioridad</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Estilo</span></button></li>
+          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Para qué</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Estilo</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Contenido</span></button></li>
           <li><button type="button" class="progreso__paso" data-paso="3" disabled><span class="progreso__circulo"><span class="progreso__num">4</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
           <li><button type="button" class="progreso__paso" data-paso="4" disabled><span class="progreso__circulo"><span class="progreso__num">5</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Visita</span></button></li>
         </ol>
 
         <fieldset class="tramo">
-
-          <legend>¿Cómo te piden cita hoy? <span class="tramo__ayuda">Marca lo más habitual, aunque quieras cambiarlo.</span></legend>
-          <div class="casillas">
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
-              <span>Por WhatsApp</span>
-              <input type="radio" name="cita" id="cita-whatsapp" value="me escriben por WhatsApp" />
-            </label>
+          <legend>¿Para qué quieres tu web? <span class="tramo__ayuda">Puedes elegir varias.</span></legend>
+          <div class="casillas casillas--una">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 3.5h3l1.6 4.2-2.1 1.6a11.5 11.5 0 0 0 6.7 6.7l1.6-2.1 4.2 1.6v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 3.5 5.5a2 2 0 0 1 2-2z" /></svg>
-              <span>Me llaman</span>
-              <input type="radio" name="cita" id="cita-llamada" value="me llaman por teléfono" />
+              <span>Recibir llamadas</span>
+              <input type="checkbox" name="para" id="para-llamadas" value="recibir llamadas" />
             </label>
             <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
-              <span>Por Instagram</span>
-              <input type="radio" name="cita" id="cita-instagram" value="por Instagram" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
+              <span>Recibir mensajes por WhatsApp</span>
+              <input type="checkbox" name="para" id="para-whatsapp" value="recibir mensajes por WhatsApp" />
             </label>
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
-              <span>Booksy o Treatwell</span>
-              <input type="radio" name="cita" id="cita-reservas" value="por Booksy o Treatwell" />
-            </label>
-            <label class="casilla casilla--ancha">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="3" width="12" height="18" rx="1.5" /><path d="M14.5 12.5h.01" /><path d="M3 21h18" /></svg>
-              <span>Vienen sin cita</span>
-              <input type="radio" name="cita" id="cita-sin" value="vienen sin cita" />
-            </label>
-          </div>
-          <div class="tramo__nav">
-            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
-          </div>
-        </fieldset>
-
-        <fieldset class="tramo" hidden>
-
-          <legend>¿Qué priorizamos en tu web? <span class="tramo__ayuda">Marca las dos que más te importen: van arriba del todo. Lo demás también se incluye.</span></legend>
-
-          <div class="casillas casillas--una">
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6v7.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z" /></svg>
-              <span>Que me pidan cita sin llamar</span>
-              <input type="checkbox" name="meta" id="meta-cita" value="que me pidan cita sin llamar" />
+              <span>Recibir reservas</span>
+              <input type="checkbox" name="para" id="para-reservas" value="recibir reservas" />
             </label>
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5V4h7.5l9.5 9.5-7.5 7.5z" /><path d="M7.5 8.5h.01" /></svg>
-              <span>Que dejen de preguntarme precios</span>
-              <input type="checkbox" name="meta" id="meta-precios" value="que dejen de preguntarme precios por mensaje" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5L21 21" /></svg>
-              <span>Que me encuentren en Google</span>
-              <input type="checkbox" name="meta" id="meta-google" value="que me encuentren en Google" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
-              <span>Que se vea mi trabajo</span>
-              <input type="checkbox" name="meta" id="meta-trabajo" value="que se vea mi trabajo" />
+              <span>Mostrar mis precios</span>
+              <input type="checkbox" name="para" id="para-precios" value="mostrar mis precios" />
             </label>
             <label class="casilla casilla--ancha">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
-              <span>Que sepan dónde estoy y a qué hora</span>
-              <input type="checkbox" name="meta" id="meta-donde" value="que sepan dónde estoy y a qué hora" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5L21 21" /></svg>
+              <span>Que me encuentren fácilmente</span>
+              <input type="checkbox" name="para" id="para-encontrar" value="que me encuentren fácilmente" />
             </label>
           </div>
           <div class="tramo__nav">
-            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend>¿Qué estilo te gusta más? <span class="tramo__ayuda">Son diseños de muestra para peluquerías: la tuya lleva tu nombre y tus fotos.</span></legend>
+          <legend>Elige un estilo <span class="tramo__ayuda">¿Cuál se parece más a lo que te gustaría? Son muestras: la tuya lleva tu nombre y tus fotos.</span></legend>
           <div class="estilos">
             <label class="estilo">
               <input type="radio" name="estilo" value="el de Nube Studio" />
@@ -192,10 +154,45 @@
               <img src="../img/muestras/peluqueria-alba-color-studio-v2-672.webp" width="672" height="380" loading="lazy" decoding="async" alt="Portada de la web de muestra Alba Color Studio: una clienta de espaldas con melena rubia ondulada mientras le revisan el color, en tonos melocotón, y el titular Color que aguanta hasta la siguiente cita." />
               <span class="estilo__nombre">Alba Color Studio</span>
             </label>
+          </div>
+          <div class="tramo__nav">
+            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
+            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="tramo" hidden>
+          <legend>¿Qué quieres mostrar? <span class="tramo__ayuda">Puedes elegir varias.</span></legend>
+          <div class="casillas">
             <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M17.5 13.6a6.5 6.5 0 0 1 4 6.4" /></svg>
-              <span>Elegidlo vosotros</span>
-              <input type="radio" name="estilo" id="estilo-vosotros" value="elegidlo vosotros" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11" /><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" /></svg>
+              <span>Servicios</span>
+              <input type="checkbox" name="mostrar" id="mostrar-servicios" value="servicios" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11.5V4h7.5l9.5 9.5-7.5 7.5z" /><path d="M7.5 8.5h.01" /></svg>
+              <span>Precios</span>
+              <input type="checkbox" name="mostrar" id="mostrar-precios" value="precios" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
+              <span>Fotos</span>
+              <input type="checkbox" name="mostrar" id="mostrar-fotos" value="fotos" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M12 7.5V12l3.2 2.2" /></svg>
+              <span>Horario</span>
+              <input type="checkbox" name="mostrar" id="mostrar-horario" value="horario" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z" /></svg>
+              <span>Opiniones de clientes</span>
+              <input type="checkbox" name="mostrar" id="mostrar-opiniones" value="opiniones de clientes" />
+            </label>
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
+              <span>Mapa</span>
+              <input type="checkbox" name="mostrar" id="mostrar-mapa" value="mapa" />
             </label>
           </div>
           <div class="tramo__nav">
@@ -205,49 +202,26 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-
-          <legend>¿De dónde cogemos tus fotos? <span class="tramo__ayuda">Marca las que valgan; si no marcas ninguna, las buscamos nosotros.</span></legend>
-          <div class="casillas">
-            <label class="casilla casilla--grande">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
-              <span>Tu Instagram</span>
-              <small class="casilla__nota">Las cogemos nosotros</small>
-              <input type="checkbox" name="fotos" id="fotos-instagram" value="las de mi Instagram" />
-            </label>
-            <label class="casilla casilla--grande">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z" /><circle cx="12" cy="11" r="2" /></svg>
-              <span>Tu Google Maps</span>
-              <small class="casilla__nota">Las cogemos nosotros</small>
-              <input type="checkbox" name="fotos" id="fotos-google" value="las de mi ficha de Google Maps" />
-            </label>
-            <label class="casilla casilla--ancha casilla--baja">
+          <legend>Fotos y logo <span class="tramo__ayuda">¿Tienes fotos o logo de tu negocio?</span></legend>
+          <div class="casillas casillas--una">
+            <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
-              <span>Os mando mis fotos y mi logo por WhatsApp</span>
-              <input type="checkbox" name="fotos" id="fotos-yo" value="las que os mando por WhatsApp, con mi logo" />
+              <span>Os los envío por WhatsApp</span>
+              <input type="radio" name="fotos" id="fotos-yo" value="os los envío por WhatsApp" />
             </label>
-            <label class="casilla casilla--ancha casilla--baja">
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
+              <span>Usad los de mi Google, Facebook o Instagram</span>
+              <input type="radio" name="fotos" id="fotos-redes" value="usad los de mi Google, Facebook o Instagram" />
+            </label>
+            <label class="casilla casilla--ancha">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
-              <span>No tengo fotos</span>
-              <input type="checkbox" name="fotos" id="fotos-no" value="no tengo" />
+              <span>No tengo</span>
+              <input type="radio" name="fotos" id="fotos-no" value="no tengo" />
             </label>
           </div>
           <div class="extra" data-extra="fotos-yo">
-            <p class="extra__nota">Al enviar se abre el chat: nos lo mandas ahí, cuando puedas.</p>
-          </div>
-
-          <p class="field__label dias__rotulo" id="sales-rotulo">¿Sales tú en la web?</p>
-
-          <div class="casillas" role="radiogroup" aria-labelledby="sales-rotulo">
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M17.5 13.6a6.5 6.5 0 0 1 4 6.4" /></svg>
-              <span>Sí, yo y mi equipo</span>
-              <input type="radio" name="sales" id="sales-si" value="salgo yo con mi equipo" />
-            </label>
-            <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7" /><path d="M6.5 9.5V20h11V9.5" /><path d="M10 20v-5h4v5" /></svg>
-              <span>Solo el local y los trabajos</span>
-              <input type="radio" name="sales" id="sales-no" value="solo el local y los trabajos" />
-            </label>
+            <p class="extra__nota">Al enviar se abre el chat: nos los mandas ahí, cuando puedas.</p>
           </div>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
@@ -281,17 +255,17 @@
         </fieldset>
 
         <fieldset class="tramo tramo--cierre" hidden>
-          <legend>Tus respuestas <span class="tramo__ayuda">Es lo que nos llega por WhatsApp. Nada es definitivo: luego cambiamos lo que quieras.</span></legend>
+          <legend>Todo listo <span class="tramo__ayuda">Esto es lo que nos llega por WhatsApp. Nada es definitivo: luego cambiamos lo que quieras.</span></legend>
           <dl class="datos datos--respuestas" data-resumen aria-live="polite"></dl>
 
-          <p class="cierre__trato">Tu web, gratis un mes y sin tarjeta. Si te la quedas, 200 € una vez. Si no, la retiramos y no pagas nada.</p>
+          <p class="cierre__trato">Tu web estará online gratis durante 30 días. Si decides quedártela, son 200 € en un único pago. Si no, no pagas nada.</p>
 
           <div class="tramo__nav tramo__nav--final">
             <p class="tramo__aviso" data-aviso>Se abre WhatsApp con tus respuestas ya escritas. Tú solo le das a enviar.</p>
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <a class="btn btn--whatsapp btn--lg tramo__enviar" href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20peluquer%C3%ADa." data-enviar data-final target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
-              <span data-rotulo>Enviar por WhatsApp</span>
+              <span data-rotulo>Empezar mi mes gratis</span>
             </a>
           </div>
 
