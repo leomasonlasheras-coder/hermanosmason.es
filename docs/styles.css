@@ -2335,6 +2335,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
   background-image: none;
   padding-bottom: 0;
   transition: none;
+
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 .enlace:hover { opacity: 1; }
@@ -3583,7 +3585,7 @@ html:not(.no-js) .enlace .preparar-seccion {
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
+    padding: env(safe-area-inset-top, 0px) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
     background: var(--paper);
 
     opacity: 1 !important;
@@ -3645,7 +3647,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 
   .preparar.is-modo .tramo__nav {
     margin-block-start: auto;
-    padding-block-end: max(var(--sp-sm), env(safe-area-inset-bottom, 0px));
+    padding-block-end: max(var(--sp-sm), calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
   }
 
   .preparar.is-modo .form__note { margin-block: var(--sp-xs) var(--sp-sm); }
@@ -3679,7 +3681,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 .enlace .salida .enlace__accion { margin-block-start: var(--sp-md); }
 
 .enlace-pie {
-  padding-block: var(--sp-lg) var(--sp-2xl);
+
+  padding-block: var(--sp-lg) calc(var(--sp-2xl) + env(safe-area-inset-bottom, 0px));
   border-block-start: var(--rule) solid var(--line);
   font-size: var(--size-xs);
   line-height: 1.6;
