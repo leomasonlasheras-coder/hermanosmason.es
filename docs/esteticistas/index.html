@@ -105,6 +105,7 @@
 
         <fieldset class="tramo">
           <legend>¿Para qué quieres tu web? <span class="tramo__ayuda">Puedes elegir varias.</span></legend>
+          <div class="tramo__cuerpo">
           <div class="casillas casillas--una">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 3.5h3l1.6 4.2-2.1 1.6a11.5 11.5 0 0 0 6.7 6.7l1.6-2.1 4.2 1.6v3a2 2 0 0 1-2 2A15.5 15.5 0 0 1 3.5 5.5a2 2 0 0 1 2-2z" /></svg>
@@ -135,10 +136,12 @@
           <div class="tramo__nav">
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
+          </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
           <legend>Elige un estilo <span class="tramo__ayuda">¿Cuál se parece más a lo que te gustaría? Son muestras: la tuya lleva tu nombre y tus fotos.</span></legend>
+          <div class="tramo__cuerpo">
           <div class="estilos">
             <label class="estilo">
               <input type="radio" name="estilo" value="el de Brisa Estética" />
@@ -160,10 +163,12 @@
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
+          </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
           <legend>¿Qué quieres mostrar? <span class="tramo__ayuda">Puedes elegir varias.</span></legend>
+          <div class="tramo__cuerpo">
           <div class="casillas">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11" /><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" /></svg>
@@ -200,10 +205,12 @@
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
+          </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
           <legend>Fotos y logo <span class="tramo__ayuda">¿Tienes fotos o logo de tu negocio?</span></legend>
+          <div class="tramo__cuerpo">
           <div class="casillas casillas--una">
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
@@ -228,11 +235,13 @@
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
           </div>
+          </div>
         </fieldset>
 
         <fieldset class="tramo" hidden>
 
           <legend>¿Cuándo te la enseñamos? <span class="tramo__ayuda"><span data-plazo>En tres días la tenemos.</span> Elige el día y pasamos por tu centro de estética; si luego te va mal, lo cambiamos por el chat.</span></legend>
+          <div class="tramo__cuerpo">
           <p class="field__label dias__rotulo" id="dia-rotulo">Qué día</p>
           <div class="dias" role="radiogroup" aria-labelledby="dia-rotulo" data-dias>
             <label class="turno turno--otro"><input type="radio" name="dia" id="dia-otro" value="otro" /><span>Otro día</span></label>
@@ -253,10 +262,12 @@
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Revisar y enviar</span></button>
           </div>
+          </div>
         </fieldset>
 
         <fieldset class="tramo tramo--cierre" hidden>
           <legend>Todo listo <span class="tramo__ayuda">Esto es lo que nos llega por WhatsApp. Nada es definitivo: luego cambiamos lo que quieras.</span></legend>
+          <div class="tramo__cuerpo">
           <dl class="datos datos--respuestas" data-resumen aria-live="polite"></dl>
 
           <p class="cierre__trato">Tu web estará online gratis durante 30 días. Si decides quedártela, son 200 € en un único pago. Si no, no pagas nada.</p>
@@ -273,6 +284,7 @@
           <p class="form__note">
             Tus respuestas se usan solo para preparar tu web: <a href="../privacidad.html">política de privacidad</a>.
           </p>
+          </div>
         </fieldset>
 
         <div class="form__hecho" role="status" hidden>

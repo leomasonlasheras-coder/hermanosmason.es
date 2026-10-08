@@ -3588,6 +3588,9 @@ html:not(.no-js) .enlace .preparar-seccion {
     padding: env(safe-area-inset-top, 0px) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
     background: var(--paper);
 
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
     opacity: 1 !important;
     transform: none !important;
     transition: none;
@@ -3638,6 +3641,11 @@ html:not(.no-js) .enlace .preparar-seccion {
     min-height: 0;
     display: flex;
     flex-direction: column;
+  }
+
+  .preparar.is-modo .tramo__cuerpo {
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
@@ -3646,15 +3654,12 @@ html:not(.no-js) .enlace .preparar-seccion {
   }
 
   .preparar.is-modo .tramo legend {
-    position: sticky;
-    top: 0;
-    z-index: 3;
+    flex: none;
     margin-block-end: 0;
     padding-block-end: var(--sp-sm);
-    background: var(--paper);
   }
 
-  .preparar.is-modo .tramo > :has(+ .tramo__nav) { margin-block-end: var(--sp-md); }
+  .preparar.is-modo .tramo__cuerpo > :has(+ .tramo__nav) { margin-block-end: var(--sp-md); }
 
   .preparar.is-modo .tramo__nav {
     position: static;

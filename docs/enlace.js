@@ -31,9 +31,14 @@
   }
 
   function reposar(tramo) {
-    tramo.scrollTop = 0;
-    requestAnimationFrame(function () { tramo.scrollTop = 0; });
-    setTimeout(function () { tramo.scrollTop = 0; }, 300);
+    var cuerpo = tramo.querySelector(".tramo__cuerpo");
+    function cero() {
+      tramo.scrollTop = 0;
+      if (cuerpo) cuerpo.scrollTop = 0;
+    }
+    cero();
+    requestAnimationFrame(cero);
+    setTimeout(cero, 300);
   }
 
   var raiz = document.documentElement;
@@ -64,7 +69,7 @@
     raiz.classList.add("quiz-abierto");
     aislar(true);
     apuntar(actual);
-    tramos[actual].scrollTop = 0;
+    reposar(tramos[actual]);
   }
 
   function soltar() {
