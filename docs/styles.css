@@ -3641,13 +3641,16 @@ html:not(.no-js) .enlace .preparar-seccion {
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
+
+    padding-block-end: calc(7rem + env(safe-area-inset-bottom, 0px));
   }
 
   .preparar.is-modo .tramo > :has(+ .tramo__nav) { margin-block-end: var(--sp-md); }
 
   .preparar.is-modo .tramo__nav {
-    margin-block-start: auto;
-    padding-block-end: max(var(--sp-sm), calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
+    position: static;
+    margin-block-start: var(--sp-md);
+    padding-block-end: var(--sp-sm);
   }
 
   .preparar.is-modo .form__note { margin-block: var(--sp-xs) var(--sp-sm); }
