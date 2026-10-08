@@ -25,9 +25,15 @@
         legend.setAttribute("tabindex", "-1");
         legend.focus({ preventScroll: true });
       }
-      if (modo) tramos[actual].scrollTop = 0;
+      if (modo) reposar(tramos[actual]);
       else form.scrollIntoView({ block: "start", behavior: "smooth" });
     }
+  }
+
+  function reposar(tramo) {
+    tramo.scrollTop = 0;
+    requestAnimationFrame(function () { tramo.scrollTop = 0; });
+    setTimeout(function () { tramo.scrollTop = 0; }, 300);
   }
 
   var raiz = document.documentElement;
