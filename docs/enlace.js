@@ -83,10 +83,16 @@
     if (fondo > 0) {
       cerrando = true;
       history.go(-fondo);   // llega un popstate y ahí se suelta
+      setTimeout(function () { if (cerrando) soltar(); }, 400);
     } else {
       soltar();
     }
   }
+
+  try {
+    var resto = history.state;
+    if (resto && resto.quiz && resto.n > 0) history.go(-resto.n);
+  } catch (e) {}
 
   window.addEventListener("popstate", function (e) {
     if (!modo) return;
@@ -249,7 +255,7 @@
 
   function cambiosDatos() {
     return camposDatos.filter(function (campo) {
-      return campo.value.trim() !== campo.dataset.original;
+      return campo.value.trim() !== (campo.dataset.original || "").trim();
     }).map(function (campo) {
       return campo.dataset.dice + " " + (campo.value.trim() || "(lo he dejado vacío)");
     });
@@ -366,7 +372,8 @@
     var turno = valor("turno");
     var dia = valor("dia");
     if (dia === "otro") dia = valor("dia-texto");
-    if (turno || dia) {
+    var turnoElegido = turno && turno !== "a cualquier hora";
+    if (turnoElegido || dia) {
       renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
     }
 
