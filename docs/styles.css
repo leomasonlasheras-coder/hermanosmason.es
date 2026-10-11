@@ -3540,7 +3540,10 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .tramo__nav--final .tramo__enviar { gap: var(--sp-xs); }
 .tramo__nav--final .tramo__enviar svg { width: 1.25em; height: 1.25em; flex: none; }
-.tramo__nav--final .tramo__enviar.is-abriendo { pointer-events: none; opacity: 0.8; }
+.tramo__nav--final .tramo__enviar.is-abriendo,
+.tramo__nav--final .tramo__enviar.is-enviando { pointer-events: none; opacity: 0.8; }
+
+.tramo__nav--final .tramo__enviar:disabled { opacity: 0.6; cursor: default; transform: none; }
 
 @media (max-width: 420px) {
   .tramo__nav { gap: var(--sp-xs); }

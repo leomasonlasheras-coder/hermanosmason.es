@@ -397,35 +397,37 @@
   form.addEventListener("change", escribirEnlaces);
   form.addEventListener("input", escribirEnlaces);
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var final = form.querySelector("[data-final]");
-    if (final) final.click();
-  });
-
   var hecho = form.querySelector(".form__hecho");
   var final = form.querySelector("[data-final]");
   var rotulo = final ? final.querySelector("[data-rotulo]") : null;
+  var respaldo = form.querySelector("[data-respaldo]");
+  var rotuloRespaldo = respaldo ? respaldo.querySelector("[data-rotulo]") : null;
   var aviso = form.querySelector("[data-aviso]");
+
+  function mostrarHecho(cual) {
+    if (!hecho) return;
+    Array.prototype.forEach.call(hecho.querySelectorAll("[data-hecho]"), function (bloque) {
+      bloque.hidden = bloque.dataset.hecho !== cual;
+    });
+    hecho.hidden = false;
+    hecho.scrollIntoView({ block: "center", behavior: "smooth" });
+  }
 
   enlaces.forEach(function (a) {
     a.addEventListener("click", function () {
       escribirEnlaces();   // el handler corre antes de navegar: el href va al día
-      if (final && rotulo) {
-        final.classList.add("is-abriendo");
-        rotulo.textContent = "Abriendo WhatsApp…";
+      if (respaldo && rotuloRespaldo) {
+        respaldo.classList.add("is-abriendo");
+        rotuloRespaldo.textContent = "Abriendo WhatsApp…";
       }
       setTimeout(function () {
         ir(tramos.length - 1, false);
-        if (final && rotulo) {
-          final.classList.remove("is-abriendo");
-          rotulo.textContent = "Volver a abrir WhatsApp";
+        if (respaldo && rotuloRespaldo) {
+          respaldo.classList.remove("is-abriendo");
+          rotuloRespaldo.textContent = "Volver a abrir WhatsApp";
         }
         if (aviso) aviso.textContent = "Ya está en WhatsApp: dale a enviar allí.";
-        if (hecho) {
-          hecho.hidden = false;
-          hecho.scrollIntoView({ block: "center", behavior: "smooth" });
-        }
+        mostrarHecho("whatsapp");
       }, 1200);
     });
   });
@@ -445,4 +447,85 @@
   }
 
   escribirEnlaces();
+
+  var recibir = form.dataset.recibir || "";
+  var enviando = false;
+  var enviado = false;
+
+  function campos() {
+    var datos = {
+      access_key: recibir,
+      subject: "Cuestionario de " + (negocio || form.dataset.pagina || "la página 2"),
+      from_name: "hermanosmason.es",
+      Negocio: negocio || "(sin nombre: página de " + (form.dataset.pagina || "sector") + ")",
+      Desde: form.dataset.pagina || "",
+      Respuestas: componer().replace(/\*/g, "")
+    };
+    if (form.dataset.responder) datos.Responder = form.dataset.responder;
+    return datos;
+  }
+
+  function respaldar() {
+    escribirEnlaces();
+    if (final) final.hidden = true;
+    if (respaldo) respaldo.hidden = false;
+    if (aviso) aviso.textContent = "No hemos podido recibirlo. Se abre WhatsApp con tus respuestas ya escritas: tú solo le das a enviar.";
+    ir(tramos.length - 1, false);
+  }
+
+  function recibido() {
+    enviado = true;
+    if (final) final.disabled = true;
+    if (rotulo) rotulo.textContent = "Enviado";
+    if (aviso) aviso.textContent = "Ya lo tenemos. Te escribimos por WhatsApp.";
+    ir(tramos.length - 1, false);
+    mostrarHecho("recibido");
+  }
+
+  function mandar() {
+    enviando = true;
+    if (final) final.classList.add("is-enviando");
+    if (rotulo) rotulo.textContent = "Enviando…";
+    var controlador = window.AbortController ? new AbortController() : null;
+    var reloj = controlador ? setTimeout(function () { controlador.abort(); }, 12000) : 0;
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(campos()),
+      signal: controlador ? controlador.signal : undefined
+    }).then(function (respuesta) {
+      return respuesta.json().then(
+        function (json) { return respuesta.ok && !!(json && json.success); },
+        function () { return respuesta.ok; }
+      );
+    }).then(function (bien) {
+      if (!bien) throw new Error("Web3Forms no lo ha aceptado");
+      recibido();
+    }).catch(function () {
+      if (rotulo) rotulo.textContent = "Empezar mi mes gratis";
+      respaldar();
+    }).then(function () {
+      clearTimeout(reloj);
+      enviando = false;
+      if (final) final.classList.remove("is-enviando");
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (enviando || enviado) return;
+    if (!recibir || !window.fetch || !final) {
+      respaldar();
+      return;
+    }
+    mandar();
+  });
+
+  form.addEventListener("change", function () {
+    if (!enviado) return;
+    enviado = false;
+    if (final) final.disabled = false;
+    if (rotulo) rotulo.textContent = "Enviar de nuevo";
+    if (aviso) aviso.textContent = "Has cambiado algo: envíalo otra vez y nos quedamos con lo último.";
+  });
 })();
