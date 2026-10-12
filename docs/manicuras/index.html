@@ -229,7 +229,7 @@
             </label>
           </div>
           <div class="extra" data-extra="fotos-yo">
-            <p class="extra__nota">Al enviar se abre el chat: nos los mandas ahí, cuando puedas.</p>
+            <p class="extra__nota">Te escribimos por WhatsApp y nos los mandas ahí, cuando puedas.</p>
           </div>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
@@ -260,7 +260,7 @@
           </div>
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
-            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Revisar y enviar</span></button>
+            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Revisar y terminar</span></button>
           </div>
           </div>
         </fieldset>
@@ -273,7 +273,7 @@
           <p class="cierre__trato">Tu web estará online gratis durante 30 días. Si decides quedártela, son 200 € en un único pago. Si no, no pagas nada.</p>
 
           <div class="tramo__nav tramo__nav--final">
-            <p class="tramo__aviso" data-aviso>Nos llegan tus respuestas y te escribimos por WhatsApp para concretar la visita.</p>
+            <p class="tramo__aviso" data-aviso>Al tocar nos llegan tus respuestas. No tienes que hacer nada más.</p>
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg tramo__enviar" type="submit" data-final>
               <span data-rotulo>Empezar mi mes gratis</span>
@@ -290,22 +290,21 @@
           </div>
         </fieldset>
 
+        <fieldset class="tramo tramo--gracias" hidden>
+          <legend>Ya lo tenemos <span class="tramo__ayuda">No tienes que hacer nada más.</span></legend>
+          <div class="tramo__cuerpo">
+            <p class="gracias__que">Te escribe Leo o Pablo por WhatsApp para confirmar la visita. <span data-listo>En tres días la tienes lista.</span></p>
+            <p class="gracias__anadir">¿Quieres añadir algo? <a href="https://wa.me/34699072079?text=Hola.%20Ya%20os%20he%20mandado%20el%20cuestionario.%20Quer%C3%ADa%20a%C3%B1adir%3A%20" data-salida data-mensaje="Ya os he mandado el cuestionario. Quería añadir: " target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.</p>
+          </div>
+        </fieldset>
+
         <div class="form__hecho" role="status" hidden>
-          <div data-hecho="recibido" hidden>
-            <p><strong>Recibido.</strong> Te escribimos por WhatsApp para concretar la visita.</p>
-            <p class="form__hecho__salidas">¿Quieres añadir algo?
-              <a href="https://wa.me/34699072079?text=Hola.%20Ya%20os%20he%20mandado%20el%20cuestionario.%20Quer%C3%ADa%20a%C3%B1adir%3A%20" data-salida data-mensaje="Ya os he mandado el cuestionario. Quería añadir: " target="_blank" rel="noopener">Escríbenos por WhatsApp</a> ·
-              <a href="tel:+34699072079">Llámanos</a>
-            </p>
-          </div>
-          <div data-hecho="whatsapp" hidden>
-            <p><strong>Ya está en WhatsApp.</strong> Dale a enviar allí y listo.</p>
-            <p class="form__hecho__salidas">¿No se ha abierto?
-              <a href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20sal%C3%B3n%20de%20u%C3%B1as." data-enviar target="_blank" rel="noopener">Volver a abrirlo</a> ·
-              <button type="button" data-copiar>Copiar el mensaje</button> ·
-              <a href="tel:+34699072079">Llamarnos</a>
-            </p>
-          </div>
+          <p><strong>Ya está en WhatsApp.</strong> Dale a enviar allí y listo.</p>
+          <p class="form__hecho__salidas">¿No se ha abierto?
+            <a href="https://wa.me/34699072079?text=Hola%2C%20quiero%20que%20me%20prepar%C3%A9is%20la%20web%20de%20mi%20sal%C3%B3n%20de%20u%C3%B1as." data-enviar target="_blank" rel="noopener">Volver a abrirlo</a> ·
+            <button type="button" data-copiar>Copiar el mensaje</button> ·
+            <a href="tel:+34699072079">Llamarnos</a>
+          </p>
         </div>
       </form>
     </section>

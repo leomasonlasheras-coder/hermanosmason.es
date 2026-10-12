@@ -5,19 +5,22 @@
   if (!form) return;
 
   var destino = form.getAttribute("action") || "";
-  var tramos = Array.prototype.slice.call(form.querySelectorAll(".tramo"));
+  var tramos = Array.prototype.slice.call(form.querySelectorAll(".tramo:not(.tramo--gracias)"));
+  var gracias = form.querySelector(".tramo--gracias");
   var pasos = Array.prototype.slice.call(form.querySelectorAll(".progreso li"));
   var actual = 0;
+  var terminado = false;   // ya se ha enviado: los círculos del stepper no vuelven
 
   function ir(n, enfocar) {
     actual = Math.max(0, Math.min(tramos.length - 1, n));
     tramos.forEach(function (t, i) { t.hidden = i !== actual; });
+    if (gracias) gracias.hidden = true;
     pasos.forEach(function (li, i) {
       li.classList.toggle("is-hecho", i < actual);
       if (i === actual) li.setAttribute("aria-current", "step");
       else li.removeAttribute("aria-current");
       var circulo = li.querySelector("[data-paso]");
-      if (circulo) circulo.disabled = i >= actual;
+      if (circulo) circulo.disabled = i >= actual || terminado;
     });
     if (enfocar) {
       var legend = tramos[actual].querySelector("legend");
@@ -217,13 +220,18 @@
     requestAnimationFrame(function () { tira.scrollLeft = 0; });
   }
 
-  function escribirPlazo() {
-    var hueco = form.querySelector("[data-plazo]");
-    if (!hueco) return;
+  function diaListo() {
     var hoy = new Date();
     var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + DESDE_DIA);
     if (SIN_DOMINGO && d.getDay() === 0) d.setDate(d.getDate() + 1);
-    hueco.textContent = "Nos lo mandas hoy y el " + DIAS[d.getDay()] + " " + d.getDate() + " ya está lista.";
+    return DIAS[d.getDay()] + " " + d.getDate();
+  }
+
+  function escribirPlazo() {
+    var hueco = form.querySelector("[data-plazo]");
+    if (hueco) hueco.textContent = "Nos lo mandas hoy y el " + diaListo() + " ya está lista.";
+    var listo = form.querySelector("[data-listo]");
+    if (listo) listo.textContent = "El " + diaListo() + " la tienes lista.";
   }
 
   escribirDias();
@@ -354,8 +362,22 @@
     return cosas.slice(0, -1).join(", ") + " y " + cosas[cosas.length - 1];
   }
 
+  function fraseVisita() {
+    var turno = valor("turno");
+    var dia = valor("dia");
+    if (dia === "otro") dia = valor("dia-texto");
+    var turnoElegido = turno && turno !== "a cualquier hora";
+    if (!turnoElegido && !dia) return "";
+    return [dia || "día por concretar", turno].filter(Boolean).join(", ");
+  }
+
   function componer() {
     var saludo = valor("text") || "Hola, quiero que me preparéis la web.";
+    var lineas = renglones();
+    return lineas.length ? saludo + "\n\n" + lineas.join("\n") : saludo;
+  }
+
+  function renglones() {
     var renglones = [];
 
     if (negocio) renglones.push("*Negocio:* " + negocio);
@@ -374,15 +396,10 @@
 
     renglones.push(lineaDatos());
 
-    var turno = valor("turno");
-    var dia = valor("dia");
-    if (dia === "otro") dia = valor("dia-texto");
-    var turnoElegido = turno && turno !== "a cualquier hora";
-    if (turnoElegido || dia) {
-      renglones.push("*Visita:* " + [dia || "día por concretar", turno].filter(Boolean).join(", "));
-    }
+    var visita = fraseVisita();
+    if (visita) renglones.push("*Visita:* " + visita);
 
-    return renglones.length ? saludo + "\n\n" + renglones.join("\n") : saludo;
+    return renglones;
   }
 
   var enlaces = Array.prototype.slice.call(form.querySelectorAll("[data-enviar]"));
@@ -404,11 +421,8 @@
   var rotuloRespaldo = respaldo ? respaldo.querySelector("[data-rotulo]") : null;
   var aviso = form.querySelector("[data-aviso]");
 
-  function mostrarHecho(cual) {
+  function mostrarHecho() {
     if (!hecho) return;
-    Array.prototype.forEach.call(hecho.querySelectorAll("[data-hecho]"), function (bloque) {
-      bloque.hidden = bloque.dataset.hecho !== cual;
-    });
     hecho.hidden = false;
     hecho.scrollIntoView({ block: "center", behavior: "smooth" });
   }
@@ -427,7 +441,7 @@
           rotuloRespaldo.textContent = "Volver a abrir WhatsApp";
         }
         if (aviso) aviso.textContent = "Ya está en WhatsApp: dale a enviar allí.";
-        mostrarHecho("whatsapp");
+        mostrarHecho();
       }, 1200);
     });
   });
@@ -453,13 +467,15 @@
   var enviado = false;
 
   function campos() {
+    var quien = negocio || "la página " + (form.dataset.pagina || "2");
+    var visita = fraseVisita();
     var datos = {
       access_key: recibir,
-      subject: "Cuestionario de " + (negocio || form.dataset.pagina || "la página 2"),
+      subject: visita ? quien + ": visita " + visita : "Cuestionario de " + quien,
       from_name: "hermanosmason.es",
       Negocio: negocio || "(sin nombre: página de " + (form.dataset.pagina || "sector") + ")",
       Desde: form.dataset.pagina || "",
-      Respuestas: componer().replace(/\*/g, "")
+      Respuestas: renglones().join("\n").replace(/\*/g, "")
     };
     if (form.dataset.responder) datos.Responder = form.dataset.responder;
     return datos;
@@ -477,9 +493,29 @@
     enviado = true;
     if (final) final.disabled = true;
     if (rotulo) rotulo.textContent = "Enviado";
-    if (aviso) aviso.textContent = "Ya lo tenemos. Te escribimos por WhatsApp.";
+    if (aviso) aviso.textContent = "Ya lo tenemos.";
+    terminar();
+  }
+
+  function terminar() {
+    terminado = true;
     ir(tramos.length - 1, false);
-    mostrarHecho("recibido");
+    if (!gracias) { mostrarHecho(); return; }
+    tramos.forEach(function (t) { t.hidden = true; });
+    pasos.forEach(function (li) {
+      li.classList.add("is-hecho");
+      li.removeAttribute("aria-current");
+      var circulo = li.querySelector("[data-paso]");
+      if (circulo) circulo.disabled = true;
+    });
+    gracias.hidden = false;
+    var legend = gracias.querySelector("legend");
+    if (legend) {
+      legend.setAttribute("tabindex", "-1");
+      legend.focus({ preventScroll: true });
+    }
+    if (modo) reposar(gracias);
+    else form.scrollIntoView({ block: "start", behavior: "smooth" });
   }
 
   function mandar() {
@@ -524,6 +560,7 @@
   form.addEventListener("change", function () {
     if (!enviado) return;
     enviado = false;
+    terminado = false;
     if (final) final.disabled = false;
     if (rotulo) rotulo.textContent = "Enviar de nuevo";
     if (aviso) aviso.textContent = "Has cambiado algo: envíalo otra vez y nos quedamos con lo último.";

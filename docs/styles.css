@@ -3229,6 +3229,30 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 .estilo--caracter .movil__boton { background: #fff; color: #19171c; }
 
+.gracias__que {
+  margin: var(--sp-sm) 0 0;
+  max-width: 36ch;
+  font-size: var(--size-md);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.gracias__anadir {
+  margin: var(--sp-md) 0 0;
+  max-width: none;
+  font-size: var(--size-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.gracias__anadir a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.no-js .tramo--gracias[hidden] { display: none; }
+
 .cierre__trato {
   margin: var(--sp-sm) 0 0;
   max-width: none;
