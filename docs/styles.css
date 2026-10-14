@@ -3523,6 +3523,8 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .tramo__nav--final .tramo__enviar:disabled { opacity: 0.6; cursor: default; transform: none; }
 
+.btn[hidden] { display: none; }
+
 @media (max-width: 420px) {
   .tramo__nav { gap: var(--sp-xs); }
   .tramo__nav .tramo__enviar {
