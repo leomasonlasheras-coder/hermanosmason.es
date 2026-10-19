@@ -392,6 +392,9 @@
       var form = document.querySelector("form.preparar");
       if (nombre && hueco) hueco.textContent = ", " + nombre;
       if (negocio && form) form.dataset.negocio = negocio;
+      // El nombre también va al formulario (19-10-2026): sin él, en las
+      // páginas por sector el correo llegaba sin saber quién contestaba.
+      if (nombre && form) form.dataset.nombre = nombre;
       var soy = negocio ? "Hola, soy de " + negocio + ". " : nombre ? "Hola, soy " + nombre + ". " : "";
       if (soy) {
         document.querySelectorAll("[data-salida]").forEach(function (a) {

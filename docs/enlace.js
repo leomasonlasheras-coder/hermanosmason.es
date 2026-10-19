@@ -184,6 +184,15 @@
 
   form.addEventListener("change", pintarExtras);
 
+  function pintarMarcas() {
+    form.querySelectorAll(".casilla, .estilo, .turno, .carta").forEach(function (label) {
+      var input = label.querySelector("input");
+      label.classList.toggle("is-marcada", !!(input && input.checked));
+    });
+  }
+
+  form.addEventListener("change", pintarMarcas);
+
   var DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   var DIAS_CORTOS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
@@ -237,8 +246,10 @@
   escribirDias();
   escribirPlazo();
   pintarExtras();
+  pintarMarcas();
 
   var negocio = form.dataset.negocio || "";
+  var persona = form.dataset.nombre || "";
 
   if (negocio) {
     form.querySelectorAll("[data-negocio-muestra]").forEach(function (hueco) {
@@ -304,6 +315,8 @@
     if (pasoDatos) {
       var cambios = cambiosDatos();
       filas.push(["Tus datos", cambios.length ? cambios.map(mayuscula) : ["Están bien"], ""]);
+    } else {
+      filas.push(["Tus datos", ["Los de tu ficha de Google Maps"], ""]);
     }
     filas.push(["Para qué", rotulos("para"), "Sin contestar"]);
     filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
@@ -467,13 +480,14 @@
   var enviado = false;
 
   function campos() {
-    var quien = negocio || "la página " + (form.dataset.pagina || "2");
+    var quien = negocio || persona || "la página " + (form.dataset.pagina || "2");
     var visita = fraseVisita();
     var datos = {
       access_key: recibir,
       subject: visita ? quien + ": visita " + visita : "Cuestionario de " + quien,
       from_name: "hermanosmason.es",
-      Negocio: negocio || "(sin nombre: página de " + (form.dataset.pagina || "sector") + ")",
+      Nombre: persona || "(sin nombre)",
+      Negocio: negocio || "(sin negocio: página de " + (form.dataset.pagina || "sector") + ")",
       Desde: form.dataset.pagina || "",
       Respuestas: renglones().join("\n").replace(/\*/g, "")
     };
@@ -497,8 +511,19 @@
     terminar();
   }
 
+  var ofertaAccion = document.querySelector(".oferta .enlace__accion");
+  var ofertaNota = document.querySelector(".oferta .enlace__nota");
+  var ofertaNotaTexto = ofertaNota ? ofertaNota.textContent : "";
+  var salida = document.querySelector(".salida");
+  function despedir(si) {
+    if (ofertaAccion) ofertaAccion.hidden = si;
+    if (ofertaNota) ofertaNota.textContent = si ? "Ya tenemos tus respuestas: te escribimos por WhatsApp." : ofertaNotaTexto;
+    if (salida) salida.hidden = si;
+  }
+
   function terminar() {
     terminado = true;
+    despedir(true);
     ir(tramos.length - 1, false);
     if (!gracias) { mostrarHecho(); return; }
     tramos.forEach(function (t) { t.hidden = true; });
@@ -561,6 +586,7 @@
     if (!enviado) return;
     enviado = false;
     terminado = false;
+    despedir(false);
     if (final) final.disabled = false;
     if (rotulo) rotulo.textContent = "Enviar de nuevo";
     if (aviso) aviso.textContent = "Has cambiado algo: envíalo otra vez y nos quedamos con lo último.";

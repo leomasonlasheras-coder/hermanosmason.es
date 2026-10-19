@@ -2838,6 +2838,11 @@ html:not(.no-js) .enlace .preparar-seccion {
   box-shadow: 0 0 0 1px var(--ink);
 }
 
+.carta.is-marcada {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
 .carta:has(input:focus-visible) {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
@@ -2942,6 +2947,12 @@ html:not(.no-js) .enlace .preparar-seccion {
   border-color: var(--ink);
   color: var(--paper);
 }
+.casilla.is-marcada,
+.casilla.is-marcada:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
 
 .casilla:has(input:focus-visible) {
   outline: 2px solid var(--ink);
@@ -2991,9 +3002,14 @@ html:not(.no-js) .enlace .preparar-seccion {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
 }
+.casilla.is-marcada .casilla__visto path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .casilla:has(input:checked) .casilla__visto path { transition: none; }
+  .casilla.is-marcada .casilla__visto path { transition: none; }
 }
 
 .casillas__nota {
@@ -3070,6 +3086,12 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .estilo:has(input:checked),
 .estilo:has(input:checked):hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.estilo.is-marcada,
+.estilo.is-marcada:hover {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--paper);
@@ -3400,6 +3422,11 @@ html:not(.no-js) .enlace .preparar-seccion {
   border-color: var(--ink);
   color: var(--paper);
 }
+.turno.is-marcada {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
 
 .turno:has(input:focus-visible) {
   outline: 2px solid var(--ink);
@@ -3430,6 +3457,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 .turno:has(input:checked) small { color: inherit; }
+.turno.is-marcada small { color: inherit; }
 
 .turno--cerrado,
 .turno--cerrado:hover {
