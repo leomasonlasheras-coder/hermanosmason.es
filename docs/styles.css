@@ -2996,19 +2996,27 @@ html:not(.no-js) .enlace .preparar-seccion {
 .casilla__visto,
 .estilo__visto {
   flex: none;
-  box-sizing: border-box;
   margin-inline-start: auto;
   width: 1.75rem;
   height: 1.75rem;
-  padding: 0.2rem;
-  border: 2px solid var(--line-2);
-  border-radius: 50%;
   fill: none;
   stroke: currentColor;
-  stroke-width: 3;
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: border-color var(--dur) var(--ease-out);
+}
+
+.casilla__visto .visto__aro,
+.estilo__visto .visto__aro {
+  stroke: var(--line-2);
+  stroke-width: 2;
+}
+
+.casilla__visto .visto__trazo,
+.estilo__visto .visto__trazo {
+  stroke-width: 2;
+  stroke-dasharray: 72;
+  stroke-dashoffset: 72;
 }
 
 .casilla__visto path,
@@ -3017,29 +3025,35 @@ html:not(.no-js) .enlace .preparar-seccion {
   stroke-dashoffset: 22;
 }
 
-.casilla:has(input:checked) .casilla__visto,
-.estilo:has(input:checked) .estilo__visto {
-  border-color: currentColor;
+.casilla:has(input:checked) .casilla__visto .visto__trazo,
+.estilo:has(input:checked) .estilo__visto .visto__trazo {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.25s var(--ease-out) 0.05s;
 }
-.casilla.is-marcada .casilla__visto,
-.estilo.is-marcada .estilo__visto {
-  border-color: currentColor;
+.casilla.is-marcada .casilla__visto .visto__trazo,
+.estilo.is-marcada .estilo__visto .visto__trazo {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.25s var(--ease-out) 0.05s;
 }
 
 .casilla:has(input:checked) .casilla__visto path,
 .estilo:has(input:checked) .estilo__visto path {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
+  transition: stroke-dashoffset 0.3s var(--ease-out) 0.25s;
 }
 .casilla.is-marcada .casilla__visto path,
 .estilo.is-marcada .estilo__visto path {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
+  transition: stroke-dashoffset 0.3s var(--ease-out) 0.25s;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .casilla:has(input:checked) .casilla__visto .visto__trazo,
+  .estilo:has(input:checked) .estilo__visto .visto__trazo,
   .casilla:has(input:checked) .casilla__visto path,
   .estilo:has(input:checked) .estilo__visto path { transition: none; }
+  .casilla.is-marcada .casilla__visto .visto__trazo,
+  .estilo.is-marcada .estilo__visto .visto__trazo,
   .casilla.is-marcada .casilla__visto path,
   .estilo.is-marcada .estilo__visto path { transition: none; }
   .casilla:active,
@@ -3068,7 +3082,6 @@ html:not(.no-js) .enlace .preparar-seccion {
   .casilla__visto {
     width: 1.5rem;
     height: 1.5rem;
-    padding: 0.15rem;
   }
   .casillas__nota::placeholder { font-size: var(--size-xs); }
 }
