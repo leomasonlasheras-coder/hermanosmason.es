@@ -166,8 +166,23 @@
 
   ir(0, false);
 
+  var fotosNo = document.getElementById("fotos-no");
+
+  form.addEventListener("change", function (e) {
+    var casilla = e.target;
+    if (!fotosNo || !casilla || casilla.name !== "fotos" || !casilla.checked) return;
+    if (casilla === fotosNo) {
+      casillas("fotos").forEach(function (otra) {
+        if (otra !== fotosNo) otra.checked = false;
+      });
+    } else {
+      fotosNo.checked = false;
+    }
+  });
+
   var abre = {
     "fotos-yo": ["fotos-yo"],
+    "fotos-instagram": ["fotos-instagram"],
     "dia-otro": ["otro-dia"]
   };
 
@@ -323,7 +338,10 @@
     filas.push(["Para qué", rotulos("para"), "Sin contestar"]);
     filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
     filas.push(["Contenido", rotulos("mostrar"), "Lo decidimos nosotros"]);
-    filas.push(["Fotos y logo", rotulos("fotos"), "Sin contestar"]);
+    var instagram = valor("instagram");
+    filas.push(["Fotos y logo", rotulos("fotos").map(function (texto) {
+      return texto === "Mi Instagram" && instagram ? texto + ", " + instagram : texto;
+    }), "Sin contestar"]);
 
     var turno = valor("turno");
     var dia = valor("dia");
@@ -406,8 +424,12 @@
     var mostrar = marcadas("mostrar");
     if (mostrar.length) renglones.push("*Quiero mostrar:* " + enumerar(mostrar));
 
-    var fotos = valor("fotos");
-    if (fotos) renglones.push("*Fotos y logo:* " + fotos);
+    var fotos = marcadas("fotos");
+    if (fotos.length) renglones.push("*Fotos y logo:* " + enumerar(fotos));
+    var instagram = valor("instagram");
+    if (instagram && form.querySelector("#fotos-instagram:checked")) {
+      renglones.push("*Mi Instagram:* " + instagram);
+    }
 
     renglones.push(lineaDatos());
 

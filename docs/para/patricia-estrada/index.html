@@ -247,27 +247,39 @@
         </fieldset>
 
         <fieldset class="tramo" hidden>
-          <legend>Fotos y logo <span class="tramo__ayuda">¿Tienes fotos o logo de tu negocio?</span></legend>
+          <legend>Fotos y logo <span class="tramo__ayuda">¿Tienes fotos o logo de tu negocio? Marca lo que tengas.</span></legend>
           <div class="tramo__cuerpo">
           <div class="casillas casillas--una">
             <label class="casilla">
-              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
-              <span>Os los envío por WhatsApp</span>
-              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="visto__aro" cx="12" cy="12" r="11" /><circle class="visto__trazo" cx="12" cy="12" r="11" transform="rotate(-90 12 12)" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
-              <input type="radio" name="fotos" id="fotos-yo" value="os los envío por WhatsApp" />
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 12H12" /><path d="M20.5 12a8.5 8.5 0 1 1-2.5-6" /></svg>
+              <span>Mi Google</span>
+              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="visto__aro" x="1" y="1" width="22" height="22" rx="6" /><rect class="visto__trazo" x="1" y="1" width="22" height="22" rx="6" pathLength="69" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
+              <input type="checkbox" name="fotos" id="fotos-google" value="los de mi Google" />
             </label>
             <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.3 6.7h.01" /></svg>
-              <span>Usad los de mi Google, Facebook o Instagram</span>
-              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="visto__aro" cx="12" cy="12" r="11" /><circle class="visto__trazo" cx="12" cy="12" r="11" transform="rotate(-90 12 12)" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
-              <input type="radio" name="fotos" id="fotos-redes" value="usad los de mi Google, Facebook o Instagram" />
+              <span>Mi Instagram</span>
+              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="visto__aro" x="1" y="1" width="22" height="22" rx="6" /><rect class="visto__trazo" x="1" y="1" width="22" height="22" rx="6" pathLength="69" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
+              <input type="checkbox" name="fotos" id="fotos-instagram" value="los de mi Instagram" />
             </label>
-            <label class="casilla casilla--ancha">
+            <label class="casilla">
+              <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 16.5V8M9.2 10.8L12 8l2.8 2.8" /></svg>
+              <span>Os los envío por WhatsApp</span>
+              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="visto__aro" x="1" y="1" width="22" height="22" rx="6" /><rect class="visto__trazo" x="1" y="1" width="22" height="22" rx="6" pathLength="69" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
+              <input type="checkbox" name="fotos" id="fotos-yo" value="os los envío por WhatsApp" />
+            </label>
+            <label class="casilla">
               <svg class="casilla__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="8.5" cy="10" r="1.5" /><path d="M21 16l-5-5-8 8" /></svg>
               <span>No tengo</span>
-              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="visto__aro" cx="12" cy="12" r="11" /><circle class="visto__trazo" cx="12" cy="12" r="11" transform="rotate(-90 12 12)" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
-              <input type="radio" name="fotos" id="fotos-no" value="no tengo" />
+              <svg class="casilla__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="visto__aro" x="1" y="1" width="22" height="22" rx="6" /><rect class="visto__trazo" x="1" y="1" width="22" height="22" rx="6" pathLength="69" /><path d="M7 12.5l3.5 3.5L17 8.5" /></svg>
+              <input type="checkbox" name="fotos" id="fotos-no" value="no tengo" />
             </label>
+          </div>
+          <div class="extra" data-extra="fotos-instagram">
+            <div class="field">
+              <label class="field__label" for="instagram">¿Cómo se llama tu cuenta?</label>
+              <input id="instagram" name="instagram" type="text" placeholder="@tunegocio" maxlength="60" autocomplete="off" autocapitalize="none" spellcheck="false" />
+            </div>
           </div>
           <div class="extra" data-extra="fotos-yo">
             <p class="extra__nota">Te escribimos por WhatsApp y nos los mandas ahí, cuando puedas.</p>

@@ -2792,6 +2792,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .extra.is-abierto,
 .tramo:has(#fotos-yo:checked) [data-extra="fotos-yo"],
+.tramo:has(#fotos-instagram:checked) [data-extra="fotos-instagram"],
 .tramo:has(#dia-otro:checked) [data-extra="otro-dia"],
 .no-js [data-extra="otro-dia"] { display: block; }
 
