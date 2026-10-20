@@ -2932,14 +2932,26 @@ html:not(.no-js) .enlace .preparar-seccion {
   transition:
     background-color var(--dur) var(--ease-out),
     border-color var(--dur) var(--ease-out),
-    color var(--dur) var(--ease-out);
+    color var(--dur) var(--ease-out),
+    transform 0.15s var(--ease-out);
 }
 
 .casilla--ancha { grid-column: 1 / -1; }
 
 .casillas--una { grid-template-columns: minmax(0, 1fr); }
 
-.casilla:hover { border-color: var(--gris-400); }
+@media (hover: hover) {
+  .casilla:hover {
+    border-color: var(--ink);
+    background: var(--gris-50);
+  }
+}
+
+.casilla:active {
+  background: var(--gris-100);
+  transform: scale(0.985);
+  transition-duration: 0.1s;
+}
 
 .casilla:has(input:checked),
 .casilla:has(input:checked):hover {
@@ -2981,35 +2993,58 @@ html:not(.no-js) .enlace .preparar-seccion {
   pointer-events: none;
 }
 
-.casilla__visto {
+.casilla__visto,
+.estilo__visto {
   flex: none;
+  box-sizing: border-box;
   margin-inline-start: auto;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0.2rem;
+  border: 2px solid var(--line-2);
+  border-radius: 50%;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2.4;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: border-color var(--dur) var(--ease-out);
 }
 
-.casilla__visto path {
+.casilla__visto path,
+.estilo__visto path {
   stroke-dasharray: 22;
   stroke-dashoffset: 22;
 }
 
-.casilla:has(input:checked) .casilla__visto path {
+.casilla:has(input:checked) .casilla__visto,
+.estilo:has(input:checked) .estilo__visto {
+  border-color: currentColor;
+}
+.casilla.is-marcada .casilla__visto,
+.estilo.is-marcada .estilo__visto {
+  border-color: currentColor;
+}
+
+.casilla:has(input:checked) .casilla__visto path,
+.estilo:has(input:checked) .estilo__visto path {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
 }
-.casilla.is-marcada .casilla__visto path {
+.casilla.is-marcada .casilla__visto path,
+.estilo.is-marcada .estilo__visto path {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 0.3s var(--ease-out) 0.05s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .casilla:has(input:checked) .casilla__visto path { transition: none; }
-  .casilla.is-marcada .casilla__visto path { transition: none; }
+  .casilla:has(input:checked) .casilla__visto path,
+  .estilo:has(input:checked) .estilo__visto path { transition: none; }
+  .casilla.is-marcada .casilla__visto path,
+  .estilo.is-marcada .estilo__visto path { transition: none; }
+  .casilla:active,
+  .estilo:active,
+  .turno:active { transform: none; }
 }
 
 .casillas__nota {
@@ -3026,10 +3061,14 @@ html:not(.no-js) .enlace .preparar-seccion {
     padding-inline: var(--sp-xs);
     font-size: var(--size-sm);
   }
-  .casilla__icono,
-  .casilla__visto {
+  .casilla__icono {
     width: 1.25rem;
     height: 1.25rem;
+  }
+  .casilla__visto {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.15rem;
   }
   .casillas__nota::placeholder { font-size: var(--size-xs); }
 }
@@ -3063,10 +3102,30 @@ html:not(.no-js) .enlace .preparar-seccion {
   transition:
     background-color var(--dur) var(--ease-out),
     border-color var(--dur) var(--ease-out),
-    color var(--dur) var(--ease-out);
+    color var(--dur) var(--ease-out),
+    transform 0.15s var(--ease-out);
 }
 
-.estilo:hover { border-color: var(--gris-400); }
+@media (hover: hover) {
+  .estilo:hover {
+    border-color: var(--ink);
+    background: var(--gris-50);
+  }
+}
+
+.estilo:active {
+  background: var(--gris-100);
+  transform: scale(0.985);
+  transition-duration: 0.1s;
+}
+
+.estilo__nombre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-xs);
+  padding-inline-end: var(--sp-2xs);
+}
 
 .estilo img {
   display: block;
@@ -3403,7 +3462,8 @@ html:not(.no-js) .enlace .preparar-seccion {
   transition:
     background-color var(--dur) var(--ease-out),
     border-color var(--dur) var(--ease-out),
-    color var(--dur) var(--ease-out);
+    color var(--dur) var(--ease-out),
+    transform 0.15s var(--ease-out);
 }
 
 .turno input {
@@ -3415,7 +3475,18 @@ html:not(.no-js) .enlace .preparar-seccion {
   pointer-events: none;
 }
 
-.turno:hover { border-color: var(--gris-400); }
+@media (hover: hover) {
+  .turno:hover {
+    border-color: var(--ink);
+    background: var(--gris-50);
+  }
+}
+
+.turno:active {
+  background: var(--gris-100);
+  transform: scale(0.985);
+  transition-duration: 0.1s;
+}
 
 .turno:has(input:checked) {
   background: var(--ink);

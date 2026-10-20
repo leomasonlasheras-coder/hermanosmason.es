@@ -193,6 +193,8 @@
 
   form.addEventListener("change", pintarMarcas);
 
+  form.addEventListener("touchstart", function () {}, { passive: true });
+
   var DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   var DIAS_CORTOS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
