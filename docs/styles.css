@@ -1738,8 +1738,9 @@ html:not(.no-js) body:has(.cortina) .site-header {
   list-style: none;
   justify-self: stretch;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: var(--sp-md);
+  row-gap: var(--sp-sm);
   margin: 0;
   padding: var(--sp-sm) 0;
   background: var(--paper);
@@ -1786,7 +1787,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 
 @media (min-width: 768px) {
   .portada__cifras {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: center;
     column-gap: clamp(2.5rem, 7vw, 7rem);
   }
