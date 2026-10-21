@@ -3100,7 +3100,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 .estilo {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 58%) minmax(0, 1fr);
   align-items: center;
   gap: var(--sp-sm);
   padding: var(--sp-2xs);
