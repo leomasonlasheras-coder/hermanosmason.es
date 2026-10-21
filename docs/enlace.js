@@ -200,7 +200,7 @@
   form.addEventListener("change", pintarExtras);
 
   function pintarMarcas() {
-    form.querySelectorAll(".casilla, .estilo, .turno, .carta").forEach(function (label) {
+    form.querySelectorAll(".casilla, .estilo, .turno").forEach(function (label) {
       var input = label.querySelector("input");
       label.classList.toggle("is-marcada", !!(input && input.checked));
     });
@@ -267,15 +267,6 @@
 
   var negocio = form.dataset.negocio || "";
   var persona = form.dataset.nombre || "";
-
-  if (negocio) {
-    form.querySelectorAll("[data-negocio-muestra]").forEach(function (hueco) {
-      hueco.textContent = negocio;
-    });
-    form.querySelectorAll("[data-ficha]").forEach(function (hueco) {
-      hueco.textContent = "la ficha de Google de " + negocio;
-    });
-  }
 
   var pasoDatos = form.querySelector(".tramo--datos");
   var camposDatos = pasoDatos
