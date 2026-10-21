@@ -2782,7 +2782,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 @media (max-width: 420px) {
   .datos__fila { grid-template-columns: 4.5rem minmax(0, 1fr); padding-inline: var(--sp-sm); }
 
-  .tramo--datos .tramo__nav .btn { padding-inline: var(--sp-sm); font-size: var(--size-md); }
+  .tramo--datos .tramo__nav .btn:not([data-ir="atras"]) { padding-inline: var(--sp-sm); font-size: var(--size-md); }
 }
 
 .extra {

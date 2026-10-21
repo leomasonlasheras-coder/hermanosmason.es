@@ -329,12 +329,6 @@
     if (!caja) return;
     var filas = [];
 
-    if (pasoDatos) {
-      var cambios = cambiosDatos();
-      filas.push(["Tus datos", cambios.length ? cambios.map(mayuscula) : ["Están bien"], ""]);
-    } else {
-      filas.push(["Tus datos", ["Los de tu ficha de Google Maps"], ""]);
-    }
     filas.push(["Para qué", rotulos("para"), "Sin contestar"]);
     filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
     filas.push(["Contenido", rotulos("mostrar"), "Lo decidimos nosotros"]);
@@ -342,6 +336,12 @@
     filas.push(["Fotos y logo", rotulos("fotos").map(function (texto) {
       return texto === "Mi Instagram" && instagram ? texto + ", " + instagram : texto;
     }), "Sin contestar"]);
+    if (pasoDatos) {
+      var cambios = cambiosDatos();
+      filas.push(["Tus datos", cambios.length ? cambios.map(mayuscula) : ["Están bien"], ""]);
+    } else {
+      filas.push(["Tus datos", ["Los de tu ficha de Google Maps"], ""]);
+    }
 
     var turno = valor("turno");
     var dia = valor("dia");

@@ -59,7 +59,7 @@
           <a class="btn btn--solid btn--lg" href="#preparar">Preparar mi web (2 minutos)</a>
         </p>
 
-        <p class="enlace__nota">Confirmas tus datos y respondes cinco preguntas, ninguna obligatoria. Sin tarjeta y sin permanencia.</p>
+        <p class="enlace__nota">Cinco preguntas sobre tu negocio, ninguna obligatoria, y un vistazo a tus datos. Sin tarjeta y sin permanencia.</p>
         <ul class="vistos">
           <li>No tienes que preparar nada: usamos las fotos que ya tienes y los datos de tu ficha de Google Maps.</li>
           <li>Pasamos por tu local a enseñártela. La visita es gratis aunque no compres.</li>
@@ -96,41 +96,15 @@
         </div>
 
         <ol class="progreso" aria-label="Pasos del formulario">
-          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Datos</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Para qué</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Estilo</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="3" disabled><span class="progreso__circulo"><span class="progreso__num">4</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Contenido</span></button></li>
-          <li><button type="button" class="progreso__paso" data-paso="4" disabled><span class="progreso__circulo"><span class="progreso__num">5</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
+          <li aria-current="step"><button type="button" class="progreso__paso" data-paso="0" disabled><span class="progreso__circulo"><span class="progreso__num">1</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Para qué</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="1" disabled><span class="progreso__circulo"><span class="progreso__num">2</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Estilo</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="2" disabled><span class="progreso__circulo"><span class="progreso__num">3</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Contenido</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="3" disabled><span class="progreso__circulo"><span class="progreso__num">4</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Fotos</span></button></li>
+          <li><button type="button" class="progreso__paso" data-paso="4" disabled><span class="progreso__circulo"><span class="progreso__num">5</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Datos</span></button></li>
           <li><button type="button" class="progreso__paso" data-paso="5" disabled><span class="progreso__circulo"><span class="progreso__num">6</span><svg class="progreso__visto" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span><span class="progreso__nombre">Visita</span></button></li>
         </ol>
 
-        <fieldset class="tramo tramo--datos">
-          <legend>¿Son estos tus datos? <span class="tramo__ayuda">Los de tu ficha de Google Maps. Así van en tu web.</span></legend>
-          <div class="tramo__cuerpo">
-          <dl class="datos">
-            <div class="datos__fila"><dt>Nombre</dt><dd><span class="datos__valor">Estudio de Uñas Patricia Estrada</span><input class="datos__campo" type="text" name="dato-negocio" value="Estudio de Uñas Patricia Estrada" data-original="Estudio de Uñas Patricia Estrada" data-dice="el nombre es" aria-label="Nombre" maxlength="120" autocomplete="off" /></dd></div>
-            <div class="datos__fila"><dt>Dirección</dt><dd><span class="datos__valor">Calle Monasterio de la Oliva, 7 trasera, Pamplona</span><input class="datos__campo" type="text" name="dato-direccion" value="Calle Monasterio de la Oliva, 7 trasera, Pamplona" data-original="Calle Monasterio de la Oliva, 7 trasera, Pamplona" data-dice="la dirección es" aria-label="Dirección" maxlength="120" autocomplete="off" /></dd></div>
-            <div class="datos__fila"><dt>Teléfono</dt><dd><span class="datos__valor">623 48 62 37</span><input class="datos__campo" type="text" name="dato-telefono" value="623 48 62 37" data-original="623 48 62 37" data-dice="el teléfono es" aria-label="Teléfono" maxlength="120" autocomplete="off" /></dd></div>
-            <div class="datos__fila datos__fila--horario"><dt>Horario</dt><dd>
-              <ul class="horario">
-                <li><span class="horario__dia">Lunes</span><span class="datos__valor">12:00-20:00</span><input class="datos__campo" type="text" name="dato-horario-lunes" value="12:00-20:00" data-original="12:00-20:00" data-dice="el horario del lunes es" aria-label="Horario del lunes" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Martes</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-martes" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del martes es" aria-label="Horario del martes" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Miércoles</span><span class="datos__valor">12:00-20:00</span><input class="datos__campo" type="text" name="dato-horario-miercoles" value="12:00-20:00" data-original="12:00-20:00" data-dice="el horario del miércoles es" aria-label="Horario del miércoles" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Jueves</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-jueves" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del jueves es" aria-label="Horario del jueves" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Viernes</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-viernes" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del viernes es" aria-label="Horario del viernes" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Sábado</span><span class="datos__valor">10:00-15:00</span><input class="datos__campo" type="text" name="dato-horario-sabado" value="10:00-15:00" data-original="10:00-15:00" data-dice="el horario del sábado es" aria-label="Horario del sábado" maxlength="60" autocomplete="off" /></li>
-                <li><span class="horario__dia">Domingo</span><span class="datos__valor">Cerrado</span><input class="datos__campo" type="text" name="dato-horario-domingo" value="Cerrado" data-original="Cerrado" data-dice="el horario del domingo es" aria-label="Horario del domingo" maxlength="60" autocomplete="off" /></li>
-              </ul>
-            </dd></div>
-          </dl>
-          <div class="tramo__nav">
-            <button class="btn btn--lg" type="button" data-corregir>Hay algo mal</button>
-            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Está todo bien</span></button>
-          </div>
-          </div>
-        </fieldset>
-
-        <fieldset class="tramo" hidden>
+        <fieldset class="tramo">
           <legend>¿Para qué quieres tu web? <span class="tramo__ayuda">Puedes elegir varias.</span></legend>
           <div class="tramo__cuerpo">
           <div class="casillas casillas--una">
@@ -287,6 +261,33 @@
           <div class="tramo__nav">
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Siguiente</span></button>
+          </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="tramo tramo--datos" hidden>
+          <legend>¿Son estos tus datos? <span class="tramo__ayuda">Los de tu ficha de Google Maps. Así van en tu web.</span></legend>
+          <div class="tramo__cuerpo">
+          <dl class="datos">
+            <div class="datos__fila"><dt>Nombre</dt><dd><span class="datos__valor">Estudio de Uñas Patricia Estrada</span><input class="datos__campo" type="text" name="dato-negocio" value="Estudio de Uñas Patricia Estrada" data-original="Estudio de Uñas Patricia Estrada" data-dice="el nombre es" aria-label="Nombre" maxlength="120" autocomplete="off" /></dd></div>
+            <div class="datos__fila"><dt>Dirección</dt><dd><span class="datos__valor">Calle Monasterio de la Oliva, 7 trasera, Pamplona</span><input class="datos__campo" type="text" name="dato-direccion" value="Calle Monasterio de la Oliva, 7 trasera, Pamplona" data-original="Calle Monasterio de la Oliva, 7 trasera, Pamplona" data-dice="la dirección es" aria-label="Dirección" maxlength="120" autocomplete="off" /></dd></div>
+            <div class="datos__fila"><dt>Teléfono</dt><dd><span class="datos__valor">623 48 62 37</span><input class="datos__campo" type="text" name="dato-telefono" value="623 48 62 37" data-original="623 48 62 37" data-dice="el teléfono es" aria-label="Teléfono" maxlength="120" autocomplete="off" /></dd></div>
+            <div class="datos__fila datos__fila--horario"><dt>Horario</dt><dd>
+              <ul class="horario">
+                <li><span class="horario__dia">Lunes</span><span class="datos__valor">12:00-20:00</span><input class="datos__campo" type="text" name="dato-horario-lunes" value="12:00-20:00" data-original="12:00-20:00" data-dice="el horario del lunes es" aria-label="Horario del lunes" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Martes</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-martes" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del martes es" aria-label="Horario del martes" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Miércoles</span><span class="datos__valor">12:00-20:00</span><input class="datos__campo" type="text" name="dato-horario-miercoles" value="12:00-20:00" data-original="12:00-20:00" data-dice="el horario del miércoles es" aria-label="Horario del miércoles" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Jueves</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-jueves" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del jueves es" aria-label="Horario del jueves" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Viernes</span><span class="datos__valor">10:00-19:00</span><input class="datos__campo" type="text" name="dato-horario-viernes" value="10:00-19:00" data-original="10:00-19:00" data-dice="el horario del viernes es" aria-label="Horario del viernes" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Sábado</span><span class="datos__valor">10:00-15:00</span><input class="datos__campo" type="text" name="dato-horario-sabado" value="10:00-15:00" data-original="10:00-15:00" data-dice="el horario del sábado es" aria-label="Horario del sábado" maxlength="60" autocomplete="off" /></li>
+                <li><span class="horario__dia">Domingo</span><span class="datos__valor">Cerrado</span><input class="datos__campo" type="text" name="dato-horario-domingo" value="Cerrado" data-original="Cerrado" data-dice="el horario del domingo es" aria-label="Horario del domingo" maxlength="60" autocomplete="off" /></li>
+              </ul>
+            </dd></div>
+          </dl>
+          <div class="tramo__nav">
+            <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
+            <button class="btn btn--lg" type="button" data-corregir>Hay algo mal</button>
+            <button class="btn btn--solid btn--lg" type="button" data-ir="siguiente"><span>Está todo bien</span></button>
           </div>
           </div>
         </fieldset>
