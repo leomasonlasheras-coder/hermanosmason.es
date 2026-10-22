@@ -2474,6 +2474,19 @@ html:not(.no-js) body:has(.cortina) .site-header {
   color: var(--ink-2);
 }
 
+.muestra-video { margin: var(--sp-lg) 0 0; }
+
+.muestra-video__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: var(--rule) solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.muestra-video figcaption { margin-block-start: var(--sp-xs); }
+
 .enlace .truco { border-block-start: var(--rule) solid var(--line); }
 
 .truco .muestras__grupo .enlace__nota { margin-block-start: var(--sp-sm); }
