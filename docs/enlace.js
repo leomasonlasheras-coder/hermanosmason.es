@@ -526,13 +526,8 @@
     terminar();
   }
 
-  var ofertaAccion = document.querySelector(".oferta .enlace__accion");
-  var ofertaNota = document.querySelector(".oferta .enlace__nota");
-  var ofertaNotaTexto = ofertaNota ? ofertaNota.textContent : "";
   var salida = document.querySelector(".salida");
   function despedir(si) {
-    if (ofertaAccion) ofertaAccion.hidden = si;
-    if (ofertaNota) ofertaNota.textContent = si ? "Ya tenemos tus respuestas: te escribimos por WhatsApp." : ofertaNotaTexto;
     if (salida) salida.hidden = si;
   }
 
