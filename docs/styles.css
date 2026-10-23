@@ -37,19 +37,18 @@
   --gris-50:  #f8f7f9;
   --gris-100: #f2f1f3;
   --gris-200: #e5e4e7;
-  --gris-300: #d7d7db;
-  --gris-400: #97979b;
-  --gris-500: #828286;
-  --gris-600: #6e6e73;
-  --gris-700: #46424c;
-  --gris-800: #2d2933;
+  --gris-300: #d8d7da;
+  --gris-400: #98979b;
+  --gris-500: #838186;
+  --gris-600: #6d6b70;
+  --gris-700: #454349;
+  --gris-800: #2c2a30;
   --gris-900: #19171c;
   --negro:    #000000;
 
   --amarillo:      #ffd43b;
 
   --verde-whatsapp:       #075e54;
-  --verde-whatsapp-claro: #25d366;
 
   --c-white:   var(--blanco);
   --c-white-2: var(--gris-100);
@@ -65,8 +64,12 @@
   --ink:     var(--c-black);
   --ink-2:   var(--c-grey);
 
+  --paper-hover: var(--gris-50);
+
   --line:    var(--gris-200);
   --line-2:  var(--gris-300);
+
+  --line-control: var(--gris-500);
 
   --accent:       var(--c-accent);
   --accent-hover: var(--gris-800);
@@ -168,10 +171,12 @@
 .invert {
   --paper:   var(--negro);
   --paper-2: var(--gris-800);
+  --paper-hover: color-mix(in srgb, var(--gris-800) 50%, var(--negro));
   --ink:     var(--c-white);
   --ink-2:   var(--c-grey-2);
   --line:    var(--gris-800);
   --line-2:  var(--gris-600);
+  --line-control: var(--gris-600);
 
   --accent:       var(--amarillo);
   --accent-hover: color-mix(in srgb, var(--amarillo) 86%, var(--negro));
@@ -179,7 +184,7 @@
 
   --link: var(--ink);
 
-  --whatsapp-linea: var(--verde-whatsapp-claro);
+  --whatsapp-linea: var(--ink);
 
   background: var(--paper);
   color: var(--ink);
@@ -908,7 +913,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
   padding: var(--sp-sm) var(--sp-md);
   background: var(--paper);
   color: var(--ink);
-  border: var(--rule) solid var(--line-2);
+  border: var(--rule) solid var(--line-control);
   border-radius: var(--radius-pill);
   font-family: var(--font-text);
   font-size: var(--size-md);
@@ -930,7 +935,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 }
 
 :where(input::placeholder, textarea::placeholder) { color: var(--ink-2); opacity: 1; }
-:where(input:hover, select:hover, textarea:hover) { border-color: var(--gris-400); }
+:where(input:hover, select:hover, textarea:hover) { border-color: var(--ink-2); }
 
 :where(select) {
   appearance: none;
@@ -958,7 +963,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
   width: 1.15rem;
   height: 1.15rem;
   margin: 0;
-  border: var(--rule) solid var(--line-2);
+  border: var(--rule) solid var(--line-control);
   border-radius: var(--radio-xs);
   background: var(--paper);
   cursor: pointer;
@@ -1034,7 +1039,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 .form__hecho {
   max-width: none;
   padding: var(--sp-sm) var(--sp-md);
-  background: var(--gris-100);
+  background: var(--paper-2);
   border-radius: var(--radius);
 }
 
@@ -2482,7 +2487,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
   height: auto;
   border: var(--rule) solid var(--line);
   border-radius: var(--radius);
-  background: #fff;
+  background: var(--paper);
 }
 
 .muestra-video figcaption { margin-block-start: var(--sp-xs); }
@@ -2848,12 +2853,12 @@ html:not(.no-js) .enlace .preparar-seccion {
 @media (hover: hover) {
   .casilla:hover {
     border-color: var(--ink);
-    background: var(--gris-50);
+    background: var(--paper-hover);
   }
 }
 
 .casilla:active {
-  background: var(--gris-100);
+  background: var(--paper-2);
   transform: scale(0.985);
   transition-duration: 0.1s;
 }
@@ -2913,7 +2918,7 @@ html:not(.no-js) .enlace .preparar-seccion {
 
 .casilla__visto .visto__aro,
 .estilo__visto .visto__aro {
-  stroke: var(--line-2);
+  stroke: var(--line-control);
   stroke-width: 2;
 }
 
@@ -3018,12 +3023,12 @@ html:not(.no-js) .enlace .preparar-seccion {
 @media (hover: hover) {
   .estilo:hover {
     border-color: var(--ink);
-    background: var(--gris-50);
+    background: var(--paper-hover);
   }
 }
 
 .estilo:active {
-  background: var(--gris-100);
+  background: var(--paper-2);
   transform: scale(0.985);
   transition-duration: 0.1s;
 }
@@ -3153,7 +3158,8 @@ html:not(.no-js) .enlace .preparar-seccion {
   justify-content: center;
   min-height: var(--control);
   padding: var(--sp-xs) var(--sp-md);
-  border: var(--rule) solid var(--line-2);
+
+  border: var(--rule) solid var(--line-control);
   border-radius: var(--radius-pill);
   font-size: var(--size-sm);
   cursor: pointer;
@@ -3176,12 +3182,12 @@ html:not(.no-js) .enlace .preparar-seccion {
 @media (hover: hover) {
   .turno:hover {
     border-color: var(--ink);
-    background: var(--gris-50);
+    background: var(--paper-hover);
   }
 }
 
 .turno:active {
-  background: var(--gris-100);
+  background: var(--paper-2);
   transform: scale(0.985);
   transition-duration: 0.1s;
 }
