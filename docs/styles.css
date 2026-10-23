@@ -64,6 +64,8 @@
   --ink:     var(--c-black);
   --ink-2:   var(--c-grey);
 
+  --ink-head: var(--gris-800);
+
   --paper-hover: var(--gris-50);
 
   --line:    var(--gris-200);
@@ -174,6 +176,7 @@
   --paper-hover: color-mix(in srgb, var(--gris-800) 50%, var(--negro));
   --ink:     var(--c-white);
   --ink-2:   var(--c-grey-2);
+  --ink-head: var(--ink);
   --line:    var(--gris-800);
   --line-2:  var(--gris-600);
   --line-control: var(--gris-600);
@@ -256,6 +259,8 @@
   letter-spacing: var(--track-head);
   text-wrap: balance;
 }
+
+:where(h1, h2, h3) { color: var(--ink-head); }
 
 :where(h1) { font-size: var(--size-5xl); line-height: 0.9; letter-spacing: var(--track-huge); }
 
@@ -3981,12 +3986,14 @@ html:not(.no-js) .enlace .preparar-seccion {
     --paper-2: #fff;
     --ink: #000;
     --ink-2: #444;
+    --ink-head: #000;
   }
   .invert {
     --paper: #fff;
     --paper-2: #fff;
     --ink: #000;
     --ink-2: #444;
+    --ink-head: #000;
   }
   .site-header,
   .skip-link,
