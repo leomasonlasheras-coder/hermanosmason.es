@@ -607,3 +607,27 @@
     if (aviso) aviso.textContent = "Has cambiado algo: envíalo otra vez y nos quedamos con lo último.";
   });
 })();
+
+(function () {
+  "use strict";
+
+  var video = document.querySelector(".muestra-video__video");
+  if (!video || !video.play) return;
+
+  function arrancar() {
+    if (!video.paused) return;
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  var gestos = ["touchstart", "scroll", "pointerdown", "keydown"];
+  function alPrimerGesto() {
+    gestos.forEach(function (g) { window.removeEventListener(g, alPrimerGesto); });
+    arrancar();
+  }
+  gestos.forEach(function (g) { window.addEventListener(g, alPrimerGesto, { passive: true }); });
+
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) arrancar();
+  });
+})();
