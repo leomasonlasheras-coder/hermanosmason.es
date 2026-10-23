@@ -7,21 +7,70 @@
   var destino = form.getAttribute("action") || "";
   var tramos = Array.prototype.slice.call(form.querySelectorAll(".tramo:not(.tramo--gracias)"));
   var gracias = form.querySelector(".tramo--gracias");
-  var pasos = Array.prototype.slice.call(form.querySelectorAll(".progreso li"));
+  var bloques = Array.prototype.slice.call(form.querySelectorAll(".progreso li"));
   var actual = 0;
-  var terminado = false;   // ya se ha enviado: los círculos del stepper no vuelven
+  var terminado = false;   // ya se ha enviado: los bloques del stepper no vuelven
+
+  var REGALO = { negocio: 1 };
+  function pasosDe(clave) {
+    return tramos.filter(function (t) { return t.dataset.bloque === clave; });
+  }
+
+  var CLAVE = "hm-quiz:" + location.pathname;
+  var repuesto = false;   // hasta reponer(), guardar() no escribe: el ir(0) de arranque pisaría lo guardado
+  function almacenes() {
+    var lista = [];
+    try { if (window.sessionStorage) lista.push(window.sessionStorage); } catch (e) {}
+    try { if (window.localStorage) lista.push(window.localStorage); } catch (e) {}
+    return lista;
+  }
+  function deCampo(el) {
+    return el.name && el.type !== "hidden" && el.type !== "submit" && el.type !== "button";
+  }
+  function guardar() {
+    if (!repuesto) return;
+    var datos = { paso: actual, campos: {} };
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!deCampo(el)) return;
+      if (el.type === "checkbox" || el.type === "radio") {
+        if (el.checked) datos.campos[el.name + "=" + el.value] = true;
+      } else if (el.value) {
+        datos.campos[el.name] = el.value;
+      }
+    });
+    var texto;
+    try { texto = JSON.stringify(datos); } catch (e) { return; }
+    almacenes().forEach(function (a) { try { a.setItem(CLAVE, texto); } catch (e) {} });
+  }
+  function reponer() {
+    var texto = null;
+    almacenes().some(function (a) {
+      try { texto = a.getItem(CLAVE); } catch (e) {}
+      return !!texto;
+    });
+    if (!texto) return 0;
+    var datos;
+    try { datos = JSON.parse(texto); } catch (e) { return 0; }
+    if (!datos || !datos.campos) return 0;
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!deCampo(el)) return;
+      if (el.type === "checkbox" || el.type === "radio") {
+        if (datos.campos[el.name + "=" + el.value]) el.checked = true;
+      } else if (datos.campos[el.name] !== undefined && el.value === (el.dataset.original || "")) {
+        el.value = datos.campos[el.name];
+      }
+    });
+    return Number(datos.paso) || 0;
+  }
+  form.addEventListener("change", guardar);
+  form.addEventListener("input", guardar);
 
   function ir(n, enfocar) {
     actual = Math.max(0, Math.min(tramos.length - 1, n));
     tramos.forEach(function (t, i) { t.hidden = i !== actual; });
     if (gracias) gracias.hidden = true;
-    pasos.forEach(function (li, i) {
-      li.classList.toggle("is-hecho", i < actual);
-      if (i === actual) li.setAttribute("aria-current", "step");
-      else li.removeAttribute("aria-current");
-      var circulo = li.querySelector("[data-paso]");
-      if (circulo) circulo.disabled = i >= actual || terminado;
-    });
+    pintarBloques();
+    guardar();
     if (enfocar) {
       var legend = tramos[actual].querySelector("legend");
       if (legend) {
@@ -31,6 +80,27 @@
       if (modo) reposar(tramos[actual]);
       else form.scrollIntoView({ block: "start", behavior: "smooth" });
     }
+  }
+
+  function pintarBloques() {
+    var bloqueActual = tramos[actual] ? tramos[actual].dataset.bloque : "";
+    bloques.forEach(function (li) {
+      var clave = li.dataset.bloque;
+      var suyos = pasosDe(clave);
+      var regalo = REGALO[clave] || 0;
+      var hechos = suyos.filter(function (t) { return tramos.indexOf(t) < actual; }).length;
+      var total = suyos.length + regalo;
+      var esActual = clave === bloqueActual;
+      var hecho = suyos.length > 0 && hechos === suyos.length && !esActual;
+      var parte = hecho ? 1 : (total ? (hechos + regalo) / total : 0);
+      li.style.setProperty("--parte", String(parte));
+      li.classList.toggle("is-hecho", hecho);
+      li.classList.toggle("is-empezado", !hecho && parte > 0);
+      if (esActual) li.setAttribute("aria-current", "step");
+      else li.removeAttribute("aria-current");
+      var boton = li.querySelector("[data-bloque-ir]");
+      if (boton) boton.disabled = !hecho || terminado;
+    });
   }
 
   function reposar(tramo) {
@@ -148,8 +218,13 @@
 
   form.addEventListener("click", function (e) {
     if (!modo && e.target.closest(".tramo")) abrir();
-    var paso = e.target.closest("[data-paso]");
-    if (paso) { e.preventDefault(); mover(Number(paso.dataset.paso)); return; }
+    var bloque = e.target.closest("[data-bloque-ir]");
+    if (bloque) {
+      e.preventDefault();
+      var primero = pasosDe(bloque.dataset.bloqueIr)[0];
+      if (primero) mover(tramos.indexOf(primero));
+      return;
+    }
     var boton = e.target.closest("[data-ir]");
     if (!boton) return;
     e.preventDefault();
@@ -258,10 +333,14 @@
     if (hueco) hueco.textContent = "Nos lo mandas hoy y el " + diaListo() + " ya está lista.";
     var listo = form.querySelector("[data-listo]");
     if (listo) listo.textContent = "El " + diaListo() + " la tienes lista.";
+    pintarPlazoCierre();
   }
 
   escribirDias();
   escribirPlazo();
+  var pasoGuardado = reponer();
+  repuesto = true;
+  if (pasoGuardado) ir(pasoGuardado, false);
   pintarExtras();
   pintarMarcas();
 
@@ -311,7 +390,10 @@
     ).map(function (el) {
       var label = el.closest("label");
       var span = label ? label.querySelector("span") : null;
-      return span ? span.textContent.replace(/\s+/g, " ").trim() : el.value;
+      if (!span) return el.value;
+      var texto = Array.prototype.filter.call(span.childNodes, function (n) { return n.nodeType === 3; })
+        .map(function (n) { return n.textContent; }).join("");
+      return texto.replace(/\s+/g, " ").trim() || el.value;
     });
   }
 
@@ -320,12 +402,15 @@
     if (!caja) return;
     var filas = [];
 
+    filas.push(["Clientes", rotulos("llegan"), "Sin contestar"]);
+    filas.push(["Citas", rotulos("cita"), "Sin contestar"]);
+    filas.push(["Teléfono", rotulos("telefono"), "Sin contestar"]);
+    filas.push(["Web antes", rotulos("web-antes"), "Sin contestar"]);
     filas.push(["Para qué", rotulos("para"), "Sin contestar"]);
     filas.push(["Estilo", rotulos("estilo"), "Lo elegimos nosotros"]);
-    filas.push(["Contenido", rotulos("mostrar"), "Lo decidimos nosotros"]);
     var instagram = valor("instagram");
-    filas.push(["Fotos y logo", rotulos("fotos").map(function (texto) {
-      return texto === "Mi Instagram" && instagram ? texto + ", " + instagram : texto;
+    filas.push(["Fotos", rotulos("fotos").map(function (texto) {
+      return texto === "De mi Instagram" && instagram ? texto + ", " + instagram : texto;
     }), "Sin contestar"]);
     if (pasoDatos) {
       var cambios = cambiosDatos();
@@ -364,6 +449,93 @@
   form.addEventListener("change", pintarResumen);
   form.addEventListener("input", pintarResumen);
   pintarResumen();
+
+  function marcado(nombre, id) {
+    var el = document.getElementById(id);
+    return !!(el && el.name === nombre && el.checked);
+  }
+
+  function tresLineas() {
+    var lineas = [];
+    var estilo = rotulos("estilo")[0] || "";
+
+    lineas.push(estilo
+      ? "Tu web será de estilo " + estilo + ", con " + (negocio ? "el nombre de " + negocio : "tu nombre") + " en la portada."
+      : "El estilo lo elegimos nosotros con tus fotos; si no te convence, lo cambiamos en la visita.");
+
+    var telefonoMal = marcado("telefono", "tel-yo") || marcado("telefono", "tel-luego") || marcado("telefono", "tel-nadie");
+    if (telefonoMal) {
+      lineas.push("Has dicho que el teléfono lo coges como puedes: el botón de WhatsApp va el primero, con tu horario, para que te escriban mientras trabajas.");
+    } else if (marcado("cita", "cita-app")) {
+      lineas.push("Reservan por tu app: el botón de reservar lleva allí, y la web no te cobra comisión por cada cliente nuevo.");
+    } else if (marcado("cita", "cita-whatsapp")) {
+      lineas.push("Te piden cita por WhatsApp: el botón de WhatsApp va el primero, con tu horario.");
+    } else if (marcado("cita", "cita-llaman")) {
+      lineas.push("Te llaman: el botón de llamar va el primero, con tu horario, y el de WhatsApp al lado para cuando no puedas cogerlo.");
+    } else {
+      lineas.push("Arriba del todo, el botón de WhatsApp, el de llamar y tu horario.");
+    }
+
+    if (marcado("llegan", "llegan-recomiendan") || marcado("llegan", "llegan-google")) {
+      lineas.push("Cuando te recomienden y te busquen en Google, encontrarán tu web con tus fotos, tus precios y cómo pedir cita.");
+    } else if (marcado("llegan", "llegan-instagram") || marcado("web-antes", "web-nunca")) {
+      lineas.push("Tu Instagram sigue siendo tuyo: la web lo enlaza y recoge a quien te busca en Google sin conocerte.");
+    } else if (marcado("llegan", "llegan-calle")) {
+      lineas.push("Quien pase por delante y te busque luego en el móvil te encontrará, con tus fotos y tus precios.");
+    } else {
+      lineas.push("Con tus fotos, tus precios y cómo pedir cita, abierta 24/7.");
+    }
+
+    var renuncia = "No lleva tienda online ni reservas con pago: no te hacen falta.";
+    return { lineas: lineas, renuncia: renuncia };
+  }
+
+  function pintarPlazoCierre() {
+    var hueco = form.querySelector("[data-plazo-cierre]");
+    if (!hueco) return;
+    var listo = diaListo();
+    var dia = valor("dia");
+    if (dia === "otro") dia = valor("dia-texto");
+    var turno = valor("turno");
+    if (turno === "a cualquier hora") turno = "";
+    var visita = fraseVisita();
+    var mismoDia = dia && dia.indexOf("el " + listo + " de ") === 0;
+    var cola = ".";
+    if (mismoDia) cola = " y pasamos a enseñártela ese mismo día" + (turno ? ", " + turno : "") + ".";
+    else if (visita) cola = ", y pasamos a enseñártela " + visita + ".";
+    hueco.textContent = "El " + listo + " la tienes lista" + cola;
+  }
+
+  function pintarTresLineas() {
+    var caja = form.querySelector("[data-tres-lineas]");
+    if (!caja) return;
+    var r = tresLineas();
+    caja.textContent = "";
+    r.lineas.forEach(function (texto) {
+      var li = document.createElement("li");
+      li.textContent = texto;
+      caja.appendChild(li);
+    });
+    var renuncia = document.createElement("li");
+    renuncia.className = "tres-lineas__renuncia";
+    renuncia.textContent = r.renuncia;
+    caja.appendChild(renuncia);
+    pintarPlazoCierre();
+  }
+
+  form.addEventListener("change", pintarTresLineas);
+  form.addEventListener("input", pintarTresLineas);
+  pintarTresLineas();
+
+  var capa = form.querySelector("#capa-datos");
+  form.querySelectorAll("[data-abrir-capa]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!capa) return;
+      e.preventDefault();
+      capa.open = true;
+      capa.scrollIntoView({ block: "center", behavior: "smooth" });
+    });
+  });
 
   function valor(nombre) {
     var el = form.elements[nombre];
@@ -406,17 +578,23 @@
 
     if (negocio) renglones.push("*Negocio:* " + negocio);
 
+    var llegan = marcadas("llegan");
+    if (llegan.length) renglones.push("*Cómo me llegan los clientes:* " + enumerar(llegan));
+    var cita = marcadas("cita");
+    if (cita.length) renglones.push("*Cómo me piden cita:* " + enumerar(cita));
+    var telefono = valor("telefono");
+    if (telefono) renglones.push("*El teléfono cuando estoy atendiendo:* " + telefono);
+    var webAntes = valor("web-antes");
+    if (webAntes) renglones.push("*Web antes:* " + webAntes);
+
     var para = marcadas("para");
-    if (para.length) renglones.push("*Para qué quiero la web:* " + enumerar(para));
+    if (para.length) renglones.push("*Lo que quiero que haga la web:* " + enumerar(para));
 
     var estilo = valor("estilo");
     if (estilo) renglones.push("*Estilo:* " + estilo);
 
-    var mostrar = marcadas("mostrar");
-    if (mostrar.length) renglones.push("*Quiero mostrar:* " + enumerar(mostrar));
-
     var fotos = marcadas("fotos");
-    if (fotos.length) renglones.push("*Fotos y logo:* " + enumerar(fotos));
+    if (fotos.length) renglones.push("*Fotos:* " + enumerar(fotos));
     var instagram = valor("instagram");
     if (instagram && form.querySelector("#fotos-instagram:checked")) {
       renglones.push("*Mi Instagram:* " + instagram);
@@ -494,6 +672,9 @@
   var enviando = false;
   var enviado = false;
 
+  var primerToque = 0;
+  form.addEventListener("change", function () { if (!primerToque) primerToque = Date.now(); }, true);
+
   function campos() {
     var quien = negocio || persona || "la página " + (form.dataset.pagina || "2");
     var visita = fraseVisita();
@@ -504,7 +685,10 @@
       Nombre: persona || "(sin nombre)",
       Negocio: negocio || "(sin negocio: página de " + (form.dataset.pagina || "sector") + ")",
       Desde: form.dataset.pagina || "",
-      Respuestas: renglones().join("\n").replace(/\*/g, "")
+      Respuestas: renglones().join("\n").replace(/\*/g, ""),
+      Consentimiento: "Sí: al tocar \"Empezar mi mes gratis\" acepta que le escribamos por WhatsApp para confirmar la visita",
+      Enviado: new Date().toISOString(),
+      Tiempo: primerToque ? Math.round((Date.now() - primerToque) / 1000) + " s desde el primer toque hasta el botón" : "(sin tocar nada)"
     };
     if (form.dataset.responder) datos.Responder = form.dataset.responder;
     return datos;
@@ -537,13 +721,27 @@
     ir(tramos.length - 1, false);
     if (!gracias) { mostrarHecho(); return; }
     tramos.forEach(function (t) { t.hidden = true; });
-    pasos.forEach(function (li) {
+    bloques.forEach(function (li) {
+      li.style.setProperty("--parte", "1");
       li.classList.add("is-hecho");
+      li.classList.remove("is-empezado");
       li.removeAttribute("aria-current");
-      var circulo = li.querySelector("[data-paso]");
-      if (circulo) circulo.disabled = true;
+      var boton = li.querySelector("[data-bloque-ir]");
+      if (boton) boton.disabled = true;
     });
     gracias.hidden = false;
+    var cuando = gracias.querySelector("[data-cuando]");
+    if (cuando) cuando.textContent = new Date().getHours() < 20 ? "hoy mismo" : "mañana por la mañana";
+    var recibo = gracias.querySelector("[data-recibo]");
+    if (recibo) {
+      var piezas = [];
+      var visita = fraseVisita();
+      if (visita) piezas.push("Visita: " + visita);
+      var estiloElegido = rotulos("estilo")[0];
+      if (estiloElegido) piezas.push("Estilo: " + estiloElegido);
+      recibo.textContent = piezas.length ? "Lo que nos has mandado. " + piezas.join(" · ") + "." : "";
+      recibo.hidden = !piezas.length;
+    }
     var legend = gracias.querySelector("legend");
     if (legend) {
       legend.setAttribute("tabindex", "-1");
