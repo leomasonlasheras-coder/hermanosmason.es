@@ -1,0 +1,46 @@
+/* Tema "Sereno" (sereno)
+   Generado por herramientas/temas.py desde temas/presets/sereno.json. No editar a mano. */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("fuentes/fraunces/fraunces-latin-300-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/inter/inter-latin-var.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #ffffff;
+  --tema-fondo-2: #f7f4ee;
+  --tema-fondo-3: #ece7dc;
+  --tema-tinta: #141414;
+  --tema-tinta-suave: #5f5b54;
+  --tema-acento: #b99a5b;
+  --tema-linea: #e6e1d8;
+  --tema-boton-fondo: #141414;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 400;
+  --tema-titulos-tracking: -0.015em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: "opsz" 144, "SOFT" 30;
+  --tema-titulos-escala: 1;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);
+}
