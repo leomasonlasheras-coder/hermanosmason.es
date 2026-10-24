@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elige el estilo de tu web · Hermanos Mason</title>
+<meta name="robots" content="noindex">
+
+<link rel="stylesheet" href="../temas/fuentes.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <p class="cabecera__marca">Hermanos Mason</p>
+  <h1 class="cabecera__titulo">Elige el estilo de tu web</h1>
+  <p class="cabecera__texto">Pasa por los estilos y mira cómo cambia tu web. Cuando uno te guste, pídelo y lo dejamos puesto.</p>
+</header>
+
+<main class="editor">
+
+  <section class="vista" aria-label="Tu web">
+    <div class="vista__barra">
+      <div class="dispositivos" role="group" aria-label="Verla como en">
+        <button type="button" class="dispositivo" data-dispositivo="movil" aria-pressed="true">Móvil</button>
+        <button type="button" class="dispositivo" data-dispositivo="escritorio" aria-pressed="false">Ordenador</button>
+      </div>
+      <p class="vista__estado" id="estado" aria-live="polite">Cargando tu web…</p>
+    </div>
+    <div class="marco marco--movil" id="marco">
+      <iframe id="web" class="marco__web" title="Tu web con el estilo elegido"></iframe>
+    </div>
+  </section>
+
+  <section class="estilos" aria-label="Estilos">
+    <h2 class="estilos__titulo">Nuestros estilos</h2>
+    <ol class="estilos__lista" id="lista"></ol>
+  </section>
+
+</main>
+
+<footer class="pedir">
+  <p class="pedir__texto">Estilo elegido: <strong id="elegido">—</strong></p>
+  <a class="boton" id="pedir" href="#" target="_blank" rel="noopener">Quiero este estilo</a>
+</footer>
+
+<template id="plantilla-estilo">
+  <li class="estilos__item">
+    <button type="button" class="estilo" aria-pressed="false">
+      <span class="mock" aria-hidden="true">
+        <span class="mock__barra"><span class="mock__marca">Tu negocio</span><span class="mock__punto"></span></span>
+        <span class="mock__rotulo">Pamplona</span>
+        <span class="mock__titulo">Una hora para ti</span>
+        <span class="mock__linea"></span>
+        <span class="mock__linea mock__linea--corta"></span>
+        <span class="mock__boton">Reserva tu cita</span>
+        <span class="mock__foto"></span>
+      </span>
+      <span class="estilo__nombre"></span>
+      <span class="estilo__frase"></span>
+    </button>
+  </li>
+</template>
+
+<script src="editor.js"></script>
+</body>
+</html>
