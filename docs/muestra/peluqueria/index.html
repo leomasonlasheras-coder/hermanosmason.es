@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hebra · Peluquería en Pamplona</title>
+<meta name="description" content="Corte, color, peinado y tratamientos en una peluquería pequeña y tranquila de Pamplona. Web de muestra de Hermanos Mason Diseño.">
+<meta name="robots" content="noindex">
+
+<link id="tema" rel="stylesheet" href="/temas/sereno.css">
+<script>(function(){var t=new URLSearchParams(location.search).get("tema");if(t&&/^[a-z0-9-]+$/.test(t))document.getElementById("tema").href="/temas/"+t+".css";})();</script>
+<script src="/temas/escucha.js" defer></script>
+<link rel="stylesheet" href="../comun/estilos.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <a class="cabecera__nombre" href="#inicio">Hebra</a>
+  <a class="cabecera__reservar" href="#reservar">Reservar</a>
+</header>
+
+<main id="inicio">
+
+  <section class="portada" aria-labelledby="titulo">
+    <figure class="portada__foto" data-velocidad="0.4">
+      <img src="img/peluqueria-01-portada.webp" width="1920" height="1086" alt="Mujer de espaldas con un bob castaño a la altura de la barbilla, sobre blanco." fetchpriority="high" style="--foco: 76% 40%">
+    </figure>
+    <div class="portada__texto">
+      <p class="rotulo">Peluquería · Pamplona</p>
+      <h1 class="portada__titulo" id="titulo">
+        <span class="linea"><span>Un corte que</span></span>
+        <span class="linea"><span>habla de ti</span></span>
+      </h1>
+      <p class="portada__entradilla">Corte, color y peinado sin prisa, en una peluquería pequeña donde se atiende a una persona a la vez.</p>
+      <a class="boton boton--lleno" href="#reservar">Reserva tu cita</a>
+      <p class="portada__indice" data-velocidad="1.8"><span class="linea-dorada"></span><span class="numeral">01</span></p>
+    </div>
+  </section>
+
+  <section class="frase" aria-label="Qué nos define">
+    <div class="bloque">
+      <p class="frase__texto" data-frase>Entras con el pelo de siempre. Sales con el corte que tenías pendiente y una hora que ha sido solo tuya.</p>
+    </div>
+  </section>
+
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta__pista" data-velocidad="2.5" data-eje="x"><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span><span>Corte</span><span class="cinta__punto"></span><span>Color</span><span class="cinta__punto"></span><span>Peinado</span><span class="cinta__punto"></span><span>Tratamiento</span><span class="cinta__punto"></span></div>
+  </div>
+
+  <section class="servicios" id="servicios" aria-labelledby="servicios-titulo">
+    <div class="bloque">
+      <div class="servicios__cabecera aparece">
+        <p class="rotulo">Lo que hacemos</p>
+        <h2 id="servicios-titulo">Pocas cosas, bien hechas</h2>
+      </div>
+
+      <article class="servicio">
+        <div class="servicio__marco" data-velocidad="0.75">
+          <figure class="servicio__foto aparece aparece--foto">
+            <img src="img/peluqueria-02-corte.webp" width="1200" height="1807" alt="Una peluquera iguala con tijera y peine las puntas de un bob castaño.">
+          </figure>
+        </div>
+        <div class="servicio__texto aparece" style="--retraso: 0.3s">
+          <span class="servicio__cifra" aria-hidden="true" data-velocidad="1.3">01</span>
+          <h3>Corte</h3>
+          <p>Primero se mira cómo cae el pelo y luego se corta. Tijera, sin máquina, y un acabado que crece bien.</p>
+          <span class="servicio__precio">desde 28 €</span>
+        </div>
+      </article>
+
+      <article class="servicio">
+        <div class="servicio__marco" data-velocidad="0.75">
+          <figure class="servicio__foto aparece aparece--foto">
+            <img src="img/peluqueria-03-color.webp" width="1200" height="1807" alt="Una peluquera aplica color con brocha a un mechón sobre una paleta blanca.">
+          </figure>
+        </div>
+        <div class="servicio__texto aparece" style="--retraso: 0.3s">
+          <span class="servicio__cifra" aria-hidden="true" data-velocidad="1.3">02</span>
+          <h3>Color</h3>
+          <p>Tonos que parecen tuyos. Raíz, baño de color o un balayage que no pide retoque cada mes.</p>
+          <span class="servicio__precio">desde 45 €</span>
+        </div>
+      </article>
+
+      <article class="servicio">
+        <div class="servicio__marco" data-velocidad="0.75">
+          <figure class="servicio__foto aparece aparece--foto">
+            <img src="img/peluqueria-04-peinado.webp" width="1200" height="1807" alt="Secado de un bob con cepillo redondo y secador.">
+          </figure>
+        </div>
+        <div class="servicio__texto aparece" style="--retraso: 0.3s">
+          <span class="servicio__cifra" aria-hidden="true" data-velocidad="1.3">03</span>
+          <h3>Peinado</h3>
+          <p>Secado con cepillo, ondas o liso. Para un día cualquiera o para una boda, sin que parezca de boda.</p>
+          <span class="servicio__precio">desde 20 €</span>
+        </div>
+      </article>
+
+      <article class="servicio">
+        <div class="servicio__marco" data-velocidad="0.75">
+          <figure class="servicio__foto aparece aparece--foto">
+            <img src="img/peluqueria-05-tratamiento.webp" width="1200" height="1807" alt="Una clienta con los ojos cerrados en el lavacabezas mientras le masajean un tratamiento en el pelo.">
+          </figure>
+        </div>
+        <div class="servicio__texto aparece" style="--retraso: 0.3s">
+          <span class="servicio__cifra" aria-hidden="true" data-velocidad="1.3">04</span>
+          <h3>Tratamiento</h3>
+          <p>Hidratación y brillo en el lavacabezas, con masaje del cuero cabelludo. Para el pelo cansado del verano o del tinte.</p>
+          <span class="servicio__precio">desde 18 €</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="espacio" id="espacio" aria-labelledby="espacio-titulo">
+    <div class="bloque">
+      <div class="espacio__cabecera aparece">
+        <p class="rotulo">El espacio</p>
+        <h2 id="espacio-titulo">Dos espejos, una ventana y poco más</h2>
+      </div>
+      <div class="espacio__cuerpo" data-anclado>
+        <figure class="espacio__foto aparece aparece--foto">
+          <img src="img/peluqueria-06-espacio.webp" width="1920" height="1086" alt="Peluquería con paredes blancas, dos tocadores de roble con espejo redondo, sillas de lino y una ventana con cortina.">
+        </figure>
+        <div class="espacio__notas">
+          <div class="espacio__nota aparece">
+            <span class="numeral">La luz</span>
+            <h3>Te ves con luz de día</h3>
+            <p>Dos tocadores con espejo redondo junto a una ventana grande. La luz con la que te miras es la misma con la que vas a salir a la calle.</p>
+          </div>
+          <div class="espacio__nota aparece">
+            <span class="numeral">El silencio</span>
+            <h3>Se oye la tijera</h3>
+            <p>Dos sillas y nunca las dos ocupadas. Sin música a volumen de bar ni secadores cruzados. Puedes hablar o no hacerlo.</p>
+          </div>
+          <div class="espacio__nota aparece">
+            <span class="numeral">El detalle</span>
+            <h3>Lo que no se ve también cuenta</h3>
+            <p>Color sin amoniaco, toallas limpias para cada persona y un lavado con masaje que no mira el reloj.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trabajos" id="trabajos" aria-labelledby="trabajos-titulo">
+    <div class="bloque">
+      <div class="trabajos__cabecera aparece">
+        <h2 id="trabajos-titulo">Trabajos recientes</h2>
+        <p class="rotulo">Cortes que crecen bien</p>
+      </div>
+      <div class="trabajos__muro">
+        <div class="trabajos__col" data-velocidad="0.85" data-velocidad-movil="1">
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-07-galeria.webp" width="1000" height="1000" alt="Bob castaño a la altura de la barbilla, visto de espaldas.">
+            <figcaption>Bob a la barbilla</figcaption>
+          </figure>
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-09-galeria.webp" width="1000" height="1000" alt="Coleta baja con balayage rubio atada con una cinta blanca.">
+            <figcaption>Balayage rubio</figcaption>
+          </figure>
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-11-galeria.webp" width="1000" height="1000" alt="Melena negra lisa con raya en medio, vista de espaldas.">
+            <figcaption>Liso con raya en medio</figcaption>
+          </figure>
+        </div>
+        <div class="trabajos__col trabajos__col--der" data-velocidad="1.15" data-velocidad-movil="1">
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-08-galeria.webp" width="1000" height="1000" alt="Melena larga con ondas suaves en castaño cálido, de perfil.">
+            <figcaption>Ondas largas</figcaption>
+          </figure>
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-10-galeria.webp" width="1000" height="1000" alt="Rizo natural oscuro a la altura de los hombros, de espaldas.">
+            <figcaption>Rizo natural</figcaption>
+          </figure>
+          <figure class="aparece aparece--foto">
+            <img src="img/peluqueria-12-galeria.webp" width="1000" height="1000" alt="Corte pixie plateado en una mujer de perfil.">
+            <figcaption>Pixie plateado</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quien" id="quien" aria-labelledby="quien-titulo">
+    <div class="bloque quien__cuerpo">
+      <div class="quien__lado">
+        <div data-velocidad="0.9">
+          <figure class="quien__foto aparece aparece--foto">
+            <img src="img/peluqueria-13-retrato.webp" width="1200" height="1807" alt="Carmen, la dueña de Hebra, con delantal de lino y tijeras en el bolsillo, apoyada en el tocador.">
+          </figure>
+        </div>
+        <div class="quien__cita-marco" data-velocidad="1.3" data-eje="x" data-velocidad-movil="1"><blockquote class="quien__cita aparece" style="--retraso: 0.35s">El buen corte se nota a las tres semanas.</blockquote></div>
+      </div>
+      <div class="quien__texto aparece">
+        <p class="rotulo">Detrás de Hebra</p>
+        <h2 id="quien-titulo">Carmen Aldaz</h2>
+        <p>Veinte años de tijera, los últimos ocho en este local de la Rochapea. Aprendió en Madrid, volvió a Pamplona y abrió Hebra con una idea: un corte que crece bien vale más que uno que solo luce el primer día.</p>
+        <p>Trabaja con cita y nunca con dos personas a la vez. Por eso aquí nadie espera con el tinte puesto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="opiniones" id="opiniones" aria-labelledby="opiniones-titulo">
+    <div class="bloque opiniones__cuerpo">
+      <ul class="opiniones__lista">
+        <li class="opinion aparece">
+          <blockquote>Es la primera peluquería de la que salgo con el corte que pedí y no con el que le apetecía a la peluquera.</blockquote>
+          <cite>Maite, clienta desde 2023</cite>
+        </li>
+        <li class="opinion aparece" style="--retraso: 0.18s">
+          <blockquote>El color me dura y no me ha quemado el pelo. El masaje del lavado vale la cita entera.</blockquote>
+          <cite>Ainhoa, clienta desde 2024</cite>
+        </li>
+        <li class="opinion aparece" style="--retraso: 0.36s">
+          <blockquote>Fui por un corte antes de una entrevista y ahora voy cada seis semanas.</blockquote>
+          <cite>Sara, clienta desde 2025</cite>
+        </li>
+      </ul>
+      <div class="horario aparece" style="--retraso: 0.3s">
+        <h2 id="opiniones-titulo">Horario</h2>
+        <dl>
+          <dt>Martes a viernes</dt><dd>9:30 a 19:00</dd>
+          <dt>Sábados</dt><dd>9:00 a 14:00</dd>
+          <dt>Domingos y lunes</dt><dd>Cerrado</dd>
+        </dl>
+        <address>Calle de la Rochapea, 00 · 31014 Pamplona</address>
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre" id="reservar" aria-labelledby="cierre-titulo">
+    <div class="bloque">
+      <div class="cierre__cuerpo aparece">
+        <h2 id="cierre-titulo">Reserva tu cita</h2>
+        <p>Escríbenos por WhatsApp y te decimos hueco en la semana. Sin registros ni aplicaciones.</p>
+        <a class="boton boton--lleno" href="https://wa.me/34600000000" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <address>Hebra · Calle de la Rochapea, 00 · Pamplona · 600 000 000</address>
+      </div>
+      <footer class="pie">
+        <p>Hebra es un negocio inventado. Web de muestra de Hermanos Mason Diseño.</p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="../comun/app.js"></script>
+</body>
+</html>
