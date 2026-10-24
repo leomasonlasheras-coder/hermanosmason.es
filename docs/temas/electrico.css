@@ -1,0 +1,47 @@
+/* Tema "Eléctrico" (electrico)
+   Generado por herramientas/temas.py desde temas/presets/electrico.json. No editar a mano. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("fuentes/archivo/archivo-latin-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fuentes/space-grotesk/space-grotesk-latin-400-700.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #ffffff;
+  --tema-fondo-2: #f3f3f3;
+  --tema-fondo-3: #e4e4e4;
+  --tema-tinta: #0a0a0a;
+  --tema-tinta-suave: #555555;
+  --tema-acento: #2b4cff;
+  --tema-linea: #0a0a0a;
+  --tema-boton-fondo: #2b4cff;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --tema-titulos-peso: 900;
+  --tema-titulos-tracking: -0.02em;
+  --tema-titulos-caja: uppercase;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.56;
+  --tema-titulos-ancho: 118%;
+  --tema-texto: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.55;
+  --tema-radio-boton: 0px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 0.9;
+  --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);
+}

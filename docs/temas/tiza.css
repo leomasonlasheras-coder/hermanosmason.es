@@ -1,0 +1,53 @@
+/* Tema "Tiza" (tiza)
+   Generado por herramientas/temas.py desde temas/presets/tiza.json. No editar a mano. */
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/libre-baskerville/libre-baskerville-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/libre-baskerville/libre-baskerville-latin-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("fuentes/karla/karla-latin-200-800.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #ffffff;
+  --tema-fondo-2: #f5f5f4;
+  --tema-fondo-3: #e9e9e7;
+  --tema-tinta: #222222;
+  --tema-tinta-suave: #6b6b6b;
+  --tema-acento: #3d3d3d;
+  --tema-linea: #d9d9d6;
+  --tema-boton-fondo: #222222;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Libre Baskerville", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 400;
+  --tema-titulos-tracking: -0.01em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.84;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.65;
+  --tema-radio-boton: 0px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 1.05;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);
+}

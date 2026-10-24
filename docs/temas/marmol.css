@@ -1,0 +1,46 @@
+/* Tema "Mármol" (marmol)
+   Generado por herramientas/temas.py desde temas/presets/marmol.json. No editar a mano. */
+
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("fuentes/bodoni-moda/bodoni-moda-latin-400-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/montserrat/montserrat-latin-100-900.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #ffffff;
+  --tema-fondo-2: #f6f6f6;
+  --tema-fondo-3: #e8e8e8;
+  --tema-tinta: #0f0f0f;
+  --tema-tinta-suave: #6a6a6a;
+  --tema-acento: #b08d3f;
+  --tema-linea: #0f0f0f;
+  --tema-boton-fondo: #0f0f0f;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Bodoni Moda", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 500;
+  --tema-titulos-tracking: 0.08em;
+  --tema-titulos-caja: uppercase;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.64;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1rem;
+  --tema-texto-interlinea: 1.7;
+  --tema-radio-boton: 0px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 1.1;
+  --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);
+}

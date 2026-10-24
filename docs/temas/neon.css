@@ -1,0 +1,46 @@
+/* Tema "Neón" (neon)
+   Generado por herramientas/temas.py desde temas/presets/neon.json. No editar a mano. */
+
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("fuentes/syne/syne-latin-400-800.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/inter/inter-latin-var.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #f5f5f5;
+  --tema-fondo-2: #ebebeb;
+  --tema-fondo-3: #dcdcdc;
+  --tema-tinta: #0b0b0b;
+  --tema-tinta-suave: #5a5a5a;
+  --tema-acento: #9ad600;
+  --tema-linea: #0b0b0b;
+  --tema-boton-fondo: #0b0b0b;
+  --tema-boton-texto: #c8ff00;
+  --tema-titulos: "Syne", "Arial Black", Impact, sans-serif;
+  --tema-titulos-peso: 800;
+  --tema-titulos-tracking: -0.03em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.66;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.55;
+  --tema-radio-boton: 0px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 0.9;
+  --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);
+}

@@ -23,8 +23,82 @@
   var presets = [];
   var porSlug = {};
   var actual = "";
+  var original = "";   // el tema que llevaba la web al abrir el editor
+  var filtro = "todos";
   var webResponde = false;
   var temporizador = null;
+
+  var familias = document.getElementById("familias");
+  var cuenta = document.getElementById("cuenta");
+  var botonVolver = document.getElementById("volver");
+  var NOMBRE_FAMILIA = { sereno: "Serenos", calido: "Cálidos", atrevido: "Atrevidos" };
+
+  function visibles() {
+    return presets.filter(function (p) { return filtro === "todos" || p.familia === filtro; });
+  }
+
+  function pintarCuenta() {
+    var lista = visibles();
+    var i = lista.findIndex(function (p) { return p.slug === actual; });
+    cuenta.textContent = (i === -1 ? "—" : i + 1) + " de " + lista.length;
+    botonVolver.hidden = !original || actual === original;
+    document.querySelectorAll(".estilo__tuyo").forEach(function (e) {
+      e.hidden = e.closest(".estilo").dataset.slug !== original;
+    });
+  }
+
+  function saltar(paso) {
+    var lista = visibles();
+    if (!lista.length) return;
+    var i = lista.findIndex(function (p) { return p.slug === actual; });
+    var j = i === -1 ? (paso > 0 ? 0 : lista.length - 1) : (i + paso + lista.length) % lista.length;
+    elegir(lista[j].slug);
+  }
+
+  function alAzar() {
+    var lista = visibles().filter(function (p) { return p.slug !== actual; });
+    if (!lista.length) return;
+    elegir(lista[Math.floor(Math.random() * lista.length)].slug);
+  }
+
+  function filtrar(familia) {
+    filtro = familia;
+    familias.querySelectorAll(".familia").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.familia === familia ? "true" : "false");
+    });
+    lista.querySelectorAll(".estilos__item").forEach(function (li) {
+      var slug = li.querySelector(".estilo").dataset.slug;
+      li.hidden = familia !== "todos" && porSlug[slug].familia !== familia;
+    });
+    pintarCuenta();
+  }
+
+  function pintarFamilias() {
+    var cuentas = {};
+    presets.forEach(function (p) { cuentas[p.familia] = (cuentas[p.familia] || 0) + 1; });
+    var claves = ["todos"].concat(Object.keys(NOMBRE_FAMILIA).filter(function (f) { return cuentas[f]; }));
+    claves.forEach(function (f) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "familia";
+      b.dataset.familia = f;
+      b.setAttribute("aria-pressed", f === "todos" ? "true" : "false");
+      b.textContent = f === "todos" ? "Todos (" + presets.length + ")" : NOMBRE_FAMILIA[f] + " (" + cuentas[f] + ")";
+      b.addEventListener("click", function () { filtrar(f); });
+      familias.appendChild(b);
+    });
+  }
+
+  document.getElementById("anterior").addEventListener("click", function () { saltar(-1); });
+  document.getElementById("siguiente").addEventListener("click", function () { saltar(1); });
+  document.getElementById("sorpresa").addEventListener("click", alAzar);
+  botonVolver.addEventListener("click", function () { if (original) elegir(original); });
+  document.addEventListener("keydown", function (e) {
+    var t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    if (e.key === "ArrowLeft") { saltar(-1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { saltar(1); e.preventDefault(); }
+  });
 
   function decirEstado(texto, mal) {
     estado.textContent = texto;
@@ -37,12 +111,19 @@
     lista.querySelectorAll(".estilo").forEach(function (b) {
       var es = b.dataset.slug === slug;
       b.setAttribute("aria-pressed", es ? "true" : "false");
-      if (es && b.scrollIntoView) b.scrollIntoView({ block: "nearest", inline: "nearest" });
+      if (es) {
+        var r = b.getBoundingClientRect(), l = lista.getBoundingClientRect();
+        if (r.top < l.top) lista.scrollTop -= l.top - r.top + 8;
+        else if (r.bottom > l.bottom) lista.scrollTop += r.bottom - l.bottom + 8;
+        if (r.left < l.left) lista.scrollLeft -= l.left - r.left + 8;
+        else if (r.right > l.right) lista.scrollLeft += r.right - l.right + 8;
+      }
     });
     elegido.textContent = p ? p.nombre : slug || "—";
     var mensaje = "Hola, he probado los estilos en el panel y quiero el estilo «" + (p ? p.nombre : slug) + "» para mi web (" + WEB + ").";
     pedir.href = WHATSAPP + encodeURIComponent(mensaje);
     pedir.setAttribute("aria-disabled", p ? "false" : "true");
+    pintarCuenta();
   }
 
   function tarjeta(p) {
@@ -53,7 +134,7 @@
     Object.keys(p.variables).forEach(function (clave) {
       boton.style.setProperty("--m-" + clave, p.variables[clave]);
     });
-    nodo.querySelector(".estilo__nombre").textContent = p.nombre;
+    nodo.querySelector(".estilo__texto").textContent = p.nombre;
     nodo.querySelector(".estilo__frase").textContent = p.frase;
     boton.addEventListener("click", function () { elegir(p.slug); });
     return nodo;
@@ -75,7 +156,8 @@
     if (d.tipo === "tema-listo") {
       webResponde = true;
       clearTimeout(temporizador);
-      decirEstado("Tu web, lista. Toca un estilo para verla cambiar.");
+      if (!original && porSlug[d.slug]) original = d.slug;
+      decirEstado("Tu web, lista. Toca un estilo, o pasa con las flechas.");
       if (TEMA_INICIAL && porSlug[TEMA_INICIAL] && d.slug !== TEMA_INICIAL) {
         elegir(TEMA_INICIAL);
       } else if (porSlug[d.slug]) {
@@ -135,7 +217,9 @@
       var frag = document.createDocumentFragment();
       presets.forEach(function (p) { frag.appendChild(tarjeta(p)); });
       lista.appendChild(frag);
+      pintarFamilias();
       if (TEMA_INICIAL && porSlug[TEMA_INICIAL]) marcar(TEMA_INICIAL);
+      pintarCuenta();
       medirMarco();
       if (!origenWeb) { decirEstado("Falta la dirección de tu web. Escríbenos y la enlazamos.", true); return; }
       var destino = new URL(WEB, location.href);

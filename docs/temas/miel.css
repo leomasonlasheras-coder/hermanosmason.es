@@ -1,0 +1,46 @@
+/* Tema "Miel" (miel)
+   Generado por herramientas/temas.py desde temas/presets/miel.json. No editar a mano. */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("fuentes/bricolage-grotesque/bricolage-grotesque-latin-200-800.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fuentes/nunito-sans/nunito-sans-latin-400-700.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #fff8ec;
+  --tema-fondo-2: #fff0d6;
+  --tema-fondo-3: #f6e2b8;
+  --tema-tinta: #2a2117;
+  --tema-tinta-suave: #7c6a52;
+  --tema-acento: #d99a2b;
+  --tema-linea: #f0e0c0;
+  --tema-boton-fondo: #d99a2b;
+  --tema-boton-texto: #2a2117;
+  --tema-titulos: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-titulos-peso: 700;
+  --tema-titulos-tracking: -0.02em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.92;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 20px;
+  --tema-radio-caja: 20px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);
+}

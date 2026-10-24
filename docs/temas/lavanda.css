@@ -1,0 +1,46 @@
+/* Tema "Lavanda" (lavanda)
+   Generado por herramientas/temas.py desde temas/presets/lavanda.json. No editar a mano. */
+
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/outfit/outfit-latin-100-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/jost/jost-latin-100-900.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #f6f3fb;
+  --tema-fondo-2: #ede8f7;
+  --tema-fondo-3: #dfd6ef;
+  --tema-tinta: #241f33;
+  --tema-tinta-suave: #6d6580;
+  --tema-acento: #8b6fc2;
+  --tema-linea: #e3dcf1;
+  --tema-boton-fondo: #8b6fc2;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-titulos-peso: 600;
+  --tema-titulos-tracking: -0.02em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.95;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 18px;
+  --tema-radio-caja: 18px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);
+}

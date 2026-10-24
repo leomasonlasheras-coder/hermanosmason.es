@@ -1,0 +1,46 @@
+/* Tema "Perla" (perla)
+   Generado por herramientas/temas.py desde temas/presets/perla.json. No editar a mano. */
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("fuentes/playfair-display/playfair-display-latin-400-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("fuentes/source-sans-3/source-sans-3-latin-200-900.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #ffffff;
+  --tema-fondo-2: #f7f5f3;
+  --tema-fondo-3: #ebe6e2;
+  --tema-tinta: #1a1a1a;
+  --tema-tinta-suave: #66605c;
+  --tema-acento: #c9a08a;
+  --tema-linea: #e8e2dd;
+  --tema-boton-fondo: #1a1a1a;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 500;
+  --tema-titulos-tracking: -0.01em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.95;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 4px;
+  --tema-radio-caja: 8px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);
+}

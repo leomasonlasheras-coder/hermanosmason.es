@@ -1,0 +1,60 @@
+/* Tema "Canela" (canela)
+   Generado por herramientas/temas.py desde temas/presets/canela.json. No editar a mano. */
+
+@font-face {
+  font-family: "Alegreya";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("fuentes/alegreya/alegreya-latin-400-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Alegreya Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/alegreya-sans/alegreya-sans-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Alegreya Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fuentes/alegreya-sans/alegreya-sans-latin-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Alegreya Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/alegreya-sans/alegreya-sans-latin-700.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #fbf6ee;
+  --tema-fondo-2: #f4ebdc;
+  --tema-fondo-3: #e9dcc6;
+  --tema-tinta: #2c211a;
+  --tema-tinta-suave: #7b6a5a;
+  --tema-acento: #a8562f;
+  --tema-linea: #ebdfcd;
+  --tema-boton-fondo: #a8562f;
+  --tema-boton-texto: #fbf6ee;
+  --tema-titulos: "Alegreya", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 500;
+  --tema-titulos-tracking: -0.005em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 1.02;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.1rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 6px;
+  --tema-radio-foto: 6px;
+  --tema-radio-caja: 6px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);
+}

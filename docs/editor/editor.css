@@ -150,7 +150,103 @@ h1, h2, p { margin: 0; }
 .vista__estado {
   font-size: 0.875rem;
   color: var(--gris-600);
+  flex-basis: 100%;
 }
+
+.pasar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pasar__btn {
+  appearance: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--filete);
+  background: var(--blanco);
+  color: var(--tinta);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0 0 2px;
+}
+
+.pasar__btn:hover { background: var(--banda); }
+.pasar__btn:focus-visible, .pasar__texto:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+
+.pasar__cuenta {
+  min-width: 4.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gris-600);
+  font-variant-numeric: tabular-nums;
+}
+
+.pasar__texto {
+  appearance: none;
+  border: 1px solid var(--filete);
+  background: var(--blanco);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 36px;
+  margin-left: 0.25rem;
+}
+
+.pasar__texto:hover { background: var(--banda); }
+.pasar__texto[hidden] { display: none; }
+
+.estilos__cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.familias { display: inline-flex; gap: 0.3rem; flex-wrap: wrap; }
+
+.familia {
+  appearance: none;
+  border: 1px solid var(--filete);
+  background: var(--blanco);
+  color: var(--gris-600);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 32px;
+}
+
+.familia[aria-pressed="true"] { background: var(--tinta); color: var(--blanco); border-color: var(--tinta); }
+.familia:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+
+.estilos__item[hidden] { display: none; }
+
+.estilo__nombre { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+
+.estilo__tuyo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--amarillo);
+  color: var(--tinta);
+  white-space: nowrap;
+}
+
+.estilo__tuyo[hidden] { display: none; }
 
 .vista__estado--mal { color: #b42318; }
 

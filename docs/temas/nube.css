@@ -1,0 +1,46 @@
+/* Tema "Nube" (nube)
+   Generado por herramientas/temas.py desde temas/presets/nube.json. No editar a mano. */
+
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("fuentes/quicksand/quicksand-latin-300-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("fuentes/nunito/nunito-latin-200-1000.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #f7f9fc;
+  --tema-fondo-2: #edf2f9;
+  --tema-fondo-3: #dde6f2;
+  --tema-tinta: #1f2733;
+  --tema-tinta-suave: #66707f;
+  --tema-acento: #6aa1d8;
+  --tema-linea: #e0e7f0;
+  --tema-boton-fondo: #6aa1d8;
+  --tema-boton-texto: #ffffff;
+  --tema-titulos: "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-titulos-peso: 700;
+  --tema-titulos-tracking: -0.01em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.92;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 24px;
+  --tema-radio-caja: 24px;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);
+}

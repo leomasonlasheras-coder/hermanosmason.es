@@ -209,6 +209,9 @@ section { padding-block: calc(clamp(5rem, 12vw, 10rem) * var(--tema-aire, 1)); }
 .portada__titulo .linea {
   display: block;
   overflow: hidden;
+
+  padding-top: 0.18em;
+  margin-top: -0.18em;
 }
 
 .portada__titulo .linea > span {
@@ -263,7 +266,7 @@ section { padding-block: calc(clamp(5rem, 12vw, 10rem) * var(--tema-aire, 1)); }
     padding: 8rem 0 4rem;
   }
 
-  .portada__titulo { max-width: 12ch; }
+  .portada__titulo { max-width: 16ch; }
 }
 
 .frase {

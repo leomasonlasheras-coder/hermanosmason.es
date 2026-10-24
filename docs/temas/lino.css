@@ -1,0 +1,46 @@
+/* Tema "Lino" (lino)
+   Generado por herramientas/temas.py desde temas/presets/lino.json. No editar a mano. */
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("fuentes/cormorant-garamond/cormorant-garamond-latin-400-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fuentes/inter/inter-latin-var.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #faf9f6;
+  --tema-fondo-2: #f2efe8;
+  --tema-fondo-3: #e6e1d6;
+  --tema-tinta: #1f1d1a;
+  --tema-tinta-suave: #6a665e;
+  --tema-acento: #8a9a7b;
+  --tema-linea: #e3dfd6;
+  --tema-boton-fondo: #1f1d1a;
+  --tema-boton-texto: #faf9f6;
+  --tema-titulos: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 500;
+  --tema-titulos-tracking: -0.005em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 1.08;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 0px;
+  --tema-radio-foto: 0px;
+  --tema-radio-caja: 0px;
+  --tema-aire: 1.1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);
+}
