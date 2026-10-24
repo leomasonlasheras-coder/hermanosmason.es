@@ -63,12 +63,72 @@
           <li>200 € solo si te la quedas. Si no, no pagas nada.</li>
         </ul>
 
-        <figure class="muestra-video">
-          <video class="muestra-video__video" width="1280" height="720" autoplay muted loop playsinline preload="metadata" poster="../video/unas.webp" aria-label="Una web de muestra para salones de uñas, recorrida de arriba abajo">
-            <source src="../video/unas.webm" type="video/webm" />
-            <source src="../video/unas.mp4" type="video/mp4" />
-          </video>
-          <figcaption class="enlace__nota">Así se mueve una web nuestra. Es una muestra: la tuya lleva tu nombre y tus fotos.</figcaption>
+        <figure class="muestra-video transformacion">
+          <div class="transformacion__fila">
+            <p class="transformacion__rotulo">Lo que ya tienes</p>
+            <p class="transformacion__rotulo transformacion__rotulo--web">Tu web, <span class="clave">en tres días</span></p>
+
+            <div class="fuentes">
+              <div class="maps" aria-label="Tu ficha de Google Maps, de muestra">
+                <div class="maps__mapa">
+                  <svg viewBox="0 0 120 64" preserveAspectRatio="none" aria-hidden="true">
+                    <rect width="120" height="64" fill="#f1efe8"/>
+                    <rect x="70" y="-6" width="60" height="34" fill="#cfe8c9" transform="rotate(12 70 0)"/>
+                    <g stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none">
+                      <path d="M-4 22 H124"/><path d="M38 -4 V70"/><path d="M-4 48 H124"/><path d="M84 -4 V70"/>
+                    </g>
+                    <g stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none">
+                      <path d="M-4 36 H124"/><path d="M62 -4 V70"/>
+                    </g>
+                  </svg>
+                  <span class="maps__busqueda" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4z" fill="#4285f4"/><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z" fill="#34a853"/><path d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z" fill="#fbbc04"/><path d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6 12 6z" fill="#ea4335"/></svg><i class="mancha mancha--busqueda"></i></span>
+                  <svg class="maps__pin" viewBox="0 0 24 32" width="16" height="22" aria-hidden="true"><path d="M12 1a10 10 0 0 0-10 10c0 7.5 10 20 10 20s10-12.5 10-20A10 10 0 0 0 12 1z" fill="#ea4335"/><circle cx="12" cy="11" r="3.6" fill="#b31412"/></svg>
+                </div>
+                <div class="maps__hoja">
+                  <img class="maps__foto" src="../img/fuentes/unas-maps-240.webp" width="240" height="240" alt="" />
+                  <div class="maps__datos">
+                    <i class="mancha mancha--nombre"></i>
+                    <span class="maps__estrellas" aria-hidden="true"><i class="mancha mancha--corta"></i><svg viewBox="0 0 60 12" width="36" height="8"><path id="estrella" d="M6 .6l1.6 3.4 3.7.4-2.8 2.5.8 3.7L6 8.7 2.7 10.6l.8-3.7L.7 4.4l3.7-.4z" fill="#fbbc04"/><use href="#estrella" x="12"/><use href="#estrella" x="24"/><use href="#estrella" x="36"/><use href="#estrella" x="48"/></svg></span>
+                    <span class="maps__pildora"><i class="mancha mancha--pildora"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="insta" aria-label="Tu perfil de Instagram, de muestra">
+                <p class="insta__barra" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#f9ce34"/><stop offset=".5" stop-color="#ee2a7b"/><stop offset="1" stop-color="#6228d7"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5.5" fill="none" stroke="url(#ig)" stroke-width="2.2"/><circle cx="12" cy="12" r="4.6" fill="none" stroke="url(#ig)" stroke-width="2.2"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#ig)"/></svg><i class="mancha mancha--usuario"></i></p>
+                <div class="insta__perfil">
+                  <span class="insta__avatar"><img src="../img/fuentes/unas-avatar-96.webp" width="96" height="96" alt="" /></span>
+                  <span class="insta__cifra"><i class="mancha mancha--cifra"></i><i class="mancha mancha--rotulo"></i></span>
+                  <span class="insta__cifra"><i class="mancha mancha--cifra"></i><i class="mancha mancha--rotulo"></i></span>
+                  <span class="insta__cifra"><i class="mancha mancha--cifra"></i><i class="mancha mancha--rotulo"></i></span>
+                </div>
+                <div class="insta__rejilla">
+                  <img src="../img/fuentes/unas-galeria-07-160.webp" width="160" height="160" alt="" />
+                  <img src="../img/fuentes/unas-galeria-09-160.webp" width="160" height="160" alt="" />
+                  <img src="../img/fuentes/unas-galeria-11-160.webp" width="160" height="160" alt="" />
+                  <img src="../img/fuentes/unas-galeria-08-160.webp" width="160" height="160" alt="" />
+                  <img src="../img/fuentes/unas-galeria-10-160.webp" width="160" height="160" alt="" />
+                  <img src="../img/fuentes/unas-galeria-12-160.webp" width="160" height="160" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="flecha" aria-hidden="true">
+              <svg viewBox="0 0 48 32" width="48" height="32">
+                <path d="M3 16 H42 M31 6 L43 16 L31 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+
+            <div class="resultado">
+              <div class="monitor">
+                <video class="monitor__video muestra-video__video" width="1024" height="768" autoplay muted loop playsinline preload="metadata" poster="../video/unas.webp" aria-label="Una web de muestra para salones de uñas, recorrida de arriba abajo">
+                  <source src="../video/unas.webm" type="video/webm" />
+                  <source src="../video/unas.mp4" type="video/mp4" />
+                </video>
+                <span class="monitor__pie"></span>
+              </div>
+            </div>
+
+          </div>
+          <figcaption class="enlace__nota">Con tu ficha de Google y tu Instagram montamos la web. Es una muestra: la tuya lleva tu nombre y tus fotos.</figcaption>
         </figure>
       </div>
     </section>
