@@ -14,36 +14,37 @@
 <header class="cabecera">
   <p class="cabecera__marca">Hermanos Mason</p>
   <h1 class="cabecera__titulo">Elige el estilo de tu web</h1>
-  <p class="cabecera__texto">Pasa por los estilos y mira cómo cambia tu web. Cuando uno te guste, pídelo y lo dejamos puesto.</p>
+  <p class="cabecera__texto">Pasa por los estilos y mira cómo cambia tu web, en ordenador y en móvil. Cuando uno te guste, pídelo y lo dejamos puesto.</p>
 </header>
 
 <main class="editor">
 
-  <section class="vista" aria-label="Tu web">
-    <div class="vista__barra">
-      <div class="dispositivos" role="group" aria-label="Verla como en">
-        <button type="button" class="dispositivo" data-dispositivo="movil" aria-pressed="true">Móvil</button>
-        <button type="button" class="dispositivo" data-dispositivo="escritorio" aria-pressed="false">Ordenador</button>
+  <div class="mandos">
+    <span class="pasar__cuenta" id="cuenta">— de —</span>
+    <button type="button" class="pasar__texto" id="sorpresa">Sorpréndeme</button>
+    <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
+    <p class="estado" id="estado" aria-live="polite">Cargando tu web…</p>
+  </div>
+
+  <section class="escenario" aria-label="Tu web con el estilo elegido">
+  <button type="button" class="flecha" id="anterior" aria-label="Estilo anterior" title="Anterior (flecha izquierda)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div class="aparatos">
+    <div class="ordenador" aria-hidden="true">
+      <div class="ordenador__marco">
+        <div class="ordenador__barra"><span class="ordenador__puntos"></span><span class="ordenador__url" id="url-ordenador"></span></div>
+        <div class="pantalla pantalla--ordenador" data-base="1280"><iframe class="web" data-aparato="ordenador" title="Tu web en ordenador" scrolling="no"></iframe></div>
       </div>
-      <div class="pasar" role="group" aria-label="Pasar de estilo">
-        <button type="button" class="pasar__btn" id="anterior" aria-label="Estilo anterior" title="Anterior (flecha izquierda)">&#8249;</button>
-        <span class="pasar__cuenta" id="cuenta">— de —</span>
-        <button type="button" class="pasar__btn" id="siguiente" aria-label="Estilo siguiente" title="Siguiente (flecha derecha)">&#8250;</button>
-        <button type="button" class="pasar__texto" id="sorpresa">Sorpréndeme</button>
-        <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
-      </div>
-      <p class="vista__estado" id="estado" aria-live="polite">Cargando tu web…</p>
+      <div class="ordenador__base"></div>
     </div>
-    <div class="marco marco--movil" id="marco">
-      <iframe id="web" class="marco__web" title="Tu web con el estilo elegido"></iframe>
+    <div class="movil" aria-hidden="true">
+      <div class="pantalla pantalla--movil" data-base="390"><iframe class="web" data-aparato="movil" title="Tu web en móvil" scrolling="no"></iframe></div>
     </div>
+  </div>
+  <button type="button" class="flecha" id="siguiente" aria-label="Estilo siguiente" title="Siguiente (flecha derecha)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </section>
 
   <section class="estilos" aria-label="Estilos">
-    <div class="estilos__cab">
-      <h2 class="estilos__titulo">Nuestros estilos</h2>
-      <div class="familias" id="familias" role="group" aria-label="Filtrar por familia"></div>
-    </div>
+    <h2 class="estilos__titulo">Nuestros estilos</h2>
     <ol class="estilos__lista" id="lista"></ol>
   </section>
 
@@ -59,15 +60,12 @@
     <button type="button" class="estilo" aria-pressed="false">
       <span class="mock" aria-hidden="true">
         <span class="mock__barra"><span class="mock__marca">Tu negocio</span><span class="mock__punto"></span></span>
-        <span class="mock__rotulo">Pamplona</span>
         <span class="mock__titulo">Una hora para ti</span>
         <span class="mock__linea"></span>
-        <span class="mock__linea mock__linea--corta"></span>
-        <span class="mock__boton">Reserva tu cita</span>
+        <span class="mock__boton">Reserva</span>
         <span class="mock__foto"></span>
       </span>
-      <span class="estilo__nombre"><span class="estilo__texto"></span><span class="estilo__tuyo" hidden>El tuyo ahora</span></span>
-      <span class="estilo__frase"></span>
+      <span class="estilo__nombre"><span class="estilo__texto"></span><span class="estilo__tuyo" hidden>El tuyo</span></span>
     </button>
   </li>
 </template>
