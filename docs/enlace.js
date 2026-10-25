@@ -231,6 +231,22 @@
     mover(actual + (boton.dataset.ir === "atras" ? -1 : 1));
   });
 
+  var PASA_SOLO = 750;
+  var porToque = false;
+  var pasaSolo = null;
+  form.addEventListener("pointerdown", function () { porToque = true; });
+  form.addEventListener("keydown", function () { porToque = false; });
+  form.addEventListener("change", function (e) {
+    var radio = e.target;
+    if (!porToque || radio.type !== "radio" || !radio.checked) return;
+    var tramo = radio.closest(".tramo");
+    if (!tramo || !tramo.hasAttribute("data-pasa-solo") || tramo !== tramos[actual]) return;
+    clearTimeout(pasaSolo);
+    pasaSolo = setTimeout(function () {
+      if (tramos[actual] === tramo && actual < tramos.length - 1) mover(actual + 1);
+    }, PASA_SOLO);
+  });
+
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter") return;
     if (!e.target.matches("input:not([type=radio]):not([type=checkbox])")) return;
