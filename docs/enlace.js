@@ -848,25 +848,168 @@
   } else {
     videos.forEach(function (v) { v.dataset.dormido = ""; });
   }
+})();
 
-  var estilos = document.querySelector("[data-estilos]");
-  var videoEstilos = document.querySelector("[data-estilos-video]");
-  if (estilos && videoEstilos) {
-    var nombres = Array.prototype.slice.call(estilos.children);
-    var cada = parseFloat(estilos.getAttribute("data-cada")) || 2.5;
-    var encendido = 0;
-    function encender(i) {
-      if (i === encendido) return;
-      encendido = i;
-      nombres.forEach(function (li, k) { li.classList.toggle("is-activo", k === i); });
+(function () {
+  "use strict";
+
+  var editor = document.querySelector("[data-mini-editor]");
+  if (!editor) return;
+  var tira = editor.querySelector("[data-estilos]");
+  var pista = editor.querySelector("[data-estilos-pista]");
+  var pantalla = editor.querySelector("[data-estilos-pantalla]");
+  var siguiente = editor.querySelector('[data-paso="1"]');
+  if (!tira || !pista || !pantalla) return;
+  var tarjetas = Array.prototype.slice.call(tira.querySelectorAll("button"));
+  var fotos = Array.prototype.slice.call(pista.querySelectorAll("img"));
+  var n = Math.min(tarjetas.length, fotos.length);
+  if (n < 2) return;
+  var cada = (parseFloat(tira.getAttribute("data-cada")) || 1.8) * 1000;
+  var PULSAR = 220;   // ms que la flecha se queda pulsada antes del cambio
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  var copia = fotos[0].cloneNode(false);
+  copia.alt = "";
+  copia.setAttribute("aria-hidden", "true");
+  pista.appendChild(copia);
+
+  var elegido = 0;   // el estilo elegido, de 0 a n - 1
+  var posicion = 0;  // la foto a la que va la fila, de 0 a n (n, la copia)
+
+  function poner(p, quieta) {
+    if (quieta) pista.classList.add("is-quieta");
+    pista.style.setProperty("--p", p);
+    if (quieta) {
+      void pista.offsetWidth;
+      pista.classList.remove("is-quieta");
     }
-    function seguir() {
-      if (videoEstilos.paused || videoEstilos.ended) return;
-      var t = videoEstilos.currentTime % (cada * nombres.length);
-      encender(Math.min(nombres.length - 1, Math.floor(t / cada)));
-      requestAnimationFrame(seguir);
-    }
-    videoEstilos.addEventListener("play", function () { requestAnimationFrame(seguir); });
-    videoEstilos.addEventListener("seeked", function () { encender(0); });
+    posicion = p;
+  }
+  pista.addEventListener("transitionend", function (e) {
+    if (e.target === pista && posicion === n) poner(0, true);
+  });
+
+  function pedir(i) {
+    [i - 1, i, i + 1].forEach(function (k) {
+      var foto = fotos[(k + n) % n];
+      if (foto.loading === "lazy") foto.loading = "eager";
+    });
+  }
+
+  function encender(i) {
+    tarjetas.forEach(function (b, k) { b.setAttribute("aria-pressed", k === i ? "true" : "false"); });
+    fotos.forEach(function (f, k) {
+      if (k === i) f.removeAttribute("aria-hidden");
+      else f.setAttribute("aria-hidden", "true");
+    });
+    var li = tarjetas[i].parentNode;
+    tira.scrollTo({
+      left: li.offsetLeft + li.offsetWidth / 2 - tira.clientWidth / 2,
+      behavior: reducido.matches ? "auto" : "smooth",
+    });
+  }
+
+  function ir(i) {
+    var destino = (i % n + n) % n;
+    if (destino === elegido && posicion !== n) return;
+    if (posicion === n) poner(0, true);
+    if (reducido.matches) poner(destino, true);
+    else if (i === n) poner(n);
+    else if (i === -1) { poner(n, true); poner(n - 1); }
+    else poner(destino);
+    elegido = destino;
+    encender(destino);
+    pedir(destino);
+  }
+
+  var aLaVista = false;
+  var encima = false;
+  var enfocado = false;
+  var reloj = null;
+
+  function programar(espera) {
+    clearTimeout(reloj);
+    reloj = null;
+    if (siguiente) siguiente.classList.remove("is-pulsada");
+    if (!aLaVista || encima || enfocado || document.hidden || reducido.matches) return;
+    reloj = setTimeout(function () {
+      if (siguiente) siguiente.classList.add("is-pulsada");
+      reloj = setTimeout(function () {
+        if (siguiente) siguiente.classList.remove("is-pulsada");
+        ir(elegido + 1);
+        programar();
+      }, PULSAR);
+    }, (espera || cada) - PULSAR);
+  }
+
+  function aMano(i) {
+    ir(i);
+    programar(cada * 2);
+  }
+
+  tarjetas.forEach(function (b, k) {
+    b.addEventListener("click", function () { aMano(k); });
+  });
+  Array.prototype.forEach.call(editor.querySelectorAll("[data-paso]"), function (f) {
+    f.addEventListener("click", function () {
+      aMano(elegido + parseInt(f.getAttribute("data-paso"), 10));
+    });
+  });
+
+  var x0 = null;
+  var y0 = 0;
+  pantalla.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    x0 = e.clientX;
+    y0 = e.clientY;
+    try { pantalla.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  pantalla.addEventListener("pointerup", function (e) {
+    if (x0 === null) return;
+    var dx = e.clientX - x0;
+    var dy = e.clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
+    aMano(elegido + (dx < 0 ? 1 : -1));
+  });
+  pantalla.addEventListener("pointercancel", function () { x0 = null; });
+
+  editor.addEventListener("pointerenter", function (e) {
+    if (e.pointerType !== "mouse") return;
+    encima = true;
+    programar();
+  });
+  editor.addEventListener("pointerleave", function (e) {
+    if (e.pointerType !== "mouse") return;
+    encima = false;
+    programar();
+  });
+  editor.addEventListener("focusin", function (e) {
+    var visible = false;
+    try { visible = e.target.matches(":focus-visible"); } catch (err) {}
+    if (!visible) return;
+    enfocado = true;
+    programar();
+  });
+  editor.addEventListener("focusout", function (e) {
+    if (editor.contains(e.relatedTarget)) return;
+    enfocado = false;
+    programar();
+  });
+
+  document.addEventListener("visibilitychange", function () { programar(); });
+
+  if ("IntersectionObserver" in window) {
+    var carta = editor.closest(".cartas__carta") || editor;
+    new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) pedir(elegido);
+        var ahora = e.isIntersecting && e.intersectionRatio >= 0.5;
+        if (ahora !== aLaVista) {
+          aLaVista = ahora;
+          programar();
+        }
+      });
+    }, { threshold: [0, 0.5] }).observe(carta);
   }
 })();
