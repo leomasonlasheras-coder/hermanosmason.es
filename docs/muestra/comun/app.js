@@ -3,7 +3,9 @@
 
   document.documentElement.classList.add('js');
 
-  const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const enMapa = new URLSearchParams(location.search).has('mapa');
+  if (enMapa) document.documentElement.classList.add('mapa');
+  const sinMovimiento = enMapa || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const movil = window.matchMedia('(max-width: 41.99rem)');
   const grabando = new URLSearchParams(location.search).has('grabar');
   if (grabando) document.documentElement.classList.add('grabando');

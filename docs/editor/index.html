@@ -20,8 +20,10 @@
 <main class="editor">
 
   <div class="mandos">
-    <span class="pasar__cuenta" id="cuenta">— de —</span>
-    <button type="button" class="pasar__texto" id="sorpresa">Sorpréndeme</button>
+    <div class="vistas" role="group" aria-label="Verla como en">
+      <button type="button" class="vista-btn" data-vista="ordenador" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M1.5 19.5h21"/></svg>Ordenador</button>
+      <button type="button" class="vista-btn" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Móvil</button>
+    </div>
     <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
     <p class="estado" id="estado" aria-live="polite">Cargando tu web…</p>
   </div>
@@ -29,22 +31,36 @@
   <section class="escenario" aria-label="Tu web con el estilo elegido">
   <button type="button" class="flecha" id="anterior" aria-label="Estilo anterior" title="Anterior (flecha izquierda)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <div class="aparatos">
-    <div class="ordenador" aria-hidden="true">
-      <div class="ordenador__marco">
-        <div class="ordenador__barra"><span class="ordenador__puntos"></span><span class="ordenador__url" id="url-ordenador"></span></div>
-        <div class="pantalla pantalla--ordenador" data-base="1280"><iframe class="web" data-aparato="ordenador" title="Tu web en ordenador" scrolling="no"></iframe></div>
+    <div class="ordenador">
+      <div class="ordenador__tapa">
+        <div class="pantalla pantalla--ordenador" data-base="1280">
+          <iframe class="web" data-aparato="ordenador" title="Tu web en ordenador" aria-hidden="true" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div class="pantalla__capa" data-para="ordenador" title="Rueda o arrastra para recorrer tu web"></div>
+        </div>
       </div>
-      <div class="ordenador__base"></div>
+      <div class="ordenador__base"><span class="ordenador__muesca"></span></div>
     </div>
-    <div class="movil" aria-hidden="true">
-      <div class="pantalla pantalla--movil" data-base="390"><iframe class="web" data-aparato="movil" title="Tu web en móvil" scrolling="no"></iframe></div>
+    <div class="mapa" title="Tu web entera: pulsa o arrastra para ir a una parte">
+      <div class="mapa__pantalla">
+        <iframe class="web web--mapa" data-aparato="mapa" title="Mapa de tu web" aria-hidden="true" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
+        <div class="mapa__resalto" aria-hidden="true"></div>
+        <div class="mapa__capa"></div>
+      </div>
+    </div>
+    <div class="movil">
+      <span class="movil__botones" aria-hidden="true"></span>
+      <div class="pantalla pantalla--movil" data-base="390">
+        <iframe class="web" data-aparato="movil" title="Tu web en móvil" aria-hidden="true" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
+        <div class="pantalla__capa" data-para="movil" title="Rueda o arrastra para recorrer tu web"></div>
+        <div class="pantalla__scroll" aria-hidden="true"><span class="pantalla__pulgar"></span></div>
+      </div>
     </div>
   </div>
   <button type="button" class="flecha" id="siguiente" aria-label="Estilo siguiente" title="Siguiente (flecha derecha)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </section>
 
   <section class="estilos" aria-label="Estilos">
-    <h2 class="estilos__titulo">Nuestros estilos</h2>
+    <p class="estilos__cuenta" id="cuenta">— de —</p>
     <ol class="estilos__lista" id="lista"></ol>
   </section>
 
