@@ -231,21 +231,19 @@
     mover(actual + (boton.dataset.ir === "atras" ? -1 : 1));
   });
 
-  var PASA_SOLO = 750;
-  var porToque = false;
-  var pasaSolo = null;
-  form.addEventListener("pointerdown", function () { porToque = true; });
-  form.addEventListener("keydown", function () { porToque = false; });
-  form.addEventListener("change", function (e) {
-    var radio = e.target;
-    if (!porToque || radio.type !== "radio" || !radio.checked) return;
-    var tramo = radio.closest(".tramo");
-    if (!tramo || !tramo.hasAttribute("data-pasa-solo") || tramo !== tramos[actual]) return;
-    clearTimeout(pasaSolo);
-    pasaSolo = setTimeout(function () {
-      if (tramos[actual] === tramo && actual < tramos.length - 1) mover(actual + 1);
-    }, PASA_SOLO);
-  });
+  function contestado(tramo) {
+    return Array.prototype.some.call(
+      tramo.querySelectorAll('input[type="radio"], input[type="checkbox"]'),
+      function (el) { return el.checked && !el.defaultChecked; }
+    );
+  }
+  function pintarSiguiente() {
+    tramos.forEach(function (t) {
+      if (!t.querySelector('input[type="radio"], input[type="checkbox"]')) return;
+      t.classList.toggle("is-sin-respuesta", !contestado(t));
+    });
+  }
+  form.addEventListener("change", pintarSiguiente);
 
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter") return;
@@ -357,6 +355,7 @@
   if (pasoGuardado) ir(pasoGuardado, false);
   pintarExtras();
   pintarMarcas();
+  pintarSiguiente();
 
   var negocio = form.dataset.negocio || "";
   var persona = form.dataset.nombre || "";

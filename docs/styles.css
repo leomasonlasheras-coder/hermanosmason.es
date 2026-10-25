@@ -3683,6 +3683,20 @@ html:not(.no-js) .enlace .preparar-seccion {
 }
 
 .tramo__nav .btn { padding-inline: var(--sp-lg); }
+
+.tramo.is-sin-respuesta .btn--solid[data-ir="siguiente"] {
+  border-color: var(--line-control);
+  background: var(--paper);
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .tramo.is-sin-respuesta .btn--solid[data-ir="siguiente"]:hover {
+    border-color: var(--ink);
+    background: var(--paper-hover);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+}
 .tramo__nav [data-ir="atras"] { padding-inline: var(--sp-md); }
 
 .tramo__nav [data-ir="siguiente"] { margin-inline-start: auto; }
