@@ -2990,6 +2990,15 @@ html:not(.no-js) .enlace .preparar-seccion {
   color: var(--ink-2);
 }
 
+.tramo__ayuda strong {
+  font-weight: inherit;
+  color: var(--ink);
+  text-decoration: underline var(--rotulador);
+  text-decoration-thickness: 0.32em;
+  text-underline-offset: -0.06em;
+  text-decoration-skip-ink: none;
+}
+
 .datos {
   display: grid;
   margin: 0;
