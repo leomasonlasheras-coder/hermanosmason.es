@@ -23,9 +23,9 @@
   --tema-fondo-3: #e4e4e4;
   --tema-tinta: #0b0b0b;
   --tema-tinta-suave: #555555;
-  --tema-acento: #e63b2e;
+  --tema-acento: #d9322a;
   --tema-linea: #0b0b0b;
-  --tema-boton-fondo: #e63b2e;
+  --tema-boton-fondo: #d9322a;
   --tema-boton-texto: #ffffff;
   --tema-titulos: "Archivo", "Arial Narrow", Arial, sans-serif;
   --tema-titulos-peso: 800;
@@ -41,6 +41,8 @@
   --tema-radio-boton: 0px;
   --tema-radio-foto: 0px;
   --tema-radio-caja: 0px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 0.9;
   --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);

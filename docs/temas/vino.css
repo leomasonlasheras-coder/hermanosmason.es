@@ -1,0 +1,48 @@
+/* Tema "Vino" (vino)
+   Generado por herramientas/temas.py desde temas/presets/vino.json. No editar a mano. */
+
+@font-face {
+  font-family: "Gloock";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/gloock/gloock-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("fuentes/figtree/figtree-latin-300-900.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #2a1017;
+  --tema-fondo-2: #33151d;
+  --tema-fondo-3: #451d29;
+  --tema-tinta: #f7e9ec;
+  --tema-tinta-suave: #c49ca6;
+  --tema-acento: #e07a94;
+  --tema-linea: #4a2430;
+  --tema-boton-fondo: #e07a94;
+  --tema-boton-texto: #2a1017;
+  --tema-titulos: "Gloock", "Iowan Old Style", Georgia, serif;
+  --tema-titulos-peso: 400;
+  --tema-titulos-tracking: -0.01em;
+  --tema-titulos-caja: none;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 0.9;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.6;
+  --tema-radio-boton: 999px;
+  --tema-radio-foto: 14px;
+  --tema-radio-caja: 14px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
+  --tema-aire: 1;
+  --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);
+}

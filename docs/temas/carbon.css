@@ -1,0 +1,55 @@
+/* Tema "Carbón" (carbon)
+   Generado por herramientas/temas.py desde temas/presets/carbon.json. No editar a mano. */
+
+@font-face {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/bebas-neue/bebas-neue-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/barlow/barlow-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fuentes/barlow/barlow-latin-600.woff2") format("woff2");
+}
+
+:root {
+  --tema-fondo: #1a1a1a;
+  --tema-fondo-2: #222222;
+  --tema-fondo-3: #2f2f2f;
+  --tema-tinta: #f2f2f0;
+  --tema-tinta-suave: #a1a19d;
+  --tema-acento: #f26b1d;
+  --tema-linea: #343434;
+  --tema-boton-fondo: #f26b1d;
+  --tema-boton-texto: #111111;
+  --tema-titulos: "Bebas Neue", "Arial Black", Impact, sans-serif;
+  --tema-titulos-peso: 400;
+  --tema-titulos-tracking: 0.02em;
+  --tema-titulos-caja: uppercase;
+  --tema-titulos-variacion: normal;
+  --tema-titulos-escala: 1.15;
+  --tema-titulos-ancho: 100%;
+  --tema-texto: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tema-texto-peso: 400;
+  --tema-texto-tamano: 1.0625rem;
+  --tema-texto-interlinea: 1.55;
+  --tema-radio-boton: 4px;
+  --tema-radio-foto: 4px;
+  --tema-radio-caja: 4px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
+  --tema-aire: 0.9;
+  --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);
+}

@@ -37,8 +37,9 @@
   var temporizador = null;
 
   function decirEstado(texto, mal) {
-    estado.textContent = texto;
-    estado.classList.toggle("estado--mal", !!mal);
+    if (texto) estado.textContent = texto;
+    estado.classList.toggle("aviso--visible", !!texto);
+    estado.classList.toggle("aviso--mal", !!texto && !!mal);
   }
 
   function visibles() { return presets; }
@@ -194,7 +195,7 @@
       clearTimeout(temporizador);
       if (!original && porSlug[d.slug]) original = d.slug;
       if (primera) {
-        decirEstado("Tu web, lista. Toca un estilo, o pasa con las flechas.");
+        decirEstado("");
         setTimeout(function () {
           iframes.forEach(function (f) {
             if (f !== mapaWeb && f.contentWindow) f.contentWindow.postMessage({ tipo: "vistazo" }, origenWeb);
@@ -221,7 +222,7 @@
       }
     } else if (d.tipo === "tema-aplicado") {
       var p = porSlug[d.slug];
-      if (d.slug === actual) decirEstado(p ? "Así se ve con " + p.nombre + "." : "Hecho.");
+      if (d.slug === actual) decirEstado("");
     } else if (d.tipo === "tema-error") {
       decirEstado("Ese estilo no ha cargado. Prueba otro.", true);
     }
@@ -253,11 +254,11 @@
 
   function medir() {
     var reservado = 0;
-    [".cabecera", ".mandos", ".estilos"].forEach(function (s) {
+    [".cabecera", ".estilos"].forEach(function (s) {
       var e = document.querySelector(s);
       if (e && e.offsetParent !== null) reservado += e.offsetHeight;
     });
-    var altoMax = Math.max(240, window.innerHeight - reservado - 56); // huecos entre bloques
+    var altoMax = Math.max(240, window.innerHeight - reservado - 44); // relleno y hueco entre bloques
     if (ESTRECHA.matches) {
       ordenador.style.width = "";
       movil.style.width = "";

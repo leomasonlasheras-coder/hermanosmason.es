@@ -22,9 +22,9 @@
   --tema-fondo-3: #e9d9c5;
   --tema-tinta: #2b2420;
   --tema-tinta-suave: #7a6a5e;
-  --tema-acento: #c2673f;
+  --tema-acento: #b35a33;
   --tema-linea: #e4d6c6;
-  --tema-boton-fondo: #c2673f;
+  --tema-boton-fondo: #b35a33;
   --tema-boton-texto: #fbf7f1;
   --tema-titulos: "Young Serif", Georgia, serif;
   --tema-titulos-peso: 400;
@@ -40,6 +40,8 @@
   --tema-radio-boton: 999px;
   --tema-radio-foto: 1.25rem;
   --tema-radio-caja: 1.25rem;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 1;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);

@@ -17,15 +17,15 @@
 }
 
 :root {
-  --tema-fondo: #f6f7f9;
-  --tema-fondo-2: #eceef2;
-  --tema-fondo-3: #dfe3e9;
+  --tema-fondo: #e6eaef;
+  --tema-fondo-2: #dadfe6;
+  --tema-fondo-3: #c9d0da;
   --tema-tinta: #1c1f24;
-  --tema-tinta-suave: #626873;
-  --tema-acento: #5b7a99;
-  --tema-linea: #dde1e7;
-  --tema-boton-fondo: #1c1f24;
-  --tema-boton-texto: #f6f7f9;
+  --tema-tinta-suave: #525964;
+  --tema-acento: #4a6a8c;
+  --tema-linea: #c9d0da;
+  --tema-boton-fondo: #4a6a8c;
+  --tema-boton-texto: #ffffff;
   --tema-titulos: "DM Serif Display", "Iowan Old Style", Georgia, serif;
   --tema-titulos-peso: 400;
   --tema-titulos-tracking: -0.01em;
@@ -40,6 +40,8 @@
   --tema-radio-boton: 12px;
   --tema-radio-foto: 12px;
   --tema-radio-caja: 12px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 1;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);

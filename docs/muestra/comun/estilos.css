@@ -184,7 +184,14 @@ section { padding-block: calc(clamp(5rem, 12vw, 10rem) * var(--tema-aire, 1)); }
   border-radius: var(--tema-radio-foto, 0);
 }
 
-.portada__foto { mix-blend-mode: multiply; }
+.portada__foto {
+
+  mix-blend-mode: var(--tema-foto-mezcla, normal);
+  isolation: isolate;
+  background: var(--tema-foto-lienzo, transparent);
+  border-radius: var(--tema-radio-foto, 0);
+}
+.portada__foto img { mix-blend-mode: multiply; }
 
 .portada__texto {
   display: grid;
@@ -252,6 +259,9 @@ section { padding-block: calc(clamp(5rem, 12vw, 10rem) * var(--tema-aire, 1)); }
     position: absolute;
     inset: 0;
     height: 100%;
+
+    -webkit-mask-image: linear-gradient(90deg, transparent 50%, #000 50%);
+    mask-image: linear-gradient(90deg, transparent 50%, #000 50%);
   }
 
   .portada__foto img {

@@ -92,23 +92,7 @@ h1, h2, p { margin: 0; }
   min-width: 0;
 }
 
-.mandos {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.5rem 1rem;
-}
-
-.mandos__izq { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.mandos > .boton { justify-self: end; }
-
-@media (max-width: 48rem) {
-  .mandos { grid-template-columns: 1fr auto; }
-  .mandos > .estado { grid-column: 1 / -1; order: 3; text-align: left; }
-}
-
-.pasar__texto:hover { background: var(--filete); }
-.pasar__texto:focus-visible, .flecha:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.flecha:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 
 .escenario {
   display: flex;
@@ -146,25 +130,30 @@ h1, h2, p { margin: 0; }
 .flecha:hover { background: var(--tinta); color: var(--blanco); }
 .flecha:active { transform: scale(0.94); }
 
-.pasar__texto {
-  appearance: none;
-  border: 1px solid var(--filete);
-  background: var(--blanco);
-  color: var(--tinta);
-  font: inherit;
-  font-weight: 500;
-  font-size: 0.875rem;
-  padding: 0.4rem 0.8rem;
+.aviso {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  z-index: 3;
+  transform: translate(-50%, 6px);
+  max-width: min(32rem, 90%);
+  margin: 0;
+  padding: 0.5rem 0.9rem;
   border-radius: 999px;
-  cursor: pointer;
-  min-height: 36px;
-  margin-left: 0.25rem;
+  border: 1px solid var(--filete);
+  background: color-mix(in srgb, var(--blanco) 94%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-size: 0.875rem;
+  color: var(--gris-600);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
 }
-
-.pasar__texto[hidden] { display: none; }
-
-.estado { font-size: 0.875rem; color: var(--gris-600); text-align: center; }
-.estado--mal { color: #b42318; }
+.aviso--visible { opacity: 1; transform: translate(-50%, 0); }
+.aviso--mal { color: #b42318; border-color: #f3c2bd; pointer-events: auto; }
 
 .aparatos {
   flex: 1 1 0;
@@ -271,7 +260,6 @@ h1, h2, p { margin: 0; }
   border-radius: 999px;
   background: var(--blanco);
   border: 1px solid var(--filete);
-  margin-right: 0.5rem;
 }
 
 .vista-btn {
@@ -303,12 +291,29 @@ h1, h2, p { margin: 0; }
 .vista-btn[aria-pressed="true"] { background: var(--tinta); color: var(--blanco); }
 
 .estilos__cuenta {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.15rem;
   font-size: 0.8125rem;
   color: var(--gris-600);
   font-variant-numeric: tabular-nums;
-  margin-bottom: 0.15rem;
 }
+.estilos__volver {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--tinta);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.estilos__volver::before { content: "·"; margin-right: 0.6rem; color: var(--gris-600); }
+.estilos__volver[hidden] { display: none; }
+.estilos__volver:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; border-radius: 2px; }
 .vista-btn:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 
 .aparatos { position: relative; }
@@ -421,16 +426,26 @@ h1, h2, p { margin: 0; }
 
 .estilos { display: grid; min-width: 0; }
 
+.estilos__fila {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .estilos__lista {
   --tarjeta: 6.5rem;
   list-style: none;
-  margin: 0 calc(-1 * var(--margen));
+  margin: 0;
   padding: 0.25rem calc(50% - var(--tarjeta) / 2) 0.25rem;
   display: flex;
   gap: 0.6rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 }
 
 .estilos__lista::-webkit-scrollbar { display: none; }
@@ -573,7 +588,11 @@ h1, h2, p { margin: 0; }
   .mapa { display: none; }
   .movil { width: min(60%, 14rem); }
   .movil { width: min(70%, 15rem); }
-  .estilos__lista { --tarjeta: 7rem; }
+
+  .estilos__fila { grid-template-columns: 1fr auto; }
+  .estilos__lista { --tarjeta: 7rem; grid-column: 1 / -1; order: 3; margin: 0 calc(-1 * var(--margen)); }
+  .aviso { bottom: auto; top: 50%; transform: translate(-50%, calc(-50% + 6px)); }
+  .aviso--visible { transform: translate(-50%, -50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {

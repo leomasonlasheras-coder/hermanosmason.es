@@ -47,6 +47,8 @@
   --tema-radio-boton: 0px;
   --tema-radio-foto: 0px;
   --tema-radio-caja: 0px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 1.05;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);

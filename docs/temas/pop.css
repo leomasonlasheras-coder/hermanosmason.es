@@ -32,7 +32,7 @@
   --tema-acento: #ff3b6b;
   --tema-linea: #161616;
   --tema-boton-fondo: #ff3b6b;
-  --tema-boton-texto: #ffffff;
+  --tema-boton-texto: #161616;
   --tema-titulos: "Anton", "Arial Black", Impact, sans-serif;
   --tema-titulos-peso: 400;
   --tema-titulos-tracking: 0.01em;
@@ -47,6 +47,8 @@
   --tema-radio-boton: 999px;
   --tema-radio-foto: 20px;
   --tema-radio-caja: 20px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 0.95;
   --tema-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.2, 1.1, 0.3, 1);

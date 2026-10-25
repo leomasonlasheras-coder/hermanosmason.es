@@ -1,5 +1,5 @@
-/* Tema "Lino" (lino)
-   Generado por herramientas/temas.py desde temas/presets/lino.json. No editar a mano. */
+/* Tema "Bosque" (bosque)
+   Generado por herramientas/temas.py desde temas/presets/bosque.json. No editar a mano. */
 
 @font-face {
   font-family: "Cormorant Garamond";
@@ -17,15 +17,15 @@
 }
 
 :root {
-  --tema-fondo: #faf9f6;
-  --tema-fondo-2: #f2efe8;
-  --tema-fondo-3: #e6e1d6;
-  --tema-tinta: #1f1d1a;
-  --tema-tinta-suave: #6a665e;
-  --tema-acento: #8a9a7b;
-  --tema-linea: #e3dfd6;
-  --tema-boton-fondo: #1f1d1a;
-  --tema-boton-texto: #faf9f6;
+  --tema-fondo: #16231c;
+  --tema-fondo-2: #1c2c23;
+  --tema-fondo-3: #283b2f;
+  --tema-tinta: #eef0e6;
+  --tema-tinta-suave: #a2b0a2;
+  --tema-acento: #d6b25e;
+  --tema-linea: #2b3d32;
+  --tema-boton-fondo: #d6b25e;
+  --tema-boton-texto: #16231c;
   --tema-titulos: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --tema-titulos-peso: 500;
   --tema-titulos-tracking: -0.005em;
@@ -40,6 +40,8 @@
   --tema-radio-boton: 0px;
   --tema-radio-foto: 0px;
   --tema-radio-caja: 0px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 1.1;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);

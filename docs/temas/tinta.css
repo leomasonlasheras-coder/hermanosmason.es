@@ -1,5 +1,5 @@
-/* Tema "Perla" (perla)
-   Generado por herramientas/temas.py desde temas/presets/perla.json. No editar a mano. */
+/* Tema "Tinta" (tinta)
+   Generado por herramientas/temas.py desde temas/presets/tinta.json. No editar a mano. */
 
 @font-face {
   font-family: "Playfair Display";
@@ -17,15 +17,15 @@
 }
 
 :root {
-  --tema-fondo: #ffffff;
-  --tema-fondo-2: #f7f5f3;
-  --tema-fondo-3: #ebe6e2;
-  --tema-tinta: #1a1a1a;
-  --tema-tinta-suave: #66605c;
-  --tema-acento: #c9a08a;
-  --tema-linea: #e8e2dd;
-  --tema-boton-fondo: #1a1a1a;
-  --tema-boton-texto: #ffffff;
+  --tema-fondo: #0f1a2b;
+  --tema-fondo-2: #152237;
+  --tema-fondo-3: #1f3049;
+  --tema-tinta: #f1ecdf;
+  --tema-tinta-suave: #a6afbf;
+  --tema-acento: #e8a07a;
+  --tema-linea: #27364f;
+  --tema-boton-fondo: #e8a07a;
+  --tema-boton-texto: #0f1a2b;
   --tema-titulos: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --tema-titulos-peso: 500;
   --tema-titulos-tracking: -0.01em;
@@ -37,9 +37,11 @@
   --tema-texto-peso: 400;
   --tema-texto-tamano: 1.0625rem;
   --tema-texto-interlinea: 1.6;
-  --tema-radio-boton: 999px;
+  --tema-radio-boton: 2px;
   --tema-radio-foto: 4px;
   --tema-radio-caja: 8px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 1;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.22, 1.2, 0.34, 1);

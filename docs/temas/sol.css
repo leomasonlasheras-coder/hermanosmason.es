@@ -10,15 +10,15 @@
 }
 
 :root {
-  --tema-fondo: #fffbe6;
-  --tema-fondo-2: #fff5c2;
-  --tema-fondo-3: #fde99a;
+  --tema-fondo: #ffd94d;
+  --tema-fondo-2: #fbd03a;
+  --tema-fondo-3: #f0c22a;
   --tema-tinta: #1f1a0e;
-  --tema-tinta-suave: #6e6448;
-  --tema-acento: #f08a24;
-  --tema-linea: #f3e9bd;
+  --tema-tinta-suave: #5a4a1c;
+  --tema-acento: #e0661a;
+  --tema-linea: #e4b92a;
   --tema-boton-fondo: #1f1a0e;
-  --tema-boton-texto: #fffbe6;
+  --tema-boton-texto: #ffd94d;
   --tema-titulos: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
   --tema-titulos-peso: 700;
   --tema-titulos-tracking: -0.02em;
@@ -33,6 +33,8 @@
   --tema-radio-boton: 12px;
   --tema-radio-foto: 12px;
   --tema-radio-caja: 12px;
+  --tema-foto-lienzo: transparent;
+  --tema-foto-mezcla: normal;
   --tema-aire: 0.95;
   --tema-curva: cubic-bezier(0.25, 0.6, 0.2, 1);
   --tema-sobrepaso: cubic-bezier(0.3, 1.3, 0.4, 1);

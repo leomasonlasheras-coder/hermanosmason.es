@@ -19,21 +19,10 @@
 
 <main class="editor">
 
-  <div class="mandos">
-    <div class="mandos__izq">
-      <div class="vistas" role="group" aria-label="Verla como en">
-        <button type="button" class="vista-btn" data-vista="ordenador" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M1.5 19.5h21"/></svg>Ordenador</button>
-        <button type="button" class="vista-btn" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Móvil</button>
-      </div>
-      <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
-    </div>
-    <p class="estado" id="estado" aria-live="polite">Cargando tu web…</p>
-    <a class="boton" id="pedir" href="#" target="_blank" rel="noopener" aria-disabled="true">Quiero este estilo</a>
-  </div>
-
   <section class="escenario" aria-label="Tu web con el estilo elegido">
   <button type="button" class="flecha" id="anterior" aria-label="Estilo anterior" title="Anterior (flecha izquierda)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <div class="aparatos">
+    <p class="aviso" id="estado" role="status" aria-live="polite">Cargando tu web…</p>
     <div class="ordenador">
       <div class="ordenador__tapa">
         <div class="pantalla pantalla--ordenador" data-base="1280">
@@ -63,8 +52,15 @@
   </section>
 
   <section class="estilos" aria-label="Estilos">
-    <p class="estilos__cuenta" id="cuenta">— de —</p>
-    <ol class="estilos__lista" id="lista"></ol>
+    <p class="estilos__cuenta"><span id="cuenta">— de —</span><button type="button" class="estilos__volver" id="volver" hidden>Volver al mío</button></p>
+    <div class="estilos__fila">
+      <div class="vistas" role="group" aria-label="Verla como en">
+        <button type="button" class="vista-btn" data-vista="ordenador" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M1.5 19.5h21"/></svg>Ordenador</button>
+        <button type="button" class="vista-btn" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Móvil</button>
+      </div>
+      <ol class="estilos__lista" id="lista"></ol>
+      <a class="boton" id="pedir" href="#" target="_blank" rel="noopener" aria-disabled="true">Quiero este estilo</a>
+    </div>
   </section>
 
 </main>
