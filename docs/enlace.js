@@ -804,23 +804,107 @@
 (function () {
   "use strict";
 
-  var video = document.querySelector(".muestra-video__video");
-  if (!video || !video.play) return;
+  var videos = Array.prototype.slice.call(document.querySelectorAll(".muestra-video__video"));
+  if (!videos.length) return;
 
-  function arrancar() {
-    if (!video.paused) return;
+  function arrancar(video) {
+    if (!video.play || video.dataset.dormido === "1" || !video.paused) return;
     var p = video.play();
     if (p && p.catch) p.catch(function () {});
   }
+  function arrancarDespiertos() { videos.forEach(arrancar); }
 
   var gestos = ["touchstart", "scroll", "pointerdown", "keydown"];
   function alPrimerGesto() {
     gestos.forEach(function (g) { window.removeEventListener(g, alPrimerGesto); });
-    arrancar();
+    arrancarDespiertos();
   }
   gestos.forEach(function (g) { window.addEventListener(g, alPrimerGesto, { passive: true }); });
 
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) arrancar();
+    if (!document.hidden) arrancarDespiertos();
   });
+
+  var cartas = document.querySelector("[data-cartas]");
+  var tira = cartas && cartas.querySelector(".cartas__tira");
+  var lista = tira ? Array.prototype.slice.call(tira.children) : [];
+  var puntos = [];
+
+  function dormir(video, si) {
+    if (!video) return;
+    if (si) {
+      video.dataset.dormido = "1";
+      if (!video.paused) video.pause();
+    } else {
+      video.dataset.dormido = "";
+      arrancar(video);
+    }
+  }
+
+  if (lista.length > 1) {
+    var caja = document.createElement("div");
+    caja.className = "cartas__puntos";
+    lista.forEach(function (carta, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Ver la carta " + (i + 1) + " de " + lista.length);
+      b.setAttribute("aria-current", i === 0 ? "true" : "false");
+      b.addEventListener("click", function () {
+        tira.scrollTo({ left: carta.offsetLeft - tira.offsetLeft, behavior: "smooth" });
+      });
+      caja.appendChild(b);
+      puntos.push(b);
+    });
+    cartas.appendChild(caja);
+
+    var activa = 0;
+    var tiraALaVista = true;
+    function mostrar(i) {
+      activa = i;
+      lista.forEach(function (carta, k) {
+        var es = k === i;
+        carta.classList.toggle("is-activa", es);
+        puntos[k].setAttribute("aria-current", es ? "true" : "false");
+        dormir(carta.querySelector("video"), !(es && tiraALaVista));
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      var oc = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.5) mostrar(lista.indexOf(e.target));
+        });
+      }, { root: tira, threshold: [0.5] });
+      lista.forEach(function (c) { oc.observe(c); });
+
+      var ot = new IntersectionObserver(function (entradas) {
+        tiraALaVista = entradas[0].isIntersecting;
+        mostrar(activa);
+      }, { threshold: 0.05 });
+      ot.observe(cartas);
+    } else {
+      mostrar(0);
+    }
+  }
+
+  var estilos = document.querySelector("[data-estilos]");
+  var videoEstilos = document.querySelector("[data-estilos-video]");
+  if (estilos && videoEstilos) {
+    var nombres = Array.prototype.slice.call(estilos.children);
+    var cada = parseFloat(estilos.getAttribute("data-cada")) || 2.5;
+    var encendido = 0;
+    function encender(i) {
+      if (i === encendido) return;
+      encendido = i;
+      nombres.forEach(function (li, k) { li.classList.toggle("is-activo", k === i); });
+    }
+    function seguir() {
+      if (videoEstilos.paused || videoEstilos.ended) return;
+      var t = videoEstilos.currentTime % (cada * nombres.length);
+      encender(Math.min(nombres.length - 1, Math.floor(t / cada)));
+      requestAnimationFrame(seguir);
+    }
+    videoEstilos.addEventListener("play", function () { requestAnimationFrame(seguir); });
+    videoEstilos.addEventListener("seeked", function () { encender(0); });
+  }
 })();

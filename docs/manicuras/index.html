@@ -63,7 +63,9 @@
           <li>200 € solo si te la quedas. Si no, no pagas nada.</li>
         </ul>
 
-        <figure class="muestra-video transformacion">
+        <div class="cartas" data-cartas>
+        <div class="cartas__tira">
+        <figure class="muestra-video transformacion cartas__carta">
           <div class="transformacion__fila">
             <p class="transformacion__rotulo">Lo que ya tienes</p>
             <p class="transformacion__rotulo transformacion__rotulo--web">Tu web, <span class="clave">en tres días</span></p>
@@ -130,6 +132,33 @@
           </div>
           <figcaption class="enlace__nota">Con tu ficha de Google y tu Instagram montamos la web. Es una muestra: la tuya lleva tu nombre y tus fotos.</figcaption>
         </figure>
+
+        <figure class="muestra-video transformacion transformacion--estilos cartas__carta">
+          <div class="transformacion__fila">
+            <p class="transformacion__rotulo">Elige un estilo</p>
+            <p class="transformacion__rotulo transformacion__rotulo--web">La <span class="clave">misma</span> web</p>
+
+            <ol class="estilos-lista" data-estilos data-cada="2.5" aria-label="Los tres estilos, por orden en el vídeo">
+              <li class="is-activo" style="--muestra-fondo:#f7f4ee;--muestra-acento:#b99a5b">Sereno</li>
+              <li style="--muestra-fondo:#f3e9dc;--muestra-acento:#b35a33">Cálido</li>
+              <li style="--muestra-fondo:#f2f2f2;--muestra-acento:#d9322a">Atrevido</li>
+            </ol>
+
+            <div class="resultado">
+              <div class="monitor">
+                <video class="monitor__video muestra-video__video" width="1024" height="768" muted loop playsinline preload="metadata" poster="../video/unas-estilos.webp" data-estilos-video aria-label="La misma web de muestra para salones de uñas, pasando por los estilos Sereno, Cálido y Atrevido">
+                  <source src="../video/unas-estilos.webm" type="video/webm" />
+                  <source src="../video/unas-estilos.mp4" type="video/mp4" />
+                </video>
+                <span class="monitor__pie"></span>
+              </div>
+            </div>
+
+          </div>
+          <figcaption class="enlace__nota">Es la misma web con otro aire: eliges un estilo y, si más adelante te apetece otro, se cambia sin rehacer nada.</figcaption>
+        </figure>
+        </div>
+        </div>
       </div>
     </section>
 
