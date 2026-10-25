@@ -331,8 +331,6 @@
   function escribirPlazo() {
     var hueco = form.querySelector("[data-plazo]");
     if (hueco) hueco.textContent = "Nos lo mandas hoy y el " + diaListo() + " ya está lista.";
-    var listo = form.querySelector("[data-listo]");
-    if (listo) listo.textContent = "El " + diaListo() + " la tienes lista.";
     pintarPlazoCierre();
   }
 
@@ -814,6 +812,12 @@
   }
   function arrancarDespiertos() { videos.forEach(arrancar); }
 
+  videos.forEach(function (video) {
+    video.addEventListener("playing", function () {
+      if (video.dataset.dormido === "1") video.pause();
+    });
+  });
+
   var gestos = ["touchstart", "scroll", "pointerdown", "keydown"];
   function alPrimerGesto() {
     gestos.forEach(function (g) { window.removeEventListener(g, alPrimerGesto); });
@@ -825,66 +829,24 @@
     if (!document.hidden) arrancarDespiertos();
   });
 
-  var cartas = document.querySelector("[data-cartas]");
-  var tira = cartas && cartas.querySelector(".cartas__tira");
-  var lista = tira ? Array.prototype.slice.call(tira.children) : [];
-  var puntos = [];
-
-  function dormir(video, si) {
-    if (!video) return;
-    if (si) {
-      video.dataset.dormido = "1";
-      if (!video.paused) video.pause();
-    } else {
-      video.dataset.dormido = "";
-      arrancar(video);
-    }
-  }
-
-  if (lista.length > 1) {
-    var caja = document.createElement("div");
-    caja.className = "cartas__puntos";
-    lista.forEach(function (carta, i) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("aria-label", "Ver la carta " + (i + 1) + " de " + lista.length);
-      b.setAttribute("aria-current", i === 0 ? "true" : "false");
-      b.addEventListener("click", function () {
-        tira.scrollTo({ left: carta.offsetLeft - tira.offsetLeft, behavior: "smooth" });
+  var cartas = Array.prototype.slice.call(document.querySelectorAll(".cartas__carta"));
+  if (cartas.length && "IntersectionObserver" in window) {
+    var oc = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        var video = e.target.querySelector("video");
+        if (!video) return;
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          video.dataset.dormido = "";
+          arrancar(video);
+        } else {
+          video.dataset.dormido = "1";
+          if (!video.paused) video.pause();
+        }
       });
-      caja.appendChild(b);
-      puntos.push(b);
-    });
-    cartas.appendChild(caja);
-
-    var activa = 0;
-    var tiraALaVista = true;
-    function mostrar(i) {
-      activa = i;
-      lista.forEach(function (carta, k) {
-        var es = k === i;
-        carta.classList.toggle("is-activa", es);
-        puntos[k].setAttribute("aria-current", es ? "true" : "false");
-        dormir(carta.querySelector("video"), !(es && tiraALaVista));
-      });
-    }
-
-    if ("IntersectionObserver" in window) {
-      var oc = new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          if (e.isIntersecting && e.intersectionRatio >= 0.5) mostrar(lista.indexOf(e.target));
-        });
-      }, { root: tira, threshold: [0.5] });
-      lista.forEach(function (c) { oc.observe(c); });
-
-      var ot = new IntersectionObserver(function (entradas) {
-        tiraALaVista = entradas[0].isIntersecting;
-        mostrar(activa);
-      }, { threshold: 0.05 });
-      ot.observe(cartas);
-    } else {
-      mostrar(0);
-    }
+    }, { threshold: [0.5] });
+    cartas.forEach(function (c) { oc.observe(c); });
+  } else {
+    videos.forEach(function (v) { v.dataset.dormido = ""; });
   }
 
   var estilos = document.querySelector("[data-estilos]");

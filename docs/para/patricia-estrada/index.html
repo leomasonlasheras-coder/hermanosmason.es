@@ -63,12 +63,10 @@
           <li>200 € solo si te la quedas. Si no, no pagas nada.</li>
         </ul>
 
-        <div class="cartas" data-cartas>
-        <div class="cartas__tira">
+        <div class="cartas">
         <figure class="muestra-video transformacion cartas__carta">
+          <p class="cartas__titulo">De tus fotos a tu web</p>
           <div class="transformacion__fila">
-            <p class="transformacion__rotulo">Lo que ya tienes</p>
-            <p class="transformacion__rotulo transformacion__rotulo--web">Tu web, <span class="clave">en tres días</span></p>
 
             <div class="fuentes">
               <div class="maps" aria-label="Tu ficha de Google Maps, de muestra">
@@ -130,34 +128,26 @@
             </div>
 
           </div>
-          <figcaption class="enlace__nota">Con tu ficha de Google y tu Instagram montamos la web. Es una muestra: la tuya lleva tu nombre y tus fotos.</figcaption>
+
+          <figcaption class="enlace__nota">Es una muestra: la tuya lleva tu nombre y tus fotos.</figcaption>
         </figure>
 
-        <figure class="muestra-video transformacion transformacion--estilos cartas__carta">
-          <div class="transformacion__fila">
-            <p class="transformacion__rotulo">Elige un estilo</p>
-            <p class="transformacion__rotulo transformacion__rotulo--web">La <span class="clave">misma</span> web</p>
-
-            <ol class="estilos-lista" data-estilos data-cada="2.5" aria-label="Los tres estilos, por orden en el vídeo">
-              <li class="is-activo" style="--muestra-fondo:#f7f4ee;--muestra-acento:#b99a5b">Sereno</li>
-              <li style="--muestra-fondo:#f3e9dc;--muestra-acento:#b35a33">Cálido</li>
-              <li style="--muestra-fondo:#f2f2f2;--muestra-acento:#d9322a">Atrevido</li>
-            </ol>
-
-            <div class="resultado">
-              <div class="monitor">
-                <video class="monitor__video muestra-video__video" width="1024" height="768" muted loop playsinline preload="metadata" poster="../../video/unas-estilos.webp" data-estilos-video aria-label="La misma web de muestra para salones de uñas, pasando por los estilos Sereno, Cálido y Atrevido">
-                  <source src="../../video/unas-estilos.webm" type="video/webm" />
-                  <source src="../../video/unas-estilos.mp4" type="video/mp4" />
-                </video>
-                <span class="monitor__pie"></span>
-              </div>
-            </div>
-
+        <figure class="muestra-video cartas__carta cartas__carta--estilos">
+          <p class="cartas__titulo">La misma web, tres estilos</p>
+          <div class="monitor">
+            <video class="monitor__video muestra-video__video" width="1024" height="768" muted loop playsinline preload="metadata" poster="../../video/unas-estilos.webp" data-estilos-video aria-label="La misma web de muestra para salones de uñas, pasando por los estilos Sereno, Cálido y Atrevido">
+              <source src="../../video/unas-estilos.webm" type="video/webm" />
+              <source src="../../video/unas-estilos.mp4" type="video/mp4" />
+            </video>
+            <span class="monitor__pie"></span>
           </div>
-          <figcaption class="enlace__nota">Es la misma web con otro aire: eliges un estilo y, si más adelante te apetece otro, se cambia sin rehacer nada.</figcaption>
+          <ol class="estilos-lista" data-estilos data-cada="2.5" aria-label="Los tres estilos, por orden en el vídeo">
+            <li class="is-activo" style="--muestra-fondo:#f7f4ee;--muestra-acento:#b99a5b">Sereno</li>
+            <li style="--muestra-fondo:#f3e9dc;--muestra-acento:#b35a33">Cálido</li>
+            <li style="--muestra-fondo:#f2f2f2;--muestra-acento:#d9322a">Atrevido</li>
+          </ol>
+          <figcaption class="enlace__nota">Si más adelante te apetece otro, se cambia sin rehacer nada.</figcaption>
         </figure>
-        </div>
         </div>
       </div>
     </section>
@@ -410,7 +400,7 @@
         </fieldset>
 
         <fieldset class="tramo" data-bloque="web" hidden>
-          <legend>Elige un estilo <span class="tramo__ayuda">¿Cuál se parece más a lo que te gustaría? Son muestras: la tuya lleva tu nombre y tus fotos.</span></legend>
+          <legend>Elige un estilo <span class="tramo__ayuda">¿Cuál se parece más a lo que te gustaría? Luego va con tu nombre y tus fotos.</span></legend>
           <div class="tramo__cuerpo">
           <div class="estilos">
             <label class="estilo">
@@ -563,7 +553,7 @@
 
           <div class="tramo__nav tramo__nav--final">
 
-            <p class="tramo__aviso" data-aviso>Al tocar nos llegan tus respuestas y te escribe Leo o Pablo por WhatsApp para confirmar la visita. Cómo tratamos <a href="#capa-datos" data-abrir-capa>tus datos</a>.</p>
+            <p class="tramo__aviso" data-aviso>Al tocar nos llegan tus respuestas y te escribimos para confirmar la visita. Cómo tratamos <a href="#capa-datos" data-abrir-capa>tus datos</a>.</p>
             <button class="btn btn--lg" type="button" data-ir="atras">Atrás</button>
             <button class="btn btn--solid btn--lg tramo__enviar" type="submit" data-final>
               <span data-rotulo>Empezar mi mes gratis</span>
@@ -580,7 +570,7 @@
           <legend>Ya lo tenemos <span class="tramo__ayuda">No tienes que hacer nada más.</span></legend>
           <div class="tramo__cuerpo">
 
-            <p class="gracias__que">Te escribe Leo o Pablo por WhatsApp <span data-cuando>hoy mismo</span>, desde el 699 072 079, para confirmar la visita. <span data-listo>En tres días la tienes lista.</span></p>
+            <p class="gracias__que">Te escribe Leo o Pablo por WhatsApp <span data-cuando>hoy mismo</span>, desde el 699 072 079, para confirmar la visita.</p>
             <p class="gracias__recibo" data-recibo hidden></p>
             <p class="gracias__anadir">¿Quieres añadir algo? <a href="https://wa.me/34699072079?text=Hola.%20Ya%20os%20he%20mandado%20el%20cuestionario.%20Quer%C3%ADa%20a%C3%B1adir%3A%20" data-salida data-mensaje="Ya os he mandado el cuestionario. Quería añadir: " target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.</p>
           </div>
@@ -601,7 +591,7 @@
       <div class="section__head reveal">
         <h2 id="truco-titulo">¿Dónde está el truco?</h2>
 
-        <p class="section__sub truco__respuesta">No lo hay. Te la dejamos probar un mes porque estamos seguros de que te la querrás quedar: eliges uno de nuestros diseños y en tres días ves el tuyo. <strong>Si al acabar el mes no te convence, la retiramos y no nos debes nada.</strong> Y si nos dices que no, no insistimos.</p>
+        <p class="section__sub truco__respuesta">No lo hay. <strong>Si al acabar el mes no te convence, la retiramos y no nos debes nada.</strong> Y si nos dices que no, no insistimos.</p>
       </div>
     </section>
 
