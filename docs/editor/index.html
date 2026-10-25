@@ -20,12 +20,15 @@
 <main class="editor">
 
   <div class="mandos">
-    <div class="vistas" role="group" aria-label="Verla como en">
-      <button type="button" class="vista-btn" data-vista="ordenador" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M1.5 19.5h21"/></svg>Ordenador</button>
-      <button type="button" class="vista-btn" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Móvil</button>
+    <div class="mandos__izq">
+      <div class="vistas" role="group" aria-label="Verla como en">
+        <button type="button" class="vista-btn" data-vista="ordenador" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M1.5 19.5h21"/></svg>Ordenador</button>
+        <button type="button" class="vista-btn" data-vista="movil" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Móvil</button>
+      </div>
+      <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
     </div>
-    <button type="button" class="pasar__texto" id="volver" hidden>Volver al mío</button>
     <p class="estado" id="estado" aria-live="polite">Cargando tu web…</p>
+    <a class="boton" id="pedir" href="#" target="_blank" rel="noopener" aria-disabled="true">Quiero este estilo</a>
   </div>
 
   <section class="escenario" aria-label="Tu web con el estilo elegido">
@@ -65,11 +68,6 @@
   </section>
 
 </main>
-
-<footer class="pedir">
-  <p class="pedir__texto">Estilo elegido: <strong id="elegido">—</strong></p>
-  <a class="boton" id="pedir" href="#" target="_blank" rel="noopener" aria-disabled="true">Quiero este estilo</a>
-</footer>
 
 <template id="plantilla-estilo">
   <li class="estilos__item">

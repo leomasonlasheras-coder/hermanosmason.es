@@ -65,7 +65,7 @@
         lista.scrollTo({ left: destino, behavior: REDUCIDO.matches ? "auto" : "smooth" });
       }
     });
-    elegido.textContent = p ? p.nombre : slug || "—";
+    if (elegido) elegido.textContent = p ? p.nombre : slug || "—";
     var mensaje = "Hola, he probado los estilos en el panel y quiero el estilo «" + (p ? p.nombre : slug) + "» para mi web (" + WEB + ").";
     pedir.href = WHATSAPP + encodeURIComponent(mensaje);
     pedir.setAttribute("aria-disabled", p ? "false" : "true");
@@ -253,11 +253,11 @@
 
   function medir() {
     var reservado = 0;
-    [".cabecera", ".mandos", ".estilos", ".pedir"].forEach(function (s) {
+    [".cabecera", ".mandos", ".estilos"].forEach(function (s) {
       var e = document.querySelector(s);
       if (e && e.offsetParent !== null) reservado += e.offsetHeight;
     });
-    var altoMax = Math.max(240, window.innerHeight - reservado - 72); // huecos entre bloques
+    var altoMax = Math.max(240, window.innerHeight - reservado - 56); // huecos entre bloques
     if (ESTRECHA.matches) {
       ordenador.style.width = "";
       movil.style.width = "";
