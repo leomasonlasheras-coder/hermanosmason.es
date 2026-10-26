@@ -251,10 +251,20 @@
 (function (web) {
   if (window.top !== window.self || navigator.webdriver) return;
   if (!/^https?:$/.test(location.protocol) || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+  var hechos = {};
+  function avisar(ruta) { if (navigator.sendBeacon) navigator.sendBeacon("https://contador.hermanosmason.workers.dev/" + ruta, web); }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]"), h = a ? a.href : "", tipo =
+      /^tel:/i.test(h) ? "llamar" :
+      /^whatsapp:|\/\/(wa\.me|api\.whatsapp\.com|(www\.)?whatsapp\.com)\//i.test(h) ? "whatsapp" :
+      /\/\/((www\.)?google\.[a-z.]+\/maps|maps\.google\.|maps\.app\.goo\.gl|goo\.gl\/maps|maps\.apple\.com)/i.test(h) ? "mapa" :
+      /\/\/([a-z0-9-]+\.)*(booksy|treatwell|fresha|timify|reservio|bookitit)\./i.test(h) ? "reservar" : "";
+    if (tipo && !hechos[tipo]) { hechos[tipo] = 1; avisar("toque?tipo=" + tipo); }
+  }, true);
   var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
   if (nav && nav.type !== "navigate") return;
   try { if (document.referrer && new URL(document.referrer).host === location.host) return; } catch (e) {}
-  if (navigator.sendBeacon) navigator.sendBeacon("https://contador.hermanosmason.workers.dev/visita", web);
+  avisar("visita");
 })("hermanosmason.es/muestra/unas");
 </script>
 </body>
