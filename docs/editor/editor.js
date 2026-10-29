@@ -6,6 +6,10 @@
   var TEMA_INICIAL = params.get("tema") || "";
   var CATALOGO = params.get("catalogo") || "../temas/catalogo.json";
   var WHATSAPP = "https://wa.me/34699072079?text=";
+  var RECIBIR = "3510b3af-c7f1-4904-a86c-2bc85d468354";   // Web3Forms, pública: solo sirve para enviar
+  var PLAZO = "en menos de 24 h";
+  var PANELES = ["https://panel.hermanosmason.es"];
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) PANELES.push(location.origin);   // la mesa
   var ESPERA_MS = 6000;
   if (params.get("embebido")) document.body.classList.add("embebido");
 
@@ -25,6 +29,7 @@
   var estado = document.getElementById("estado");
   var elegido = document.getElementById("elegido");
   var pedir = document.getElementById("pedir");
+  var fantasma = document.querySelector(".boton--fantasma");
   var cuenta = document.getElementById("cuenta");
   var botonVolver = document.getElementById("volver");
   var urlOrdenador = document.getElementById("url-ordenador");
@@ -35,6 +40,10 @@
   var original = "";   // el tema que llevaba la web al abrir el editor
   var webResponde = false;
   var temporizador = null;
+  var clienta = null;     // { nombre, correo }, del panel
+  var pedido = "";        // el último estilo pedido por correo
+  var enviando = false;
+  var respaldo = false;   // el envío falló: el botón lleva a WhatsApp
 
   function decirEstado(texto, mal) {
     if (texto) estado.textContent = texto;
@@ -67,11 +76,89 @@
       }
     });
     if (elegido) elegido.textContent = p ? p.nombre : slug || "—";
-    var mensaje = "Hola, he probado los estilos en el panel y quiero el estilo «" + (p ? p.nombre : slug) + "» para mi web (" + WEB + ").";
-    pedir.href = WHATSAPP + encodeURIComponent(mensaje);
-    pedir.setAttribute("aria-disabled", p ? "false" : "true");
+    pintarPedir();
     pintarCuenta();
   }
+
+  function rotularPedir(texto) {
+    pedir.textContent = texto;
+    if (fantasma) fantasma.textContent = texto;
+  }
+
+  function pintarPedir() {
+    var p = porSlug[actual];
+    var mensaje = "Hola, he probado los estilos en el panel y quiero el estilo «" + (p ? p.nombre : actual) + "» para mi web (" + WEB + ").";
+    pedir.href = WHATSAPP + encodeURIComponent(mensaje);
+    if (enviando) return;
+    respaldo = false;
+    var hecho = !!p && actual === pedido;
+    rotularPedir(hecho ? "Pedido" : "Quiero este estilo");
+    pedir.classList.toggle("is-pedido", hecho);
+    pedir.setAttribute("aria-disabled", !p || hecho || actual === original ? "true" : "false");
+  }
+
+  function mandarPedido(slug) {
+    var p = porSlug[slug];
+    var antes = porSlug[original] ? porSlug[original].nombre : "(no se sabe)";
+    enviando = true;
+    rotularPedir("Enviando…");
+    pedir.setAttribute("aria-disabled", "true");
+    var controlador = window.AbortController ? new AbortController() : null;
+    var reloj = controlador ? setTimeout(function () { controlador.abort(); }, 12000) : 0;
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: RECIBIR,
+        subject: "Estilo: " + (clienta.nombre || clienta.correo) + " quiere " + p.nombre,
+        from_name: "hermanosmason.es",
+        Clienta: clienta.nombre || "(sin nombre)",
+        Correo: clienta.correo,
+        Web: WEB,
+        "Estilo pedido": p.nombre + " (" + p.slug + ")",
+        "Estilo de ahora": antes,
+        Plazo: "Le hemos dicho que lo dejamos puesto " + PLAZO,
+        Enviado: new Date().toISOString()
+      }),
+      signal: controlador ? controlador.signal : undefined
+    }).then(function (respuesta) {
+      return respuesta.json().then(
+        function (json) { return respuesta.ok && !!(json && json.success); },
+        function () { return respuesta.ok; }
+      );
+    }).then(function (bien) {
+      if (!bien) throw new Error("Web3Forms no lo ha aceptado");
+      pedido = slug;
+      decirEstado("Pedido: " + p.nombre + ". Lo dejamos puesto " + PLAZO + ".");
+    }).catch(function () {
+      respaldo = true;
+      decirEstado("No ha salido. Mándanoslo por WhatsApp.", true);
+    }).then(function () {
+      clearTimeout(reloj);
+      enviando = false;
+      if (respaldo && actual === slug) {
+        rotularPedir("Pedir por WhatsApp");
+        pedir.setAttribute("aria-disabled", "false");
+      } else {
+        pintarPedir();
+      }
+    });
+  }
+
+  pedir.addEventListener("click", function (e) {
+    if (pedir.getAttribute("aria-disabled") === "true") { e.preventDefault(); return; }
+    if (respaldo || !clienta || !window.fetch) return;   // sigue el enlace: WhatsApp
+    e.preventDefault();
+    mandarPedido(actual);
+  });
+
+  window.addEventListener("message", function (event) {
+    if (event.source !== window.parent || PANELES.indexOf(event.origin) === -1) return;
+    var d = event.data;
+    if (!d || d.tipo !== "clienta" || !d.correo) return;
+    clienta = { nombre: String(d.nombre || ""), correo: String(d.correo) };
+  });
+  if (window.parent !== window) window.parent.postMessage({ tipo: "editor-hola" }, "*");
 
   function tarjeta(p) {
     var nodo = plantilla.content.cloneNode(true);
