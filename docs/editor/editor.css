@@ -1,33 +1,28 @@
 @font-face {
-  font-family: "Inter Tight";
-  font-style: normal;
-  font-weight: 600 800;
-  font-display: swap;
-  src: url("../fonts/inter-tight-latin-var.woff2") format("woff2");
-}
-
-@font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 100 900;
   font-display: swap;
   src: url("../fonts/inter-latin-var.woff2") format("woff2");
 }
 
 :root {
   --blanco: #ffffff;
-  --banda: #f2f1f3;
-  --filete: #e5e4e7;
-  --gris-300: #d8d7da;
-  --gris-400: #98979b;
-  --gris-600: #6d6b70;
+  --banda: #f2f2f7;
+  --filete: #e5e5ea;
+  --relleno: rgba(120, 120, 128, 0.12);
+  --gris-300: #d1d1d6;
+  --gris-400: #8e8e93;
+  --gris-600: #6e6e73;
   --tinta: #19171c;
   --amarillo: #ffd43b;
 
-  --rotulo: "Inter Tight", "Inter", system-ui, sans-serif;
-  --texto: "Inter", system-ui, sans-serif;
+  --rotulo: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --texto: var(--rotulo);
 
   --radio: 14px;
+  --flota: 0 0 0 0.5px rgba(0, 0, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.08);
+  --suave: cubic-bezier(0.32, 0.72, 0, 1);
   --margen: clamp(1rem, 3vw, 2rem);
   --contorno: 3px solid var(--tinta);
   --mov: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -48,8 +43,11 @@ body {
   background: var(--banda);
   color: var(--tinta);
   font-family: var(--texto);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -104,30 +102,31 @@ h1, h2, p { margin: 0; }
 .flecha {
   appearance: none;
   flex: none;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
-  border: var(--contorno);
+  border: 0;
   background: var(--blanco);
   color: var(--tinta);
+  box-shadow: var(--flota);
   cursor: pointer;
   display: grid;
   place-items: center;
   padding: 0;
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.2s, transform 0.35s var(--suave);
 }
 
 .flecha svg {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2.4;
+  stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.flecha:hover { background: var(--tinta); color: var(--blanco); }
+.flecha:hover { background: #f7f7f9; }
 .flecha:active { transform: scale(0.94); }
 
 .aviso {
@@ -256,10 +255,9 @@ h1, h2, p { margin: 0; }
 
 .vistas {
   display: inline-flex;
-  padding: 3px;
-  border-radius: 999px;
-  background: var(--blanco);
-  border: 1px solid var(--filete);
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--relleno);
 }
 
 .vista-btn {
@@ -269,12 +267,13 @@ h1, h2, p { margin: 0; }
   color: var(--gris-600);
   font: inherit;
   padding: 0;
-  width: 42px;
+  width: 44px;
   height: 32px;
-  border-radius: 999px;
+  border-radius: 7px;
   cursor: pointer;
   display: inline-grid;
   place-items: center;
+  transition: background 0.2s, color 0.2s;
 }
 
 .vista-btn svg {
@@ -287,7 +286,7 @@ h1, h2, p { margin: 0; }
   stroke-linejoin: round;
 }
 
-.vista-btn[aria-pressed="true"] { background: var(--tinta); color: var(--blanco); }
+.vista-btn[aria-pressed="true"] { background: var(--blanco); color: var(--tinta); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.04); }
 
 .estilos__linea {
   display: grid;
@@ -468,7 +467,7 @@ h1, h2, p { margin: 0; }
   width: 100%;
   text-align: left;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--blanco);
   padding: 0.35rem;
   display: grid;
@@ -575,8 +574,8 @@ h1, h2, p { margin: 0; }
 .boton {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0.5rem 1.1rem;
+  min-height: 44px;
+  padding: 0.625rem 1.125rem;
   border-radius: 999px;
   background: var(--tinta);
   color: var(--blanco);
@@ -585,13 +584,15 @@ h1, h2, p { margin: 0; }
   font-size: 0.9375rem;
   text-decoration: none;
   white-space: nowrap;
+  transition: transform 0.35s var(--suave), opacity 0.2s;
 }
 
-.boton:hover { background: #2c2a30; }
+.boton:hover { opacity: 0.86; }
+.boton:active { transform: scale(0.97); }
 .boton:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
 .boton[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 
-.boton.is-pedido { opacity: 1; background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1.5px var(--gris-300); }
+.boton.is-pedido { opacity: 1; background: var(--relleno); color: var(--tinta); }
 .boton.is-pedido::before { content: ""; width: 0.35rem; height: 0.65rem; margin: -0.15rem 0.55rem 0 0.1rem; border: solid currentColor; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
 @media (max-width: 48rem) {
@@ -613,5 +614,5 @@ h1, h2, p { margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .estilo, .web, .ordenador, .movil, .mapa, .mapa__pantalla { transition: none; animation: none; }
+  .estilo, .web, .ordenador, .movil, .mapa, .mapa__pantalla, .flecha, .boton { transition: none; animation: none; }
 }
