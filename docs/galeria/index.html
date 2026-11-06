@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colección privada · Hermanos Mason</title>
+<meta name="robots" content="noindex">
+
+<link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <p class="cabecera__marca">Hermanos Mason</p>
+  <h1 class="cabecera__titulo">Colección privada</h1>
+  <p class="cabecera__sub">Diseñados por nosotros, solo para nuestras clientas.</p>
+</header>
+
+<main class="galeria">
+
+  <section class="lista" id="lista" aria-label="Diseños de la colección">
+    <p class="estado" id="estado" role="status">Abriendo la colección…</p>
+    <ul class="tarjetas" id="tarjetas"></ul>
+  </section>
+
+  <section class="ficha" id="ficha" aria-labelledby="ficha-nombre" hidden>
+    <div class="barra">
+      <a class="volver" href="#" id="volver" aria-label="Volver a la colección"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Colección</span></a>
+      <a class="boton boton--barra" id="pedir" href="#" target="_blank" rel="noopener">Pedir</a>
+    </div>
+    <h2 class="oculto" id="ficha-nombre"></h2>
+    <p class="oculto" id="nota" role="status" aria-live="polite"></p>
+    <div class="capturas" id="capturas"></div>
+  </section>
+
+</main>
+
+<dialog class="hoja" id="hoja" aria-labelledby="hoja-titulo" aria-describedby="hoja-texto">
+  <div class="hoja__caja">
+    <img class="hoja__foto" id="hoja-foto" src="data:," alt="" width="800" height="500">
+    <h3 class="hoja__titulo" id="hoja-titulo"></h3>
+    <p class="hoja__texto" id="hoja-texto"></p>
+    <button type="button" class="boton hoja__si" id="hoja-si">Pedir</button>
+    <button type="button" class="hoja__no" id="hoja-no" autofocus>Cancelar</button>
+  </div>
+</dialog>
+
+<template id="plantilla-tarjeta">
+  <li>
+    <a class="tarjeta" href="#">
+      <span class="tarjeta__foto"><img src="" alt="" width="800" height="500" loading="lazy" decoding="async"></span>
+      <span class="tarjeta__pie">
+        <span class="tarjeta__nombre"></span>
+        <span class="tarjeta__marca"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span class="tarjeta__estado">Disponible</span></span>
+      </span>
+    </a>
+  </li>
+</template>
+
+<script src="galeria.js"></script>
+</body>
+</html>

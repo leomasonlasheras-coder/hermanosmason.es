@@ -1,0 +1,142 @@
+{
+  "generado": "2026-11-06",
+  "disenos": [
+    {
+      "slug": "cacao",
+      "nombre": "Cacao",
+      "frase": "Dos tintas, letras que se muerden y los precios a la vista.",
+      "sector": "estetica",
+      "orden": 1,
+      "tarjeta": {
+        "src": "cacao/tarjeta.webp",
+        "ancho": 800,
+        "alto": 500
+      },
+      "paginas": [
+        {
+          "nombre": "Inicio",
+          "ruta": "",
+          "secciones": [
+            {
+              "nombre": "Portada",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-01-portada.webp",
+                "ancho": 1920,
+                "alto": 1538
+              },
+              "movil": {
+                "src": "cacao/p1-movil-01-portada.webp",
+                "ancho": 780,
+                "alto": 1998
+              }
+            },
+            {
+              "nombre": "Servicios destacados",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-02-servicios-destacados.webp",
+                "ancho": 1920,
+                "alto": 2838
+              },
+              "movil": {
+                "src": "cacao/p1-movil-02-servicios-destacados.webp",
+                "ancho": 780,
+                "alto": 3584
+              }
+            },
+            {
+              "nombre": "Por qué elegirnos",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-03-por-que-elegirnos.webp",
+                "ancho": 1920,
+                "alto": 3512
+              },
+              "movil": {
+                "src": "cacao/p1-movil-03-por-que-elegirnos.webp",
+                "ancho": 780,
+                "alto": 3538
+              }
+            },
+            {
+              "nombre": "Resultados",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-04-resultados.webp",
+                "ancho": 1920,
+                "alto": 1701
+              },
+              "movil": {
+                "src": "cacao/p1-movil-04-resultados.webp",
+                "ancho": 780,
+                "alto": 2442
+              }
+            },
+            {
+              "nombre": "Equipo",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-05-equipo.webp",
+                "ancho": 1920,
+                "alto": 1904
+              },
+              "movil": {
+                "src": "cacao/p1-movil-05-equipo.webp",
+                "ancho": 780,
+                "alto": 2388
+              }
+            },
+            {
+              "nombre": "Reseñas",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-06-resenas.webp",
+                "ancho": 1920,
+                "alto": 1457
+              },
+              "movil": {
+                "src": "cacao/p1-movil-06-resenas.webp",
+                "ancho": 780,
+                "alto": 2092
+              }
+            },
+            {
+              "nombre": "Bonos regalo",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-07-bonos-regalo.webp",
+                "ancho": 1920,
+                "alto": 1142
+              },
+              "movil": {
+                "src": "cacao/p1-movil-07-bonos-regalo.webp",
+                "ancho": 780,
+                "alto": 2204
+              }
+            },
+            {
+              "nombre": "Preguntas frecuentes",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-08-preguntas-frecuentes.webp",
+                "ancho": 1920,
+                "alto": 1056
+              },
+              "movil": {
+                "src": "cacao/p1-movil-08-preguntas-frecuentes.webp",
+                "ancho": 780,
+                "alto": 1456
+              }
+            },
+            {
+              "nombre": "Reserva y cómo llegar",
+              "ordenador": {
+                "src": "cacao/p1-ordenador-09-reserva-y-como-llegar.webp",
+                "ancho": 1920,
+                "alto": 2624
+              },
+              "movil": {
+                "src": "cacao/p1-movil-09-reserva-y-como-llegar.webp",
+                "ancho": 780,
+                "alto": 3558
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
