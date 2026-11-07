@@ -5,7 +5,12 @@
   var CATALOGO = new URL(params.get("catalogo") || "../disenos/catalogo.json", location.href);
   var WHATSAPP = "https://wa.me/34699072079?text=";
   var RECIBIR = "3510b3af-c7f1-4904-a86c-2bc85d468354";   // Web3Forms, pública: solo sirve para enviar
-  var PLAZO = "en 48 h";
+  var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  var plazo = (function () {   // el lunes que viene; el panel manda el suyo
+    var d = new Date();
+    d.setDate(d.getDate() + 8 - (d.getDay() || 7));
+    return "el lunes " + d.getDate() + " de " + MESES[d.getMonth()];
+  })();
   var PANELES = ["https://panel.hermanosmason.es"];
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) PANELES.push(location.origin);   // la mesa
   var raiz = document.documentElement;
@@ -172,7 +177,7 @@
     if (typeof hoja.showModal !== "function") { mandarPedido(d); return; }
     hojaFoto.src = dondeEsta(d.tarjeta.src);
     hojaTitulo.textContent = "¿Pasamos tu web a " + d.nombre + "?";
-    hojaTexto.textContent = "Te la preparamos nosotros " + PLAZO + ", con tus textos y tus fotos. Es tu cambio de diseño de este mes.";
+    hojaTexto.textContent = "Te la preparamos nosotros " + plazo + ", con tus textos y tus fotos. Es tu cambio de diseño de este mes.";
     hojaSi.textContent = "Pedir " + d.nombre;
     hoja.showModal();
   }
@@ -202,7 +207,7 @@
         Web: clienta.web || "(sin web)",
         "Diseño pedido": d.nombre + " (" + d.slug + ")",
         "Diseño de ahora": antes,
-        Plazo: "Le hemos dicho que lo tiene " + PLAZO + " (naturales, desde ahora)",
+        Plazo: "Le hemos dicho que lo tiene " + plazo,
         Ojo: "Un cambio de diseño al mes: mirar si ya ha pedido otro este mes",
         Enviado: new Date().toISOString()
       }),
@@ -225,7 +230,7 @@
         decirNota("No ha salido. Pídelo por WhatsApp.");
       } else {
         pintarPedir();
-        if (pedido === d.slug) decirNota("Pedido. Te la preparamos " + PLAZO + ", con tus textos y tus fotos.");
+        if (pedido === d.slug) decirNota("Pedido. Te la preparamos " + plazo + ", con tus textos y tus fotos.");
       }
     });
   }
@@ -242,6 +247,7 @@
     var d = event.data;
     if (!d || d.tipo !== "clienta" || !d.correo) return;
     clienta = { nombre: String(d.nombre || ""), correo: String(d.correo), diseno: String(d.diseno || ""), web: String(d.web || "") };
+    if (d.plazo) plazo = String(d.plazo);
     pintarTuyo();
   });
   if (window.parent !== window) window.parent.postMessage({ tipo: "galeria-hola" }, "*");
