@@ -2616,6 +2616,8 @@ html:not(.no-js) body:has(.cortina) .site-header {
   color: var(--ink-head);
 }
 
+.flujo img { width: 100%; height: auto; border-radius: 0; background: none; }
+
 .cartas__carta .transformacion__fila { grid-template-rows: 1fr; }
 .cartas__carta .fuentes,
 .cartas__carta .flecha,
