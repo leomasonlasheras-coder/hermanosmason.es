@@ -359,6 +359,7 @@
 
   var negocio = form.dataset.negocio || "";
   var persona = form.dataset.nombre || "";
+  var dePortada = form.dataset.origen === "portada";
 
   var pasoDatos = form.querySelector(".tramo--datos");
   var camposDatos = pasoDatos
@@ -589,6 +590,7 @@
   function renglones() {
     var renglones = [];
 
+    if (dePortada) renglones.push("*Llego desde:* vuestra web (no hemos hablado por teléfono)");
     if (negocio) renglones.push("*Negocio:* " + negocio);
 
     var llegan = marcadas("llegan");
@@ -693,11 +695,11 @@
     var visita = fraseVisita();
     var datos = {
       access_key: recibir,
-      subject: visita ? quien + ": visita " + visita : "Cuestionario de " + quien,
+      subject: (visita ? quien + ": visita " + visita : "Cuestionario de " + quien) + (dePortada ? " (desde la portada, sin llamada)" : ""),
       from_name: "hermanosmason.es",
       Nombre: persona || "(sin nombre)",
       Negocio: negocio || "(sin negocio: página de " + (form.dataset.pagina || "sector") + ")",
-      Desde: form.dataset.pagina || "",
+      Desde: (form.dataset.pagina || "") + (dePortada ? ", entrando por la portada de la web: no ha habido llamada" : ""),
       Respuestas: renglones().join("\n").replace(/\*/g, ""),
       Consentimiento: "Sí: al tocar \"Empezar mi mes gratis\" acepta que le escribamos por WhatsApp para confirmar la visita",
       Enviado: new Date().toISOString(),

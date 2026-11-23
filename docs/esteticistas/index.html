@@ -37,7 +37,8 @@
   <main class="enlace" id="contenido">
 
     <header class="enlace-marca">
-      <span>Hermanos Mason</span>
+      <span data-llamada>Hermanos Mason</span>
+      <a href="../" data-portada hidden><span aria-hidden="true">← </span>Hermanos Mason</a>
       <small>Webs para centros de estética de Pamplona</small>
     </header>
 
@@ -46,9 +47,12 @@
         <img src="../img/hermanos/leo-retrato.webp" width="360" height="360" data-hermano="leo" alt="" />
         <img src="../img/hermanos/pablo-retrato.webp" width="360" height="360" data-hermano="pablo" alt="" />
       </div>
-      <p class="saludo__texto">
+      <p class="saludo__texto" data-llamada>
         Hola<span data-nombre></span>. <strong data-quien>Somos Leo y Pablo</strong>,
         hemos hablado por teléfono. Aquí tienes lo que <span data-contado>te hemos contado</span>, por escrito.
+      </p>
+      <p class="saludo__texto" data-portada hidden>
+        Hola. <strong>Somos Leo y Pablo</strong>, de Hermanos Mason. Esto es lo que hacemos para centros de estética.
       </p>
     </section>
 
@@ -621,17 +625,25 @@
       var nombre = limpio("nombre") || pre.nombre || "";
       var negocio = limpio("negocio") || pre.negocio || "";
       var de = (q.get("de") || pre.de || "").toLowerCase();
+      var portada = q.get("desde") === "portada" && !pre.negocio;
       var quien = { leo: "Soy Leo", pablo: "Soy Pablo" };
       var hueco = document.querySelector("[data-nombre]");
       var firma = document.querySelector("[data-quien]");
       var contado = document.querySelector("[data-contado]");
       var form = document.querySelector("form.preparar");
+      if (portada) {
+        document.querySelectorAll("[data-llamada]").forEach(function (el) { el.hidden = true; });
+        document.querySelectorAll("[data-portada]").forEach(function (el) { el.hidden = false; });
+        var saludo = document.querySelector(".saludo");
+        if (saludo) saludo.setAttribute("aria-label", "Quiénes somos");
+        if (form) form.dataset.origen = "portada";
+      }
       if (nombre && hueco) hueco.textContent = ", " + nombre;
       if (negocio && form) form.dataset.negocio = negocio;
       // El nombre también va al formulario (19-10-2026): sin él, en las
       // páginas por sector el correo llegaba sin saber quién contestaba.
       if (nombre && form) form.dataset.nombre = nombre;
-      var soy = negocio ? "Hola, soy de " + negocio + ". " : nombre ? "Hola, soy " + nombre + ". " : "";
+      var soy = negocio ? "Hola, soy de " + negocio + ". " : nombre ? "Hola, soy " + nombre + ". " : portada ? "Hola, os escribo desde vuestra web. " : "";
       if (soy) {
         document.querySelectorAll("[data-salida]").forEach(function (a) {
           a.href = a.href.split("?")[0] + "?text=" + encodeURIComponent(soy + a.dataset.mensaje);

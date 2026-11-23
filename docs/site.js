@@ -32,56 +32,6 @@
     });
   }
 
-  let muestraElegida = "";
-  let muestraOrigen = null; // la carta que abrió la caja de luz; la caja de pedir lo lee
-  const dialogo = document.querySelector(".muestra-dialogo");
-  if (dialogo && typeof dialogo.showModal === "function") {
-    const imagen = dialogo.querySelector(".muestra-dialogo__imagen");
-    const nombre = dialogo.querySelector(".muestra-dialogo__nombre");
-    const sector = dialogo.querySelector(".muestra-dialogo__sector");
-    const chat = dialogo.querySelector('a[href^="https://wa.me/"]');
-    const chatBase = chat ? new URL(chat.href) : null;
-    const saludoBase = chatBase ? chatBase.searchParams.get("text") || "" : "";
-
-    document.querySelectorAll("[data-muestra]").forEach((enlace) => {
-      enlace.addEventListener("click", (e) => {
-        e.preventDefault();
-        const img = enlace.querySelector("img");
-        muestraOrigen = enlace;
-        imagen.src = enlace.getAttribute("href");
-        imagen.alt = img ? img.alt : "";
-        nombre.textContent = enlace.dataset.nombre || "";
-        sector.textContent = enlace.dataset.sector || "";
-        if (chat && enlace.dataset.nombre) {
-          chat.href =
-            chatBase.origin + chatBase.pathname + "?text=" +
-            encodeURIComponent(
-              saludoBase + " Me ha gustado el diseño " + enlace.dataset.nombre + "."
-            );
-        }
-        dialogo.showModal();
-      });
-    });
-
-    const cerrar = () => {
-      if (dialogo.open) dialogo.close();
-    };
-    dialogo.querySelector(".muestra-dialogo__cerrar").addEventListener("click", cerrar);
-    dialogo.querySelectorAll("[data-cierra]").forEach((a) =>
-      a.addEventListener("click", () => {
-        muestraElegida = nombre.textContent;
-        cerrar();
-      })
-    );
-    dialogo.addEventListener("click", (e) => {
-      if (e.target === dialogo) cerrar();
-    });
-    dialogo.addEventListener("close", () => {
-      imagen.removeAttribute("src");
-      if (muestraOrigen) muestraOrigen.focus({ preventScroll: true });
-    });
-  }
-
   const pedir = document.querySelector(".pedir-dialogo");
   if (pedir && typeof pedir.showModal === "function") {
     const primero = pedir.querySelector("input:not([type='hidden'])");
@@ -90,8 +40,7 @@
     document.querySelectorAll("[data-pedir]").forEach((enlace) => {
       enlace.addEventListener("click", (e) => {
         e.preventDefault();
-        pedirOrigen = enlace.closest(".muestra-dialogo") ? muestraOrigen : enlace;
-        if (dialogo && dialogo.open) dialogo.close();
+        pedirOrigen = enlace;
         pedir.showModal();
         if (primero) primero.focus();
       });
@@ -127,6 +76,7 @@
   giros.forEach((giro, orden) => {
     const cartas = [...giro.querySelectorAll(".muestra")];
     if (cartas.length < 2) return;
+    const zona = giro.closest(".especialidad") || giro;
 
     let actual = 0;
     let pedida = -1;
@@ -140,13 +90,12 @@
     puntos.setAttribute("role", "group");
     puntos.setAttribute("aria-label", "Elegir diseño");
     const botones = cartas.map((carta, i) => {
-      const enlace = carta.querySelector("[data-muestra]");
       const boton = document.createElement("button");
       boton.type = "button";
       boton.className = "giro__punto";
       boton.setAttribute(
         "aria-label",
-        "Ver " + ((enlace && enlace.dataset.nombre) || "el diseño " + (i + 1))
+        "Ver " + (carta.dataset.nombre || "el diseño " + (i + 1))
       );
       boton.addEventListener("click", () => ir(i, true));
       puntos.appendChild(boton);
@@ -183,16 +132,16 @@
     giro.classList.add("is-giro");
     marcar();
 
-    giro.addEventListener("pointerenter", (e) => {
+    zona.addEventListener("pointerenter", (e) => {
       if (e.pointerType === "mouse") encima = true;
     });
-    giro.addEventListener("pointerleave", () => {
+    zona.addEventListener("pointerleave", () => {
       encima = false;
     });
 
     let x0 = 0;
     let y0 = 0;
-    giro.addEventListener(
+    zona.addEventListener(
       "touchstart",
       (e) => {
         x0 = e.touches[0].clientX;
@@ -200,7 +149,7 @@
       },
       { passive: true }
     );
-    giro.addEventListener(
+    zona.addEventListener(
       "touchend",
       (e) => {
         const dx = e.changedTouches[0].clientX - x0;
@@ -221,7 +170,7 @@
     setInterval(() => {
       if (
         reduced.matches || encima || !visible || document.hidden ||
-        giro.querySelector(":focus-visible") ||
+        zona.querySelector(":focus-visible") ||
         document.querySelector("dialog[open]")
       ) return;
       cuenta += LATIDO;
@@ -423,12 +372,8 @@
         .filter((el) => valorDe(el))
         .map((el) => "*" + rotuloDe(el) + ":* " + valorDe(el));
 
-      if (muestraElegida) renglones.push("*Diseño que me gusta:* " + muestraElegida);
-
       const enFrase = frase();
-      const mensaje = enFrase
-        ? enFrase + (muestraElegida ? " Me ha gustado el diseño " + muestraElegida + "." : "")
-        : SALUDO + "\n\n" + renglones.join("\n");
+      const mensaje = enFrase || SALUDO + "\n\n" + renglones.join("\n");
 
       open(destino + "?text=" + encodeURIComponent(mensaje), "_blank", "noopener");
 
