@@ -815,3 +815,30 @@
     if (aviso) aviso.textContent = "Has cambiado algo: envíalo otra vez y nos quedamos con lo último.";
   });
 })();
+
+(function () {
+  if (!("IntersectionObserver" in window) || !window.fetch || !window.Blob || !window.URL) return;
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  Array.prototype.forEach.call(document.querySelectorAll("img[data-empieza-al-verse]"), function (img) {
+    var texto = null, pendiente = false, fuera = true, blob = null;
+    function arranca() {
+      if (!texto) { pendiente = true; return; }
+      var previo = blob;
+      blob = URL.createObjectURL(new Blob([texto], { type: "image/svg+xml" }));
+      img.src = blob;
+      if (previo) setTimeout(function () { URL.revokeObjectURL(previo); }, 2000);
+    }
+    fetch(img.currentSrc || img.src).then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (t) { texto = t; if (t && pendiente) arranca(); })
+      .catch(function () {});
+    new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.intersectionRatio >= 0.6) {
+          if (fuera) { fuera = false; arranca(); }
+        } else if (!e.isIntersecting) {
+          fuera = true;
+        }
+      });
+    }, { threshold: [0, 0.6] }).observe(img);
+  });
+})();
