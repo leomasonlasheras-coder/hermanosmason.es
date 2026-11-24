@@ -2725,10 +2725,7 @@ html:not(.no-js) body:has(.cortina) .site-header {
 html:not(.no-js) .enlace .preparar-seccion.preparar-seccion--buscador { padding-block-start: var(--sp-xl); }
 
 .enlace .preparar-seccion.preparar-seccion--buscador .section__head {
-  --deco-hondo: 6rem;
-  margin-block-end: -2rem;
-  view-timeline-name: --deco;
-  view-timeline-inset: 0;
+  margin-block-end: var(--sp-xl);
 }
 
 .preparar-gancho {
@@ -2746,7 +2743,7 @@ html:not(.no-js) .enlace .preparar-seccion.preparar-seccion--buscador { padding-
 .preparar__titulo {
   max-width: 22ch;
   margin: 0 0 var(--sp-lg);
-  font-size: var(--size-2xl);
+  font-size: var(--size-3xl);
   letter-spacing: var(--track-head);
 }
 
@@ -2771,30 +2768,14 @@ html:not(.no-js) .enlace .preparar-seccion.preparar-seccion--buscador { padding-
 
 @media (max-width: 43.75rem) {
   .preparar-seccion--buscador .preparar:not(.is-modo) {
-    margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
-    border-radius: 0;
+    margin-inline: calc(-0.5 * var(--gutter));
+    padding-inline: calc(0.5 * var(--gutter));
   }
 }
 
 :where(.preparar-seccion--buscador .preparar:not(.is-modo)) :is(.casilla, .estilo, .turno, .datos) { background: var(--paper); }
 .preparar-seccion--buscador .preparar:not(.is-modo) .tramo__nav { background: var(--paper-2); }
 .preparar-seccion--buscador .preparar:not(.is-modo) .progreso__barra { background: var(--line-2); }
-
-@keyframes deco-sale {
-  from { transform: translate3d(0, var(--deco-hondo), 0); }
-  to   { transform: none; }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .preparar-seccion--buscador .section__head > :is(.preparar-gancho, .buscador-deco) {
-      animation: deco-sale linear both;
-      animation-timeline: --deco;
-      animation-range: entry 100% contain 60%;
-    }
-  }
-}
 
 .enlace .truco { border-block-start: var(--rule) solid var(--line); }
 
