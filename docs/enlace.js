@@ -849,28 +849,41 @@
   Array.prototype.forEach.call(document.querySelectorAll(".buscador[data-escribe]"), function (carta) {
     var caja = carta.querySelector(".buscador__busqueda");
     if (!caja) return;
-    var texto = caja.textContent;
-    caja.textContent = "";
-    carta.classList.add("is-esperando");
-    var vista = new IntersectionObserver(function (entradas) {
-      if (entradas[0].intersectionRatio < 0.6) return;
-      vista.disconnect();
-      setTimeout(function () {
+    var texto = caja.textContent, relojes = [], ida = false, primera = true;
+    function espera(fn, ms) { relojes.push(setTimeout(fn, ms)); }
+    function vacia() {
+      relojes.forEach(clearTimeout);
+      relojes = [];
+      caja.textContent = "";
+      carta.classList.remove("is-escribiendo");
+      carta.classList.add("is-esperando");
+    }
+    function escribe() {
+      if (caja.textContent || !carta.classList.contains("is-esperando")) vacia();
+      espera(function () {
         carta.classList.add("is-escribiendo");
         var i = 0;
         (function letra() {
           i += 1;
           caja.textContent = texto.slice(0, i);
           if (i < texto.length) {
-            setTimeout(letra, (texto.charAt(i) === " " ? 70 : 40) + Math.random() * 50);
+            espera(letra, (texto.charAt(i) === " " ? 70 : 40) + Math.random() * 50);
           } else {
-            setTimeout(function () {
-              carta.classList.remove("is-escribiendo", "is-esperando");
-            }, 450);
+            espera(function () { carta.classList.remove("is-escribiendo", "is-esperando"); }, 450);
           }
         })();
       }, 600);
-    }, { threshold: 0.6 });
-    vista.observe(carta);
+    }
+    new IntersectionObserver(function (entradas) {
+      var r = entradas[entradas.length - 1].intersectionRatio;
+      if (primera) {
+        primera = false;
+        if (r === 0) { ida = true; vacia(); } else if (r < 0.5) { ida = true; }
+        return;
+      }
+      if (r === 0) { ida = true; vacia(); }
+      else if (r < 0.5) { ida = true; }
+      else if (r >= 0.6 && ida) { ida = false; escribe(); }
+    }, { threshold: [0, 0.5, 0.6] }).observe(carta);
   });
 })();
