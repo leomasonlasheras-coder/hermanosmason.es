@@ -842,3 +842,35 @@
     }, { threshold: [0, 0.6] }).observe(img);
   });
 })();
+
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  Array.prototype.forEach.call(document.querySelectorAll(".buscador[data-escribe]"), function (carta) {
+    var caja = carta.querySelector(".buscador__busqueda");
+    if (!caja) return;
+    var texto = caja.textContent;
+    caja.textContent = "";
+    carta.classList.add("is-esperando");
+    var vista = new IntersectionObserver(function (entradas) {
+      if (entradas[0].intersectionRatio < 0.6) return;
+      vista.disconnect();
+      setTimeout(function () {
+        carta.classList.add("is-escribiendo");
+        var i = 0;
+        (function letra() {
+          i += 1;
+          caja.textContent = texto.slice(0, i);
+          if (i < texto.length) {
+            setTimeout(letra, (texto.charAt(i) === " " ? 70 : 40) + Math.random() * 50);
+          } else {
+            setTimeout(function () {
+              carta.classList.remove("is-escribiendo", "is-esperando");
+            }, 450);
+          }
+        })();
+      }, 600);
+    }, { threshold: 0.6 });
+    vista.observe(carta);
+  });
+})();
