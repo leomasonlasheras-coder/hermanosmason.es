@@ -42,13 +42,11 @@
       <small>Webs para salones de uñas de Pamplona</small>
     </header>
 
-    <div class="saludo-retraso"><div>
     <section class="section saludo" aria-label="Quién te ha llamado">
       <div class="saludo__fotos" aria-hidden="true">
         <img src="../../img/hermanos/leo-retrato.webp" width="360" height="360" data-hermano="leo" alt="" />
         <img src="../../img/hermanos/pablo-retrato.webp" width="360" height="360" data-hermano="pablo" alt="" />
       </div>
-      <span class="saludo__escribiendo" aria-hidden="true"><i></i><i></i><i></i></span>
       <p class="saludo__texto" data-llamada>
         Hola<span data-nombre></span>. <strong data-quien>Somos Leo y Pablo</strong>,
         hemos hablado por teléfono. Aquí tienes lo que <span data-contado>te hemos contado</span>, por escrito.
@@ -57,7 +55,6 @@
         Hola. <strong>Somos Leo y Pablo</strong>, de Hermanos Mason. Esto es lo que hacemos para salones de uñas.
       </p>
     </section>
-    </div></div>
 
     <section class="section oferta" aria-labelledby="oferta-titulo">
       <div class="reveal">
@@ -71,29 +68,6 @@
         </ul>
 
         <div class="cartas">
-        <figure class="cartas__carta">
-          <p class="cartas__titulo">Buscan tu nombre y sale tu web</p>
-          <div class="buscador" role="img" aria-label="En Google, buscando «estudio de uñas patricia estrada», el primer resultado es tu web, patriciaestrada.com" data-escribe>
-            <div class="buscador__barra" aria-hidden="true"><i></i><i></i><i></i><span class="buscador__dir"><svg viewBox="0 0 10 12"><path d="M2.5 5V3.6a2.5 2.5 0 0 1 5 0V5" fill="none" stroke="#8d8b90" stroke-width="1.4"/><rect x="1" y="5" width="8" height="6.5" rx="1.4" fill="#8d8b90"/></svg><b></b></span></div>
-            <div class="buscador__pagina" aria-hidden="true">
-              <p class="buscador__caja"><svg viewBox="0 0 24 24"><path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span class="buscador__busqueda">estudio de uñas patricia estrada</span></p>
-              <p class="buscador__pestanas" style="--orden:0"><i></i><i></i><i></i><i></i></p>
-              <div class="resultado" style="--orden:1">
-                <p class="resultado__sitio"><span class="resultado__icono"><b></b></span><span class="resultado__nombre">patriciaestrada.com</span><span class="resultado__url">https://patriciaestrada.com</span></p>
-                <p class="resultado__titulo">Estudio de Uñas Patricia Estrada</p>
-                <i class="resultado__texto"></i><i class="resultado__texto resultado__texto--corto"></i>
-              </div>
-              <div class="resultado resultado--otro" style="--orden:2">
-                <p class="resultado__sitio"><span class="resultado__icono"></span><span class="resultado__nombre"></span><span class="resultado__url"></span></p>
-                <i class="resultado__titulo"></i><i class="resultado__texto"></i><i class="resultado__texto resultado__texto--corto"></i>
-              </div>
-              <div class="resultado resultado--otro" style="--orden:3">
-                <p class="resultado__sitio"><span class="resultado__icono"></span><span class="resultado__nombre"></span><span class="resultado__url"></span></p>
-                <i class="resultado__titulo"></i><i class="resultado__texto"></i><i class="resultado__texto resultado__texto--corto"></i>
-              </div>
-            </div>
-          </div>
-        </figure>
         <figure class="cartas__carta">
           <p class="cartas__titulo">De tus fotos a tu web</p>
           <div class="flujo">
@@ -110,11 +84,23 @@
       </div>
     </section>
 
-    <section class="section preparar-seccion" id="preparar" aria-labelledby="preparar-titulo">
+    <section class="section preparar-seccion preparar-seccion--buscador" id="preparar" aria-labelledby="preparar-titulo">
       <div class="section__head reveal">
 
         <h2 id="preparar-titulo">Prepara tu web en dos minutos</h2>
-        <p class="section__sub">Ocho preguntas, ninguna obligatoria, y un vistazo a tus datos. Lo que ya sabemos: Estudio de Uñas Patricia Estrada, en Calle Monasterio de la Oliva, 7 trasera, Pamplona.</p>
+        <div class="buscador-deco" aria-hidden="true">
+          <div class="buscador">
+            <div class="buscador__barra"><i></i><i></i><i></i><span class="buscador__dir"><svg viewBox="0 0 10 12"><path d="M2.5 5V3.6a2.5 2.5 0 0 1 5 0V5" fill="none" stroke="#8d8b90" stroke-width="1.4"/><rect x="1" y="5" width="8" height="6.5" rx="1.4" fill="#8d8b90"/></svg><b></b></span></div>
+            <div class="buscador__pagina">
+              <p class="buscador__caja"><svg viewBox="0 0 24 24"><path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span class="buscador__busqueda">estudio de uñas patricia estrada</span></p>
+              <div class="resultado">
+                <p class="resultado__sitio"><span class="resultado__icono"><b></b></span><span class="resultado__nombre">patriciaestrada.com</span><span class="resultado__url">https://patriciaestrada.com</span></p>
+                <p class="resultado__titulo">Estudio de Uñas Patricia Estrada</p>
+                <i class="resultado__texto"></i><i class="resultado__texto resultado__texto--corto"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <form class="preparar reveal" action="https://wa.me/34699072079" method="get" target="_blank" rel="noopener" data-recibir="3510b3af-c7f1-4904-a86c-2bc85d468354" data-pagina="para/patricia-estrada" data-responder="https://wa.me/34623486237?text=Hola%2C%20Patricia.%20Ya%20nos%20han%20llegado%20tus%20respuestas.%20">
@@ -136,7 +122,7 @@
         </ol>
 
         <fieldset class="tramo" data-bloque="negocio">
-          <legend>¿Cómo te llegan los clientes nuevos? <span class="tramo__ayuda">Marca todas las que quieras</span></legend>
+          <legend>¿Cómo te llegan los clientes nuevos? <span class="tramo__ayuda">Marca las que quieras. Ninguna es obligatoria.</span></legend>
           <div class="tramo__cuerpo">
           <div class="casillas casillas--una">
             <label class="casilla">

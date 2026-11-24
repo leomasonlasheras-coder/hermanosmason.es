@@ -844,46 +844,39 @@
 })();
 
 (function () {
-  if (!("IntersectionObserver" in window)) return;
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  Array.prototype.forEach.call(document.querySelectorAll(".buscador[data-escribe]"), function (carta) {
-    var caja = carta.querySelector(".buscador__busqueda");
-    if (!caja) return;
-    var texto = caja.textContent, relojes = [], ida = false, primera = true;
-    function espera(fn, ms) { relojes.push(setTimeout(fn, ms)); }
-    function vacia() {
-      relojes.forEach(clearTimeout);
-      relojes = [];
-      caja.textContent = "";
-      carta.classList.remove("is-escribiendo");
-      carta.classList.add("is-esperando");
-    }
-    function escribe() {
-      if (caja.textContent || !carta.classList.contains("is-esperando")) vacia();
-      espera(function () {
-        carta.classList.add("is-escribiendo");
-        var i = 0;
-        (function letra() {
-          i += 1;
-          caja.textContent = texto.slice(0, i);
-          if (i < texto.length) {
-            espera(letra, (texto.charAt(i) === " " ? 70 : 40) + Math.random() * 50);
-          } else {
-            espera(function () { carta.classList.remove("is-escribiendo", "is-esperando"); }, 450);
-          }
-        })();
-      }, 600);
-    }
-    new IntersectionObserver(function (entradas) {
-      var r = entradas[entradas.length - 1].intersectionRatio;
-      if (primera) {
-        primera = false;
-        if (r === 0) { ida = true; vacia(); } else if (r < 0.5) { ida = true; }
-        return;
-      }
-      if (r === 0) { ida = true; vacia(); }
-      else if (r < 0.5) { ida = true; }
-      else if (r >= 0.6 && ida) { ida = false; escribe(); }
-    }, { threshold: [0, 0.5, 0.6] }).observe(carta);
-  });
+  if (window.CSS && CSS.supports && CSS.supports("animation-timeline: view()")) return;
+  var cabecera = document.querySelector(".preparar-seccion--buscador .section__head");
+  if (!cabecera || !window.matchMedia) return;
+  var piezas = cabecera.querySelectorAll(":scope > h2, :scope > .buscador-deco");
+  if (!piezas.length) return;
+  var raiz = document.documentElement;
+  var reducido = matchMedia("(prefers-reduced-motion: reduce)");
+  var pedido = false;
+  function distancia() {
+    var v = getComputedStyle(cabecera).getPropertyValue("--deco-hondo").trim();
+    var n = parseFloat(v) || 0;
+    return /rem$/.test(v) ? n * parseFloat(getComputedStyle(raiz).fontSize) : n;
+  }
+  function mover(t) {
+    Array.prototype.forEach.call(piezas, function (el) { el.style.transform = t; });
+  }
+  function pintar() {
+    pedido = false;
+    if (reducido.matches) { mover(""); return; }
+    var caja = cabecera.getBoundingClientRect();
+    var alto = window.innerHeight;
+    var tramo = Math.max(1, (alto - caja.height) * 0.6);
+    var avance = Math.min(1, Math.max(0, (alto - caja.bottom) / tramo));
+    var hondo = distancia() * (1 - avance);
+    mover(hondo > 0.5 ? "translate3d(0, " + hondo.toFixed(1) + "px, 0)" : "");
+  }
+  function alPasar() {
+    if (pedido) return;
+    pedido = true;
+    requestAnimationFrame(pintar);
+  }
+  addEventListener("scroll", alPasar, { passive: true });
+  addEventListener("resize", alPasar);
+  if (reducido.addEventListener) reducido.addEventListener("change", alPasar);
+  alPasar();
 })();
