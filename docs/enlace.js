@@ -847,7 +847,7 @@
   if (window.CSS && CSS.supports && CSS.supports("animation-timeline: view()")) return;
   var cabecera = document.querySelector(".preparar-seccion--buscador .section__head");
   if (!cabecera || !window.matchMedia) return;
-  var piezas = cabecera.querySelectorAll(":scope > h2, :scope > .buscador-deco");
+  var piezas = cabecera.querySelectorAll(":scope > .preparar-gancho, :scope > .buscador-deco");
   if (!piezas.length) return;
   var raiz = document.documentElement;
   var reducido = matchMedia("(prefers-reduced-motion: reduce)");

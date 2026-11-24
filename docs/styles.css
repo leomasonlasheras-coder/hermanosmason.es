@@ -2731,7 +2731,26 @@ html:not(.no-js) .enlace .preparar-seccion.preparar-seccion--buscador { padding-
   view-timeline-inset: 0;
 }
 
-.enlace .preparar-seccion.preparar-seccion--buscador .section__head h2 { font-size: var(--size-2xl); }
+.preparar-gancho {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--font-rotulo);
+  font-size: var(--size-2xl);
+  font-weight: var(--peso-800);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-head);
+  color: var(--ink-head);
+  text-wrap: balance;
+}
+
+.preparar__titulo {
+  max-width: 22ch;
+  margin: 0 0 var(--sp-lg);
+  font-size: var(--size-2xl);
+  letter-spacing: var(--track-head);
+}
+
+.preparar.is-modo .preparar__titulo { display: none; }
 
 .buscador-deco {
   position: relative;
@@ -2769,7 +2788,7 @@ html:not(.no-js) .enlace .preparar-seccion.preparar-seccion--buscador { padding-
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .preparar-seccion--buscador .section__head > :is(h2, .buscador-deco) {
+    .preparar-seccion--buscador .section__head > :is(.preparar-gancho, .buscador-deco) {
       animation: deco-sale linear both;
       animation-timeline: --deco;
       animation-range: entry 100% contain 60%;
